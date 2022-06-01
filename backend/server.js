@@ -12,7 +12,7 @@ mongoose.Promise = Promise
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
 // when starting the server. Example command to overwrite PORT env variable value:
 // PORT=9000 npm start
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 9090
 const app = express()
 
 // Add middlewares to enable cors and json body parsing
@@ -30,8 +30,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    maxlength: 12,
-    minlength: 8,
+     
   },
   accessToken: {
     type: String,
@@ -135,6 +134,7 @@ app.post('/login', async (req, res) => {
 })
 
 //--- BEACHES ENDPOINT ---//
+//--- show beaches ---//
 
 app.get('/beaches', authenticateUser, async (req, res) => {
   try {
@@ -154,6 +154,7 @@ app.get('/beaches', authenticateUser, async (req, res) => {
 })
 
 //--- REVIEW ENDPOINT ---//
+//--- show review feed ---//
 
 app.get('/review', authenticateUser, async (req, res) => {
   try {
@@ -172,7 +173,26 @@ app.get('/review', authenticateUser, async (req, res) => {
   }
 })
 
+//--- post review ---//
+// From Happy thoughts, needs tweaking
+
+// app.post("/thoughts", async (req, res) => {
+//   const { message } = req.body;
+
+//   try {
+//     const newThought = await new Thought({ message: message }).save();
+//     res.status(201).json({ response: newThought, sucess: true });
+//   } catch (error) {
+//     res.status(400).json({ response: error, success: false });
+//   }
+// });
+
+//--- remove review ---//
+
+//--- add stars??? ---//
+
 //--- PROFILE ENDPOINT ---//
+//--- show profile info ---//
 
 app.get('/profile', authenticateUser, async (req, res) => {
   try {
@@ -191,7 +211,38 @@ app.get('/profile', authenticateUser, async (req, res) => {
   }
 })
 
+//--- FAVOURITES ENDPOINT ---//
+//--- add(post) favourite ---//
+// Taken from Hapy thoughts, needs tweaking
+
+// app.post("/thoughts/:id/like", async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const likeUpdate = await Thought.findByIdAndUpdate(id, {
+//       $inc: { like: 1 },
+//     });
+//     res.status(200).json(likeUpdate);
+//   } catch (error) {
+//     res.status(400).json({ response: error, success: false });
+//   }
+// });
+
+//--- remove from favourites ---//
+
 //--- START THE SERVER ---//
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
+})
+
+app.get('/thoughts', authenticateUser)
+app.get('/thoughts', async (req, res) => {
+  const listOfproperties = Object.keys(req.params)
+  const searchCriteria = {}
+
+  listOfproperties.map((singleCriteria) => {
+    searchCriteria[singleCriteria] = req.params[singleCriteria]
+  })
+
+  const thoughts = await Thought.find(searchCriteria)
+  res.status(200).json({ response: thoughts, success: true })
 })
