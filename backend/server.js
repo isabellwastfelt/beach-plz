@@ -9,9 +9,6 @@ const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/beach-plz'
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
-// Defines the port the app will run on. Defaults to 8080, but can be overridden
-// when starting the server. Example command to overwrite PORT env variable value:
-// PORT=9000 npm start
 const port = process.env.PORT || 9090
 const app = express()
 
@@ -30,7 +27,6 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-     
   },
   accessToken: {
     type: String,
@@ -39,6 +35,27 @@ const UserSchema = new mongoose.Schema({
 })
 
 const User = mongoose.model('User', UserSchema)
+
+//--- Review schema ---//
+const ReviewSchema = new mongoose.Schema({
+  message: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 150,
+    trim: true,
+  },
+  // hearts: {
+  //   type: Number,
+  //   default: 0
+  // },
+  createdAt: {
+    type: Date,
+    default: () => new Date(),
+  },
+})
+
+const Review = mongoose.model('Review', ReviewSchema)
 
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header('Authorization')
@@ -133,32 +150,16 @@ app.post('/login', async (req, res) => {
   }
 })
 
-//--- BEACHES ENDPOINT ---//
-//--- show beaches ---//
-
-app.get('/beaches', authenticateUser, async (req, res) => {
-  try {
-    res.status(200).json({
-      response: {
-        id: req.user._id,
-        username: req.user.username,
-      },
-      success: true,
-    })
-  } catch (error) {
-    res.status(401).json({
-      errors: error,
-      response: 'Failed to log in.',
-    })
-  }
-})
-
 //--- REVIEW ENDPOINT ---//
 //--- show review feed ---//
 
 app.get('/review', authenticateUser, async (req, res) => {
   try {
-    res.status(200).json({
+    const reviews = await Review.find()
+      .sort({ createdAt: 'desc' })
+      .limit(20)
+      .exec()
+    res.status(200).json(reviews)({
       response: {
         id: req.user._id,
         username: req.user.username,
@@ -168,26 +169,47 @@ app.get('/review', authenticateUser, async (req, res) => {
   } catch (error) {
     res.status(401).json({
       errors: error,
-      response: 'Failed to log in.',
+      response: 'Please log in or sign up.',
     })
   }
 })
 
-//--- post review ---//
-// From Happy thoughts, needs tweaking
+//--- POST REVIEW ---//
 
-// app.post("/thoughts", async (req, res) => {
-//   const { message } = req.body;
+app.post('/review', async (req, res) => {
+  const { message } = req.body
 
-//   try {
-//     const newThought = await new Thought({ message: message }).save();
-//     res.status(201).json({ response: newThought, sucess: true });
-//   } catch (error) {
-//     res.status(400).json({ response: error, success: false });
-//   }
-// });
+  try {
+    const newReview = await new Review({ message: message }).save()
+    res.status(201).json({ response: newReview, sucess: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
 
-//--- remove review ---//
+//--- DELETE REVIEW ---//
+
+app.delete('/review/:_id', authenticateUser, async (req, res) => {
+  const { _id } = req.params
+  try {
+    const deleteReview = await Review.findByIdAndDelete(_id)({
+      response: {
+        id: req.user._id,
+        username: req.user.username,
+      },
+      success: true,
+    })
+    if (deleteReview) {
+      res.status(200).json({ response: deleteReview })
+    } else {
+      res
+        .status(404)
+        .json({ success: false, message: 'Sorry, something went wrong', error })
+    }
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
 
 //--- add stars??? ---//
 
@@ -213,7 +235,7 @@ app.get('/profile', authenticateUser, async (req, res) => {
 
 //--- FAVOURITES ENDPOINT ---//
 //--- add(post) favourite ---//
-// Taken from Hapy thoughts, needs tweaking
+// Taken from Happy thoughts, needs tweaking
 
 // app.post("/thoughts/:id/like", async (req, res) => {
 //   const { id } = req.params;
@@ -234,15 +256,16 @@ app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
 })
 
-app.get('/thoughts', authenticateUser)
-app.get('/thoughts', async (req, res) => {
-  const listOfproperties = Object.keys(req.params)
-  const searchCriteria = {}
+//-------------- från joannas projekt som de fick från daniel för filtrering
+// app.get('/thoughts', authenticateUser)
+// app.get('/thoughts', async (req, res) => {
+//   const listOfproperties = Object.keys(req.params)
+//   const searchCriteria = {}
 
-  listOfproperties.map((singleCriteria) => {
-    searchCriteria[singleCriteria] = req.params[singleCriteria]
-  })
+//   listOfproperties.map((singleCriteria) => {
+//     searchCriteria[singleCriteria] = req.params[singleCriteria]
+//   })
 
-  const thoughts = await Thought.find(searchCriteria)
-  res.status(200).json({ response: thoughts, success: true })
-})
+//   const thoughts = await Thought.find(searchCriteria)
+//   res.status(200).json({ response: thoughts, success: true })
+// })
