@@ -56,7 +56,7 @@ const ReviewSchema = new mongoose.Schema({
     maxlength: 150,
     trim: true,
   },
-  favorites: {
+  rate: {
     type: Number,
   },
   createdAt: {
@@ -169,19 +169,10 @@ app.post('/login', async (req, res) => {
 //--- REVIEW ENDPOINT ---//
 //--- show review feed ---//
 
-app.get('/review', authenticateUser, async (req, res) => {
+app.get('/review', async (req, res) => {
   try {
     const reviews = await Review.find()
-      .sort({ createdAt: 'desc' })
-      .limit(20)
-      .exec()
-    res.status(200).json(reviews)({
-      response: {
-        id: req.user._id,
-        username: req.user.username,
-      },
-      success: true,
-    })
+    res.status(200).json(reviews)
   } catch (error) {
     res.status(401).json({
       errors: error,
@@ -193,7 +184,7 @@ app.get('/review', authenticateUser, async (req, res) => {
 //--- POST REVIEW ---//
 app.post('/review', authenticateUser, async (req, res) => {
   try {
-    const { message } = req.body
+    const { message, rate } = req.body
     const userId = req.user._id
 
     console.log(`This is the req.user._id ${req.user._id}`)
@@ -201,6 +192,7 @@ app.post('/review', authenticateUser, async (req, res) => {
     const newReview = await new Review({
       message: message,
       userId,
+      rate,
     }).save()
     console.log(newReview)
     res.status(201).json({ response: newReview, sucess: true })
@@ -212,35 +204,16 @@ app.post('/review', authenticateUser, async (req, res) => {
 //--- DELETE REVIEW ---//
 
 app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
-  // 1. Hitta review med id
-  // 2. Kolla på auth user har samma som review user id
-  const accessToken = req.header('Authorization')
   const { reviewId } = req.params
-  console.log(`This is the reviewId ${reviewId}`)
-
-  // start assist
-  // delete me
-  const reviewToDelete = await Review.findOne({ reviewId })
 
   try {
-    const user = await User.findOne({ accessToken: accessToken })
-
-    if (reviewToDelete.userId === user._id) {
-      // Finish me
-      Review.deleteOne()
-
-      res.status(201).json({ sucess: true })
-      // return success
-    } else {
-      // this is not YOURS!!!
-      res.status(401).json({
-        errors: error,
-        response: 'Please log in or sign up.',
-      })
-    }
+    Review.deleteOne({ _id: reviewId }, function (err) {
+      if (err) return handleError(err)
+    })
+    res.status(200).json({ response: 'toppen!' })
   } catch (error) {
+    console.log(error)
     res.status(400).json({ response: error, success: false })
-    // handle error
   }
 })
 //   END of assist
@@ -248,7 +221,7 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 //   try {
 //     const deleteReview = await Review.findByIdAndDelete({
 //       _id,
-//     })({
+//     })({a
 //       response: {
 //         id: req.user._id,
 //         username: req.user.username,
