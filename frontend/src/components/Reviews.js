@@ -5,45 +5,43 @@ const api = 'http://localhost:9090'
 const Reviews = () => {
   const [reviews, setReviews] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  // const [isDelete, setDelete] = useState()
 
-  const dispatch = useDispatch()
+  const fetchData = async () => {
+    setIsLoading(true)
 
-  const onDeleteReview = () => {
-    dispatch(reviews.actions.setIsLoading(true))
-    const options = {
+    try {
+      const data = await fetch(`${api}/review`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const res = await data.json()
+      console.log(res)
+      setReviews(res)
+    } catch (err) {
+      console.error(err)
+    }
+
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const onDelete = (reviewId) => {
+    fetch(`${api}/review/${reviewId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-    }
+    })
+      .then((response) => response.json())
+      .then((data) => fetchData())
+  }
 
-    useEffect(() => {
-      const fetchData = async () => {
-        setIsLoading(true)
-
-        try {
-          const data = await fetch(`${api}/review`, {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-          const res = await data.json()
-          console.log(res)
-          setReviews(res)
-        } catch (err) {
-          console.error(err)
-        }
-
-        setIsLoading(false)
-      }
-
-      fetchData()
-    }, [])
-
-    if (isLoading) {
-      return <div>Laddar..</div>
-    }
+  if (isLoading) {
+    return <div>Laddar..</div>
   }
 
   return (
@@ -54,11 +52,16 @@ const Reviews = () => {
           {reviews.map((review) => (
             <li key={review._id}>
               {review.message} {review.rate}
+              <button
+                type='button'
+                onClick={() => {
+                  onDelete(review._id)
+                }}
+              >
+                KLICKA HÄR
+              </button>
             </li>
-          ))}{' '}
-          <button className='delete-btn' onClick={() => onDeleteReview(api.id)}>
-            Remove
-          </button>
+          ))}
         </ul>
       )}
     </div>

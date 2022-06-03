@@ -5,7 +5,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { Login } from './components/Login'
 import { Registration } from './components/Registration'
 import Reviews from './components/Reviews'
-const api = 'http://localhost:9090'
+// const api = 'http://localhost:9090'
 
 import user from './reducers/user'
 
