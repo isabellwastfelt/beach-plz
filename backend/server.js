@@ -32,12 +32,23 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
   },
+  favorites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      default: [],
+      ref: 'Favorites',
+    },
+  ],
 })
 
 const User = mongoose.model('User', UserSchema)
 
 //--- Review schema ---//
 const ReviewSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   message: {
     type: String,
     required: true,
@@ -45,10 +56,9 @@ const ReviewSchema = new mongoose.Schema({
     maxlength: 150,
     trim: true,
   },
-  // hearts: {
-  //   type: Number,
-  //   default: 0
-  // },
+  favorites: {
+    type: Number,
+  },
   createdAt: {
     type: Date,
     default: () => new Date(),
@@ -56,6 +66,12 @@ const ReviewSchema = new mongoose.Schema({
 })
 
 const Review = mongoose.model('Review', ReviewSchema)
+
+const FavoriteBeach = mongoose.model('FavoriteBeach', {
+  name: String,
+  image: String,
+  description: String,
+})
 
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header('Authorization')
@@ -175,12 +191,18 @@ app.get('/review', authenticateUser, async (req, res) => {
 })
 
 //--- POST REVIEW ---//
-
-app.post('/review', async (req, res) => {
-  const { message } = req.body
-
+app.post('/review', authenticateUser, async (req, res) => {
   try {
-    const newReview = await new Review({ message: message }).save()
+    const { message } = req.body
+    const userId = req.user._id
+
+    console.log(`This is the req.user._id ${req.user._id}`)
+
+    const newReview = await new Review({
+      message: message,
+      userId,
+    }).save()
+    console.log(newReview)
     res.status(201).json({ response: newReview, sucess: true })
   } catch (error) {
     res.status(400).json({ response: error, success: false })
@@ -189,65 +211,129 @@ app.post('/review', async (req, res) => {
 
 //--- DELETE REVIEW ---//
 
-app.delete('/review/:_id', authenticateUser, async (req, res) => {
-  const { _id } = req.params
+app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
+  // 1. Hitta review med id
+  // 2. Kolla på auth user har samma som review user id
+  const accessToken = req.header('Authorization')
+  const { reviewId } = req.params
+  console.log(`This is the reviewId ${reviewId}`)
+
+  // start assist
+  // delete me
+  const reviewToDelete = await Review.findOne({ reviewId })
+
   try {
-    const deleteReview = await Review.findByIdAndDelete(_id)({
-      response: {
-        id: req.user._id,
-        username: req.user.username,
-      },
-      success: true,
-    })
-    if (deleteReview) {
-      res.status(200).json({ response: deleteReview })
+    const user = await User.findOne({ accessToken: accessToken })
+
+    if (reviewToDelete.userId === user._id) {
+      // Finish me
+      Review.deleteOne()
+
+      res.status(201).json({ sucess: true })
+      // return success
     } else {
-      res
-        .status(404)
-        .json({ success: false, message: 'Sorry, something went wrong', error })
+      // this is not YOURS!!!
+      res.status(401).json({
+        errors: error,
+        response: 'Please log in or sign up.',
+      })
     }
   } catch (error) {
     res.status(400).json({ response: error, success: false })
+    // handle error
   }
 })
+//   END of assist
 
-//--- add stars??? ---//
-
-//--- PROFILE ENDPOINT ---//
-//--- show profile info ---//
-
-app.get('/profile', authenticateUser, async (req, res) => {
-  try {
-    res.status(200).json({
-      response: {
-        id: req.user._id,
-        username: req.user.username,
-      },
-      success: true,
-    })
-  } catch (error) {
-    res.status(401).json({
-      errors: error,
-      response: 'Failed to log in.',
-    })
-  }
-})
-
-//--- FAVOURITES ENDPOINT ---//
-//--- add(post) favourite ---//
-// Taken from Happy thoughts, needs tweaking
-
-// app.post("/thoughts/:id/like", async (req, res) => {
-//   const { id } = req.params;
 //   try {
-//     const likeUpdate = await Thought.findByIdAndUpdate(id, {
-//       $inc: { like: 1 },
-//     });
-//     res.status(200).json(likeUpdate);
+//     const deleteReview = await Review.findByIdAndDelete({
+//       _id,
+//     })({
+//       response: {
+//         id: req.user._id,
+//         username: req.user.username,
+//       },
+//       success: true,
+//     })
+
+//     if (deleteReview) {
+//       res
+//         .status(200)
+//         .json({ response: deleteReview, message: 'Review deleted' })
+//     } else {
+//       res.status(404).json({
+//         success: false,
+//         message: 'Sorry, this is not your review.',
+//         error,
+//       })
+//     }
 //   } catch (error) {
-//     res.status(400).json({ response: error, success: false });
+//     res.status(400).json({ response: error, success: false })
 //   }
-// });
+// })
+
+// //--- add stars??? ---//
+
+// //--- PROFILE ENDPOINT ---//
+// //--- show profile info ---//
+
+// app.get('/profile', authenticateUser, async (req, res) => {
+//   try {
+//     res.status(200).json({
+//       response: {
+//         id: req.user._id,
+//         username: req.user.username,
+//       },
+//       success: true,
+//     })
+//   } catch (error) {
+//     res.status(401).json({
+//       errors: error,
+//       response: 'Failed to log in.',
+//     })
+//   }
+// })
+
+// //--- FAVOURITES ENDPOINT ---//
+// //--- add(post) favourite ---//
+// // Taken from Happy thoughts, needs tweaking
+
+app.post('/favorites/:_id/addFavorite', authenticateUser, async (req, res) => {
+  const { _id } = req.params
+  const faveId = req.body
+
+  try {
+    const favoriteToAdd = await FavoriteBeach.findById(faveId)
+
+    if (req.user.favorites.includes(faveId) && !favoriteToAdd) {
+      res.status(404).json({
+        success: false,
+        message:
+          'Någonting gick fel, kanske har du redan denna fågeln i din samling?',
+      })
+    } else {
+      await User.findByIdAndUpdate(_id, {
+        $push: {
+          favorites: favoriteToAdd,
+        },
+      })
+      res.status(200).json({ success: true, message: 'Tillagd!', User })
+    }
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message:
+        'Någonting gick fel, kanske har du redan denna fågeln i din samling?',
+      error,
+    })
+  }
+})
+//       res.status(200).json(favoriteUpdate)
+//     } catch (error) {
+//       res.status(400).json({ response: error, success: false })
+//     }
+//   }
+// )
 
 //--- remove from favourites ---//
 
