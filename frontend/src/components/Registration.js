@@ -1,28 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector, batch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
-import user from '../reducers/user'
-import { API_URL } from '../utils/utils'
+// .env  API_URL="https://beach-plz.herokuapp.com/"
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
 export const Registration = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [mode, setMode] = useState('registration')
-  const [error, setError] = useState('')
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const [result, setResult] = useState(false)
+  const [error, setError] = useState(null)
 
-  const accessToken = useSelector((store) => store.user.accessToken)
-
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (accessToken) {
-      navigate('/')
-    }
-  }, [accessToken, navigate])
-
-  const onFormSubmit = (event) => {
+  const onRegister = (event) => {
     event.preventDefault()
 
     const options = {
@@ -32,72 +22,56 @@ export const Registration = () => {
       },
       body: JSON.stringify({ username: username, password: password }),
     }
-    fetch(API_URL(mode), options)
+
+    fetch(`${API}registration`, options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          batch(() => {
-            const userId = data.userId
-            const accessToken = data.accessToken
-            const username = data.username
-            dispatch(user.actions.setUserId(userId))
-            dispatch(user.actions.setAccessToken(accessToken))
-            dispatch(user.actions.setUsername(username))
-            dispatch(user.actions.setError(null))
-          })
+          setResult(true)
         } else {
-          batch(() => {
-            dispatch(user.actions.setError(data.response))
-            dispatch(user.actions.setUserId(null))
-            dispatch(user.actions.setAccessToken(null))
-            dispatch(user.actions.setUsername(null))
-          })
-          setError('Sorry, this is an invalid username or password')
+          setError('Sorry, registration didnt go through')
         }
       })
   }
 
-  return (
-    <>
-      <main className='login-container'>
-        <form onSubmit={onFormSubmit} className='form-container'>
-          <label htmlFor='username'>Register </label>
-          <h3>Username:</h3>
-          <input
-            type='text'
-            id='username'
-            placeholder='enter username'
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+  if (result) {
+    return (
+      <div>
+        <h2>
+          Now continue to <Link to='/'>Login</Link>!
+        </h2>
+      </div>
+    )
+  }
 
-          <h3>Password:</h3>
-          <input
-            type='password'
-            id='password'
-            placeholder='enter password'
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <div className='error'>{error}</div>
-          {/* <button
-            className='submit-button'
-            type='submit'
-            id='login'
-            onClick={() => setMode('login')}
-          >
-            <p>Log in</p>
-          </button> */}
-          <button
-            className='submit-button'
-            type='submit'
-            id='registration'
-            onClick={() => setMode('registration')}
-          >
-            <p>Sign up</p>
-          </button>
-        </form>
-      </main>
-    </>
+  return (
+    <main className='login-container'>
+      <form onSubmit={onRegister} className='form-container'>
+        <h3>Register </h3>
+        <label htmlFor='username'>Username:</label>
+        <input
+          type='text'
+          id='username'
+          placeholder='enter username'
+          onChange={(event) => setUsername(event.target.value)}
+        />
+
+        <label htmlFor='password'>Password:</label>
+        <input
+          type='password'
+          id='password'
+          placeholder='enter password'
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        {/* ADD REPET PASSWORD */}
+
+        <div className='error'>{error}</div>
+
+        <button className='submit-button' type='submit' id='registration'>
+          <p>Sign up</p>
+        </button>
+        <Link to='/'>Already have an account? Login</Link>
+      </form>
+    </main>
   )
 }

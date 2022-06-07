@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { API_URL } from '../utils/utils'
+
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([])
@@ -8,9 +8,8 @@ const Reviews = () => {
 
   const fetchData = async () => {
     setIsLoading(true)
-
     try {
-      const data = await fetch(API_URL('review'), {
+      const data = await fetch(`${API}review`, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -29,16 +28,16 @@ const Reviews = () => {
     fetchData()
   }, [])
 
-  // const onDelete = (reviewId) => {
-  //   fetch(`${api}/review/${reviewId}`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => fetchData())
-  // }
+  const onDelete = (reviewId) => {
+    fetch(`${API}review/${reviewId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => fetchData())
+  }
 
   if (isLoading) {
     return <div>Laddar..</div>
