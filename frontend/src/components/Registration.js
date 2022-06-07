@@ -3,7 +3,7 @@ import { useDispatch, useSelector, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import user from '../reducers/user'
-const api = 'http://localhost:9090'
+import { API_URL } from '../utils/utils'
 
 export const Registration = () => {
   const [username, setUsername] = useState('')
@@ -32,7 +32,7 @@ export const Registration = () => {
       },
       body: JSON.stringify({ username: username, password: password }),
     }
-    fetch(`${api}/registration`(mode), options)
+    fetch(API_URL(mode), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

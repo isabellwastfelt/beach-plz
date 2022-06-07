@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-const api = 'http://localhost:9090'
+import { API_URL } from '../utils/utils'
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([])
@@ -10,7 +10,7 @@ const Reviews = () => {
     setIsLoading(true)
 
     try {
-      const data = await fetch(`${api}/review`, {
+      const data = await fetch(API_URL('review'), {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -29,16 +29,16 @@ const Reviews = () => {
     fetchData()
   }, [])
 
-  const onDelete = (reviewId) => {
-    fetch(`${api}/review/${reviewId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => fetchData())
-  }
+  // const onDelete = (reviewId) => {
+  //   fetch(`${api}/review/${reviewId}`, {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => fetchData())
+  // }
 
   if (isLoading) {
     return <div>Laddar..</div>

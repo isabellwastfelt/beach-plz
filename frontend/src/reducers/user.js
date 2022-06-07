@@ -22,8 +22,8 @@ const user = createSlice({
     setError: (store, action) => {
       store.error = action.payload
     },
-    // setSecretMessage: (store, action) => {
-    //   store.secretMessage = action.payload
+    // setReviewMessage: (store, action) => {
+    //   store.reviewMessage = action.payload
     // },
   },
 })
