@@ -218,33 +218,6 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 })
 //   END of assist
 
-//   try {
-//     const deleteReview = await Review.findByIdAndDelete({
-//       _id,
-//     })({a
-//       response: {
-//         id: req.user._id,
-//         username: req.user.username,
-//       },
-//       success: true,
-//     })
-
-//     if (deleteReview) {
-//       res
-//         .status(200)
-//         .json({ response: deleteReview, message: 'Review deleted' })
-//     } else {
-//       res.status(404).json({
-//         success: false,
-//         message: 'Sorry, this is not your review.',
-//         error,
-//       })
-//     }
-//   } catch (error) {
-//     res.status(400).json({ response: error, success: false })
-//   }
-// })
-
 // //--- add stars??? ---//
 
 // //--- PROFILE ENDPOINT ---//
