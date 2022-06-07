@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Bearer } from 'react'
+import { getCookie } from 'utils/cookieHelper'
 
 const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 

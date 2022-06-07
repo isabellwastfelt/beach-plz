@@ -5,7 +5,6 @@ import { Registration } from './components/Registration'
 import Reviews from './components/Reviews'
 
 import { getCookie } from 'utils/cookieHelper'
-// const api = 'http://localhost:9090'
 
 export const App = () => {
   const isLoggedIn = () => getCookie('accessToken') || false

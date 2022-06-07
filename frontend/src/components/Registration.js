@@ -63,7 +63,7 @@ export const Registration = () => {
           placeholder='enter password'
           onChange={(event) => setPassword(event.target.value)}
         />
-        {/* ADD REPET PASSWORD */}
+        {/* ADD REPEAT PASSWORD */}
 
         <div className='error'>{error}</div>
 
