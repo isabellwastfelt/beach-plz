@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, Link, Navigate } from 'react-router-dom'
 
 // const url =
 //   'https://apigw.stockholm.se/NoAuth/VirtualhittaserviceDMZ/Rest/serviceunits?&filter[servicetype.id]=104&page[limit]=1500&page[offset]=0&sort=name'
@@ -34,10 +35,12 @@ export const Beaches = () => {
       {data &&
         data.map((item) => (
           <div key={item.name}>
-            <h1>{item.name}</h1>
-            <img src={item.image}></img>
-            <h2>{item.address}</h2>
-            <h2>{item.location}</h2>
+            <Link to='/review'>
+              <h1>{item.name}</h1>
+              <img src={item.image}></img>
+              <h2>{item.address}</h2>
+              <h2>{item.location}</h2>
+            </Link>
             <p>{item.description}</p>
           </div>
         ))}
