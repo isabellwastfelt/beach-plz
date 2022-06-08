@@ -5,7 +5,7 @@ import { setCookie } from 'utils/cookieHelper'
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
-export const Login = () => {
+export const LoginForm = () => {
   const navigate = useNavigate()
 
   const [username, setUsername] = useState('')
@@ -39,7 +39,7 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
-    return <Navigate to='/reviews' />
+    return <Navigate to='/main' />
   }
 
   return (

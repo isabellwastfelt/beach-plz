@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
-export const Registration = () => {
+export const RegistrationForm = () => {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const [result, setResult] = useState(false)

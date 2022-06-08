@@ -1,8 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { Login } from './components/Login'
-import { Registration } from './components/Registration'
-import Reviews from './components/Reviews'
+import { LoginForm } from './components/LoginForm'
+import { RegistrationForm } from './components/RegistrationForm'
+import ReviewForm from './components/ReviewForm'
+import { Main } from './pages/Main'
 
 import { getCookie } from 'utils/cookieHelper'
 
@@ -14,11 +15,12 @@ export const App = () => {
       <Routes>
         {isLoggedIn && (
           <>
-            <Route path='/reviews' element={<Reviews />} />
-            <Route path='/registration' element={<Registration />} />
+            <Route path='/main' element={<Main />} />
+            <Route path='/reviews' element={<ReviewForm />} />
+            <Route path='/registration' element={<RegistrationForm />} />
           </>
         )}
-        <Route path='/' element={<Login />}></Route>
+        <Route path='/' element={<LoginForm />}></Route>
       </Routes>
     </BrowserRouter>
   )

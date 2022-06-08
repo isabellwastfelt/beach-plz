@@ -1,0 +1,259 @@
+[
+  {
+    "name": "Brunnsvikens strandbad",
+    "address": "Frescati Hagväg 18",
+    "description": "Brunnsviksbadet är ett allmänt EU-bad som sköts av Stockholms stad gemensamt med Kungliga Djurgårdens förvaltning.",
+    "loaction": "114 19 Stockholm",
+    "image": "https://parker.stockholm/optimized/card/filer/hitta/442ab126-d19c-4b8d-b8a6-3ae5f347ad8a.jpeg"
+  },
+
+  {
+    "name": "Ekhagens strandbad",
+    "address": "Lektorsstigen",
+    "description": "Badet ligger nära Lappkärrsberget på Norra Djurgården. Det drivs av Kungliga Djurgårdens förvaltning.",
+    "loaction": "114 17 Stockholm",
+    "image": "https://parker.stockholm/optimized/card/filer/hitta/557476f9-3fef-4340-9e7c-05aa1ba3f95a.jpeg"
+  },
+
+  {
+    "name": "Farstastrandbad",
+    "address": "Ekshäradsgatan 1",
+    "description": "Farstastrandbad är ett populärt strandbad vid sjön Magelungen i Farsta strand. Hit lockas många besökare såväl under vinterhalvåret som under sommarhalvåret.",
+    "loaction": "123 46 Farsta",
+    "image": "https://parker.stockholm/optimized/card/filer/hitta/03549e89-db92-46f9-867e-99a4c85290f5.jpeg"
+  },
+
+  {
+    "name": "Flatenbadet, allmänna",
+    "address": "Flatenvägen 200",
+    "description": "Sjön Flaten är en av Stockholms renaste badsjöar. Vid Flatenbadet finns bryggor på flera platser och ett hopptorn. Badet är tillgänglighetsanpassat med en ramp som leder ner till stranden och vattnet. Fina promenadstigar genom orörd natur.",
+    "loaction": "128 30 Skarpnäck",
+    "image": "https://parker.stockholm/optimized/card/filer/hitta/4bf6dee0-f9ff-49eb-a7f8-e07f62e28878.jpeg"
+  },
+
+  {
+    "name": "Flatenbadet, barnbadet",
+    "address": "Flatenvägen 200",
+    "description": "Sjön Flaten är en av Stockholms renaste badsjöar. Vid Flatenbadet finns bryggor på flera platser och ett hopptorn. Sommartid finns servering och minigolfbana i anslutning till badet. Fina promenadstigar genom orörd natur leder runt sjön.",
+    "loaction": "128 30 Skarpnäck",
+    "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/b9ef6131-4a72-47c8-9151-5f79861dd677.jpeg"
+  },
+  {
+    "name": "Fredhällsbadet",
+    "address": "Snoilskyvägen 34",
+    "description": "Fredhällsbadet ligger i Fredhäll ut mot Tranebergssundet. Badet ägs av Stockholms stad men hyrs av Fredhälls badklubb som ansvarar för tillsynen.",
+    "loaction": "112 54 Stockholm",
+    "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/175fc9d2-71f6-4e9a-a0db-721b69e58cf2.jpeg"
+  },
+
+  {
+    "name": "Hässelby allmänna bad",
+    "address": "Fagerstrand 16-22",
+    "description": "Ett litet strandbad med två barnvänliga sandstränder, ett trädäck, en träbrygga och en betongbrygga. Brant gångväg ner till badet.",
+    "loaction": "165 71 Hässelby",
+    "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/9bd24bbb-8dc9-4abf-b211-b47bb3e134b0.jpeg"
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  },
+
+  {
+    "name": "",
+    "address": "",
+    "description": "",
+    "loaction": "",
+    "image": ""
+  }
+]

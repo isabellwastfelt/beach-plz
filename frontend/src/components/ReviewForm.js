@@ -1,9 +1,9 @@
-import { useState, useEffect, Bearer } from 'react'
+import { useState, useEffect } from 'react'
 import { getCookie } from 'utils/cookieHelper'
 
 const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
-const Reviews = () => {
+const ReviewForm = () => {
   const [reviews, setReviews] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -68,4 +68,4 @@ const Reviews = () => {
   )
 }
 
-export default Reviews
+export default ReviewForm
