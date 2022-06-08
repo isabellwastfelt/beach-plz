@@ -45,7 +45,8 @@ const ReviewForm = () => {
   }
 
   return (
-    <div>
+    <div className='review-form'>
+      <p>Här ska det egentligen ligga ett formulär för den här stranden</p>
       <h1>Sick reviews</h1>
       {reviews.length > -1 && (
         <ul>

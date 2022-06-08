@@ -4,7 +4,7 @@ import { Beaches } from '../components/Beaches'
 
 export const Main = () => {
   return (
-    <div className='main-container'>
+    <div>
       <h1>
         <Beaches />
       </h1>

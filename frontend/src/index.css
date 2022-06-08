@@ -19,3 +19,12 @@ code {
 .header {
   background-color: lightyellow;
 }
+
+/* REVIEW PAGE */
+.single-beach {
+  background-color: lightgray;
+}
+
+.review-form {
+  background-color: lightgray;
+}

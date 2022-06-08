@@ -11,6 +11,7 @@ import { Main } from './pages/Main'
 import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
 import { Review } from './pages/Review'
+import { Profile } from './pages/Profile'
 
 export const App = () => {
   const isLoggedIn = () => getCookie('accessToken') || false
@@ -25,7 +26,8 @@ export const App = () => {
           {isLoggedIn && (
             <>
               <Route path='/main' element={<Main />} />
-              <Route path='/reviews' element={<Review />} />
+              <Route path='/review' element={<Review />} />
+              <Route path='/profile' element={<Profile />} />
             </>
           )}
           <>
