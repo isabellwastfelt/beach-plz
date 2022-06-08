@@ -1,29 +1,30 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // const url =
 //   'https://apigw.stockholm.se/NoAuth/VirtualhittaserviceDMZ/Rest/serviceunits?&filter[servicetype.id]=104&page[limit]=1500&page[offset]=0&sort=name'
 
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+
 export const Beaches = () => {
   const [beaches, setBeaches] = useState([])
 
-  const fetchData = async () => {
-    fetch('beaches.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then(function (response) {
-        console.log(response)
-        return response.json()
-      })
-      .then(function (myJson) {
-        console.log(myJson)
-        setBeaches(myJson)
-      })
+  //   const fetchData = async () => {
+  //     fetch(API, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ message: beaches }),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => setBeaches(data))
 
-    // const req = await fetch(url)
-    // const jes = await req.json()
+  //     useEffect(() => {
+  //       fetchData()
+  //     }, [])
+
+  const fetchData = async () => {
+    const req = await fetch(API)
+    const jes = await req.json()
 
     // const enrichedBeaches = await jes.data.map(async (beach) => {
     //   const detailsReq = await fetch(beach.links.self);
@@ -32,7 +33,7 @@ export const Beaches = () => {
     //   return { ...beach, details };
     // });
 
-    // setBeaches(jes.data)
+    setBeaches(jes.data)
   }
 
   useEffect(() => {
@@ -40,15 +41,11 @@ export const Beaches = () => {
   }, [])
 
   return (
-    <div className='App'>
+    <div className='main-container'>
       {beaches &&
         beaches.map((beach) => (
           <div key={beach.id}>
-            <h2>{beach.name}</h2>
-            <h3>{beach.attributes.address}</h3>
-            {/* <div>
-              <img src={beach.attributes} />
-            </div> */}
+            <h2>{beach.attributes.name}</h2>
           </div>
         ))}
     </div>
