@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { BASE_URL } from 'utils/urls'
+import { API_URL } from 'utils/urls'
 
 // const url =
 //   'https://apigw.stockholm.se/NoAuth/VirtualhittaserviceDMZ/Rest/serviceunits?&filter[servicetype.id]=104&page[limit]=1500&page[offset]=0&sort=name'
@@ -13,57 +13,13 @@ export const Beaches = () => {
   // const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch(BASE_URL)
+    fetch(API_URL('beaches'))
       .then((res) => res.json())
       .then((json) => {
-        setBeaches(json.results)
+        console.log(json)
+        setBeaches(json.response)
       })
   }, [])
-
-  // useEffect(() => {
-  //   fetch("data.json")
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setBeach(json.results);
-  //     });
-  // }, []);
-
-  // const goToBeach = () => {
-  //   setBeach();
-  // };
-
-  // const getData = () => {
-  //   fetch("data.json", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   })
-  //     .then(function (response) {
-  //       console.log(response);
-  //       return response.json();
-  //     })
-  //     .then(function (myJson) {
-  //       console.log(myJson);
-  //       setData(myJson);
-  //     });
-  // };
-  // useEffect(() => {
-  //   fetch(BASE_URL, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Accept: 'application/json',
-  //     },
-  //   })
-  //     .then(function (response) {
-  //       console.log(response)
-  //       return response.json()
-  //     })
-  //     .then(function (myJson) {
-  //       console.log(myJson)
-  //       setData(myJson)
-  //     })
-  // }, [])
 
   return (
     <div className='main-container'>

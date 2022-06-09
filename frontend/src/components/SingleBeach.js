@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+
+import { BEACH_ID } from 'utils/urls'
 
 export const SingleBeach = () => {
   const { name } = useParams()
-  const [item, setItem] = useState()
-  const [data, setData] = useState([])
-  // const navigate = useNavigate();
+  const [beach, setBeach] = useState(null)
+  // const [data, setData] = useState([])
+  const navigate = useNavigate()
 
-  // const onBackButtonClick = () => {
-  //   navigate(-1);
-  // };
+  const onBackButtonClick = () => {
+    navigate(-1)
+  }
 
   ///////sparat original
   // useEffect(() => {
@@ -26,39 +28,44 @@ export const SingleBeach = () => {
   //       [name]
   //     );
   // });
-  const theBeach = data.json.find((name) => item.name === item.name)
+  // const theBeach = data.json.find((name) => item.name === item.name)
 
-  const getItem = () => {
-    fetch('data.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then(function (response) {
-        console.log(response)
-        return response.json()
-      })
-      .then(function (myJson) {
-        console.log(myJson)
-        setItem(myJson)
-      })
-  }
+  // const getItem = () => {
+  //   fetch('data.json', {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json',
+  //     },
+  //   })
+  //     .then(function (response) {
+  //       console.log(response)
+  //       return response.json()
+  //     })
+  //     .then(function (myJson) {
+  //       console.log(myJson)
+  //       setItem(myJson)
+  //     })
+  // }
 
   useEffect(() => {
-    getItem()
-  }, [theBeach])
+    fetch(BEACH_ID('beach'))
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json)
+        setBeach(json.response)
+      })
+  }, [name])
 
   return (
     <div className='single-beach'>
       <p>Här är en strand som du har klickat dig in på. Info nedan:</p>
-      {item && (
-        <div key={item.name}>
-          <h1>{item.name}</h1>
-          <img src={item.image} />
-          <h2>{item.address}</h2>
-          <h2>{item.location}</h2>
-          <p>{item.description}</p>
+      {beach && (
+        <div key={beach.name}>
+          <h1>{beach.name}</h1>
+          <img src={beach.image} />
+          <h2>{beach.address}</h2>
+          <h2>{beach.location}</h2>
+          <p>{beach.description}</p>
 
           {/* {data &&
           data.map((item) => (

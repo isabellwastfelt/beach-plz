@@ -1,6 +1,6 @@
 export const BASE_URL = 'https://beach-plz.herokuapp.com'
 export const BEACH_ID = (name) =>
-  `https://beach-plz.herokuapp.com/data/id/${name}`
+  `https://beach-plz.herokuapp.com/beaches/id/${name}`
 
 // export const SIGNUP = 'signup'
 
@@ -8,4 +8,4 @@ export const BEACH_ID = (name) =>
 
 // export const EDIT_USER = (id) => `https://restaurants-backend-database.herokuapp.com/profile/${id}`
 
-// export const API_URL = (slug) => `${BASE_URL}/${slug}`
+export const API_URL = (slug) => `${BASE_URL}/${slug}`
