@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import { BEACH_ID } from 'utils/urls'
 
@@ -13,10 +13,8 @@ export const SingleBeach = () => {
     navigate(-1)
   }
 
-  console.log(id)
-
   useEffect(() => {
-    fetch(BEACH_ID(id))
+    fetch(BEACH_ID(''))
       .then((res) => res.json())
       .then((json) => {
         console.log(json)
@@ -24,19 +22,26 @@ export const SingleBeach = () => {
       })
   }, [id])
 
+  // if (beach === null) {
+  //   return <p>byby</p>
+  // }
+
   return (
     <div className='single-beach'>
       <p>Här är en strand som du har klickat dig in på. Info nedan:</p>
-      {beach &&
-        beach.map((single) => (
-          <div key={single.name}>
-            <h1>{single.name}</h1>
-            <img src={single.image} />
-            <h2>{single.address}</h2>
-            <h2>{single.location}</h2>
-            <p>{single.description}</p>
+      <Link to='/' className='back-button' onClick={onBackButtonClick}>
+        {/* <span className='back-icon'>&lt;</span> */}
+        <span className='back-text'> Tillbaka till alla bad</span>
+      </Link>
+      {beach && (
+        <div key={beach.name}>
+          <h1>{beach.name}</h1>
+          <img src={beach.image} />
+          <h2>{beach.address}</h2>
+          <h2>{beach.location}</h2>
+          <p>{beach.description}</p>
 
-            {/* {data &&
+          {/* {data &&
           data.map((item) => (
             <div key={item.name}>
               <Link to='/review'>
@@ -48,8 +53,8 @@ export const SingleBeach = () => {
               <p>{item.description}</p>
             </div>
           ))} */}
-          </div>
-        ))}
+        </div>
+      )}
     </div>
   )
 }
