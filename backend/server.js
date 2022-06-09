@@ -51,7 +51,7 @@ const BeachSchema = new mongoose.Schema({
   name: String,
   address: String,
   description: String,
-  loaction: String,
+  location: String,
   image: String,
 })
 
