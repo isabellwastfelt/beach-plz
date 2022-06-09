@@ -47,7 +47,7 @@ const User = mongoose.model('User', UserSchema)
 
 //--- Beach Schema ---//
 const BeachSchema = new mongoose.Schema({
-  id: Number,
+  id: String,
   name: String,
   address: String,
   description: String,
@@ -199,7 +199,7 @@ app.get('/beaches', (req, res) => {
 //----------------------GET A SPECIFIC BEACH--------------------//
 
 // endpoint for name
-app.get('/beaches/id/:name', async (req, res) => {
+app.get('/beaches/:id', async (req, res) => {
   const { id } = req.params
 
   try {
@@ -209,6 +209,7 @@ app.get('/beaches/id/:name', async (req, res) => {
         response: beach,
         success: true,
       })
+      console.log(beach)
     } else {
       res.status(404).json({
         response: 'No data found',
