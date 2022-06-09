@@ -31,15 +31,16 @@ export const Beaches = () => {
   }, [])
 
   return (
-    <div className='App'>
+    <div className='main-container'>
+      <h1>Badplatser i Stockholm</h1>
       {data &&
         data.map((item) => (
           <div key={item.name}>
             <Link to='/review'>
-              <h1>{item.name}</h1>
+              <h2>{item.name}</h2>
               <img src={item.image}></img>
-              <h2>{item.address}</h2>
-              <h2>{item.location}</h2>
+              <h3>{item.address}</h3>
+              <h3>{item.location}</h3>
             </Link>
             <p>{item.description}</p>
           </div>

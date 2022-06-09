@@ -1,4 +1,3 @@
-// Här ska vi fectha alla beaches via API
 import React from 'react'
 import { Beaches } from '../components/Beaches'
 

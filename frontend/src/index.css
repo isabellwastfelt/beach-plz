@@ -28,3 +28,22 @@ code {
 .review-form {
   background-color: lightgray;
 }
+
+/* MAIN PAGE */
+
+.main-container h1 {
+  font-size: 30px;
+}
+
+.main-container h2 {
+  font-size: 25px;
+}
+
+.main-container h3 {
+  font-size: 20px;
+}
+
+.main-container p {
+  font-size: 15px;
+  font-weight: normal;
+}
