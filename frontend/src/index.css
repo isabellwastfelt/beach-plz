@@ -16,8 +16,13 @@ code {
   background-color: lightblue;
 }
 
+/* HEADER */
 .header {
   background-color: lightyellow;
+}
+
+ul {
+  list-style-type: none;
 }
 
 /* REVIEW PAGE */

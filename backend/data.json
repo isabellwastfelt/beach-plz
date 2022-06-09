@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "name": "Brunnsvikens strandbad",
     "address": "Frescati Hagväg 18",
     "description": "Brunnsviksbadet är ett allmänt EU-bad som sköts av Stockholms stad gemensamt med Kungliga Djurgårdens förvaltning.",
@@ -8,6 +9,7 @@
   },
 
   {
+    "id": "2",
     "name": "Ekhagens strandbad",
     "address": "Lektorsstigen",
     "description": "Badet ligger nära Lappkärrsberget på Norra Djurgården. Det drivs av Kungliga Djurgårdens förvaltning.",
@@ -16,6 +18,7 @@
   },
 
   {
+    "id": "3",
     "name": "Farstastrandbad",
     "address": "Ekshäradsgatan 1",
     "description": "Farstastrandbad är ett populärt strandbad vid sjön Magelungen i Farsta strand. Hit lockas många besökare såväl under vinterhalvåret som under sommarhalvåret.",
@@ -24,6 +27,7 @@
   },
 
   {
+    "id": "4",
     "name": "Flatenbadet, allmänna",
     "address": "Flatenvägen 200",
     "description": "Sjön Flaten är en av Stockholms renaste badsjöar. Vid Flatenbadet finns bryggor på flera platser och ett hopptorn. Badet är tillgänglighetsanpassat med en ramp som leder ner till stranden och vattnet. Fina promenadstigar genom orörd natur.",
@@ -32,6 +36,7 @@
   },
 
   {
+    "id": "5",
     "name": "Flatenbadet, barnbadet",
     "address": "Flatenvägen 200",
     "description": "Sjön Flaten är en av Stockholms renaste badsjöar. Vid Flatenbadet finns bryggor på flera platser och ett hopptorn. Sommartid finns servering och minigolfbana i anslutning till badet. Fina promenadstigar genom orörd natur leder runt sjön.",
@@ -39,6 +44,7 @@
     "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/b9ef6131-4a72-47c8-9151-5f79861dd677.jpeg"
   },
   {
+    "id": "6",
     "name": "Fredhällsbadet",
     "address": "Snoilskyvägen 34",
     "description": "Fredhällsbadet ligger i Fredhäll ut mot Tranebergssundet. Badet ägs av Stockholms stad men hyrs av Fredhälls badklubb som ansvarar för tillsynen.",
@@ -47,6 +53,7 @@
   },
 
   {
+    "id": "7",
     "name": "Hässelby allmänna bad",
     "address": "Fagerstrand 16-22",
     "description": "Ett litet strandbad med två barnvänliga sandstränder, ett trädäck, en träbrygga och en betongbrygga. Brant gångväg ner till badet.",
@@ -55,6 +62,7 @@
   },
 
   {
+    "id": "8",
     "name": "Hässelby strandbad",
     "address": "Hässelby strandväg 30",
     "description": "Ett mindre strandbad med sandstrand, brygga och en större gräsyta. Badet är omgivet av park och villabebyggelse.",
@@ -63,6 +71,7 @@
   },
 
   {
+    "id": "9",
     "name": "Hökarängsbadet",
     "address": "Perstorpsvägen",
     "description": "Hökarängsbadet är ett nyligen upprustat strandbad med många möjligheter till bad, lek och olika aktiviteter. Badet är beläget vid sjön Drevviken.",
@@ -71,6 +80,7 @@
   },
 
   {
+    "id": "10",
     "name": "Johannelundsbadet",
     "address": "Missionsvägen 16",
     "description": "Naturnära mindre badplats med sandstrand och en stor gräsyta.",
@@ -78,6 +88,7 @@
     "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/39f59e57-bbc2-4306-8420-36742bf50194.jpeg"
   },
   {
+    "id": "11",
     "name": "Johannesdalsbadet",
     "address": "Estbrötevägen",
     "description": "En liten pärla vid Mälaren.",
@@ -86,6 +97,7 @@
   },
 
   {
+    "id": "12",
     "name": "Kanaanbadet",
     "address": "Kanaans väg",
     "description": "Välbesökt badplats med två fina sandstränder. Stora gräsytor, hopptorn och utomhusdusch.",
@@ -94,6 +106,7 @@
   },
 
   {
+    "id": "13",
     "name": "Kristinebergsbadet",
     "address": "Kristinebergs strand 2",
     "description": "Kristinebergsbadet ligger i förlängningen av Kristinebergs strandpark.",
@@ -102,6 +115,7 @@
   },
 
   {
+    "id": "14",
     "name": "Lilla Essingebadet",
     "address": "Dagnyvägen 1",
     "description": "Lilla Essingebadet ligger i Primusområdet på norra delen av Lilla Essingen. Badet är stängt tillsvidare i väntan på en ny badplats.",
@@ -110,6 +124,7 @@
   },
 
   {
+    "id": "15",
     "name": "Långholmens klippbad",
     "address": "Långholmsbacken 9",
     "description": "Klippbadet ligger på östra Långholmen.",
@@ -117,6 +132,7 @@
     "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/e121178a-905d-476e-b04d-27e7ca5a66b1.jpeg"
   },
   {
+    "id": "16",
     "name": "Långholmens strandbad",
     "address": "Långholmsmuren 21",
     "description": "Långholmens strandbad ligger nära Långholmens vandrarhem, på den västra sidan av ön.",
@@ -125,6 +141,7 @@
   },
 
   {
+    "id": "17",
     "name": "Långsjöbadet",
     "address": "Strandängsstigen",
     "description": "Långsjöbadet ligger i stadsdelen Långsjö. Långsjöbadet är ett bad med sandstrand och stora gräsytor. Vid badet finns bryggor, grillplatser och en beachvolleybollplan.",
@@ -133,6 +150,7 @@
   },
 
   {
+    "id": "18",
     "name": "Lövstabadet",
     "address": "Kyrkhamnsvägen",
     "description": "Ett populärt strandbad med beachvolleybollplan och gungor intill Kyrkhamns friluftsområde. Här finns sluttande gräsmatta, sandstrand och två grillplatser. En brant grusväg leder ner till vattnet.",
@@ -141,6 +159,7 @@
   },
 
   {
+    "id": "19",
     "name": "Maltesholmsbadet",
     "address": "Maltesholmsvägen 212",
     "description": "Stort strandbad i närheten av Hässelby strands tunnelbanestation. Stor plan gräsyta leder ner till badstranden. På sidan av stranden finns en inhägnad plats med gungor samt ett utegym.",
@@ -149,6 +168,7 @@
   },
 
   {
+    "id": "20",
     "name": "Mälarhöjdsbadet",
     "address": "Bredängs badväg",
     "description": "Den här badplatsen vid Mälaren består av sand, gräs och lekytor.",
@@ -156,6 +176,7 @@
     "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/14e7eb4c-a1a2-49ea-9528-a6e5178ca3a3.jpeg"
   },
   {
+    "id": "21",
     "name": "Ormbergets bryggbad",
     "address": "Sjöbjörnsvägen",
     "description": "Ormbergets bryggbad ligger vid klipporna i Gröndal. Här finns en stor badbrygga med soldäck.",
@@ -164,6 +185,7 @@
   },
 
   {
+    "id": "22",
     "name": "Oxhålsbadet",
     "address": "Gammelgårdsvägen 38",
     "description": "Oxhålsbadet ligger på västra delen av Stora Essingen.",
@@ -172,6 +194,7 @@
   },
 
   {
+    "id": "23",
     "name": "Skrubba strandbad",
     "address": "Skrubbasandsvägen 4",
     "description": "Skrubba strandbad ligger vid Drevviken. Vid badet finns sandstrand med en brygga och klippor med en svikt. Det finns en grillplats.",
@@ -180,6 +203,7 @@
   },
 
   {
+    "id": "24",
     "name": "Sköndalsbadet",
     "address": "Nils Brincks väg 11",
     "description": "Sköndalsbadet är en mindre badplats som ligger i en härlig miljö bredvid Stora Sköndals handikappbad.",
@@ -188,6 +212,7 @@
   },
 
   {
+    "id": "25",
     "name": "Smedsuddsbadet",
     "address": "Smedsuddsvägens 23",
     "description": "Smedsuddsbadet ligger intill Rålambshovsparken i en vik till Riddarfjärden.",
@@ -195,6 +220,7 @@
     "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/119018d3-7f13-4254-a4ec-bfdc63ac320b.jpeg"
   },
   {
+    "id": "26",
     "name": "Solviksbadet",
     "address": "Ålstens skogsväg 24",
     "description": "Solviksbadet är en stor badplats med sandstrand och gräsytor. Här finns 2 bryggor, gungor och gungdjur, parksoffor, omklädningshytter, kalldusch och toaletter. Dambadet (nakenbad) med brygga, omklädningshytter, kalldusch och toalett ligger bredvid.",
@@ -203,6 +229,7 @@
   },
 
   {
+    "id": "27",
     "name": "Sätrastrandsbadet",
     "address": "Alsätravägen 250",
     "description": "Det här är en badplats vid Mälaren med stora sand- och gräsytor.",
@@ -211,6 +238,7 @@
   },
 
   {
+    "id": "28",
     "name": "Söderbysjöns badplats",
     "address": "Ljusnevägen Nackareservatet",
     "description": "Söderbysjöns badplats ligger i Nacka friluftsområde intill stadsdelen Björkhagen. Badet ligger i Nacka kommun, men Stockholms stad ansvarar för driften av badplatsen.",
@@ -219,6 +247,7 @@
   },
 
   {
+    "id": "29",
     "name": "Tanto strandbad",
     "address": "Skarpskyttestigen 6",
     "description": "Tanto strandbad ligger vid Årstaviken, nära Drakenbergsparken.",
@@ -227,6 +256,7 @@
   },
 
   {
+    "id": "30",
     "name": "Trekantens strandbad",
     "address": "Lövholmsvägen 65",
     "description": "Trekantens strandbad ligger vid sjön Trekantens västra del i Liljeholmen. Runt sjön finns det fina park- och naturområden. Det finns en ramp för rullstolar som leder ned i vattnet.",
@@ -234,6 +264,7 @@
     "image": "https://parker.stockholm/optimized/serviceunitspage/filer/hitta/321509b7-0e1f-40bd-858a-7321d5835e1a.jpeg"
   },
   {
+    "id": "31",
     "name": "Ängbybadet",
     "address": "Tyska Bottens väg 95",
     "description": "Ängbybadet är en stor badplats med två sandstränder och stora gräsytor. Det finns två betongramper vid badet så att personer med rullstol eller rullator lättare kan ta sig ner till vattnet.",
@@ -242,6 +273,7 @@
   },
 
   {
+    "id": "32",
     "name": "Ågesta naturistbad",
     "address": "Bonäsvägen",
     "description": "Ågesta naturistbad ligger på södra sidan av sjön Magelungen i Huddinge kommun. Badet öppnar för säsongen i maj och stänger i september.",
@@ -250,6 +282,7 @@
   },
 
   {
+    "id": "33",
     "name": "Örnbergets bad",
     "address": "",
     "description": "Örnbergets badplats ligger vid klipporna nära Hägerstenshamnen och intill en småbåtshamn. Här finns det tillgång till både brygga och en flytbrygga.",

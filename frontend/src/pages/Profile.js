@@ -6,6 +6,7 @@ export const Profile = () => {
   return (
     <div>
       <>
+        <h1>Din profil</h1>
         <div>
           <ProfileBeaches />
         </div>

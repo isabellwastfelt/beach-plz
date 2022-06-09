@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 export const SingleBeach = () => {
-  const { name } = useParams();
-  const [item, setItem] = useState();
+  const { name } = useParams()
+  const [item, setItem] = useState()
+  const [data, setData] = useState([])
   // const navigate = useNavigate();
 
   // const onBackButtonClick = () => {
@@ -25,29 +26,31 @@ export const SingleBeach = () => {
   //       [name]
   //     );
   // });
+  const theBeach = data.json.find((name) => item.name === item.name)
 
   const getItem = () => {
-    fetch("data.json", {
+    fetch('data.json', {
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
     })
       .then(function (response) {
-        console.log(response);
-        return response.json();
+        console.log(response)
+        return response.json()
       })
       .then(function (myJson) {
-        console.log(myJson);
-        setItem(myJson);
-      });
-  };
+        console.log(myJson)
+        setItem(myJson)
+      })
+  }
+
   useEffect(() => {
-    getItem();
-  }, [name]);
+    getItem()
+  }, [theBeach])
 
   return (
-    <div className="single-beach">
+    <div className='single-beach'>
       <p>Här är en strand som du har klickat dig in på. Info nedan:</p>
       {item && (
         <div key={item.name}>
@@ -72,5 +75,5 @@ export const SingleBeach = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}

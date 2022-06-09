@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 // const url =
 //   'https://apigw.stockholm.se/NoAuth/VirtualhittaserviceDMZ/Rest/serviceunits?&filter[servicetype.id]=104&page[limit]=1500&page[offset]=0&sort=name'
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export const Beaches = () => {
   // const [beaches, setBeaches] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   // useEffect(() => {
   //   fetch("data.json")
@@ -22,28 +22,41 @@ export const Beaches = () => {
   //   setBeach();
   // };
 
-  const getData = () => {
-    fetch("data.json", {
+  // const getData = () => {
+  //   fetch("data.json", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   })
+  //     .then(function (response) {
+  //       console.log(response);
+  //       return response.json();
+  //     })
+  //     .then(function (myJson) {
+  //       console.log(myJson);
+  //       setData(myJson);
+  //     });
+  // };
+  useEffect(() => {
+    fetch('data.json', {
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
     })
       .then(function (response) {
-        console.log(response);
-        return response.json();
+        console.log(response)
+        return response.json()
       })
       .then(function (myJson) {
-        console.log(myJson);
-        setData(myJson);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+        console.log(myJson)
+        setData(myJson)
+      })
+  }, [])
 
   return (
-    <div className="main-container">
+    <div className='main-container'>
       <h1>Badplatser i Stockholm</h1>
       {data &&
         data.map((item) => (
@@ -58,5 +71,5 @@ export const Beaches = () => {
           </div>
         ))}
     </div>
-  );
-};
+  )
+}
