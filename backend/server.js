@@ -5,6 +5,8 @@ import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import getEndpoints from 'express-list-endpoints'
 
+import beaches from './data/beaches.json'
+
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/beach-plz'
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
@@ -42,6 +44,18 @@ const UserSchema = new mongoose.Schema({
 })
 
 const User = mongoose.model('User', UserSchema)
+
+//--- Beach Schema ---//
+const BeachSchema = new mongoose.Schema({
+  id: Number,
+  name: String,
+  address: String,
+  description: String,
+  loaction: String,
+  image: String,
+})
+
+const Beach = mongoose.model('Beach', BeachSchema)
 
 //--- Review schema ---//
 const ReviewSchema = new mongoose.Schema({
@@ -155,6 +169,49 @@ app.post('/login', async (req, res) => {
     } else {
       res.status(400).json({
         response: "Username and password don't match",
+        success: false,
+      })
+    }
+  } catch (error) {
+    res.status(400).json({
+      response: error,
+      success: false,
+    })
+  }
+})
+
+//-------------------------GET ALL BEACHES-------------------------//
+// app.get('/restaurants', authenticateUser)
+app.get('/beaches', (req, res) => {
+  try {
+    res.status(200).json({
+      response: beaches,
+      success: true,
+    })
+  } catch (error) {
+    res.status(400).json({
+      response: error,
+      success: false,
+    })
+  }
+})
+
+//----------------------GET A SPECIFIC BEACH--------------------//
+
+// endpoint for name
+app.get('/beaches/id/:name', async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const beach = await Beach.findOne({ id: id })
+    if (beach) {
+      res.status(200).json({
+        response: beach,
+        success: true,
+      })
+    } else {
+      res.status(404).json({
+        response: 'No data found',
         success: false,
       })
     }
