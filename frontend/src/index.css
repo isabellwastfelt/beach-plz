@@ -52,3 +52,35 @@ ul {
   font-size: 15px;
   font-weight: normal;
 }
+
+
+/* BEACHES COMPONENT */
+
+.beaches-img {
+  width: 300px;
+}
+
+.beaches-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.beaches-boxes {
+  border-style: solid;
+  border-width: 2px;
+}
+
+.beaches-boxes h3 {
+  font-size: 14px;
+}
+
+.beaches-boxes a {
+  text-decoration: none;
+}
+
+/* SINGLEBEACH COMPONENT */
+
+.beach-img {
+  width: 600px;
+}

@@ -26,7 +26,7 @@ export const App = () => {
           {isLoggedIn && (
             <>
               <Route path='/main' element={<Main />} />
-              <Route path='/review/:beach' element={<Review />} />
+              <Route path='/review/:id' element={<Review />} />
               <Route path='/profile' element={<Profile />} />
             </>
           )}

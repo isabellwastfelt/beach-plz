@@ -24,18 +24,19 @@ export const Beaches = () => {
   return (
     <div className='main-container'>
       <h1>Badplatser i Stockholm</h1>
+      <div className='beaches-container'>
       {beaches &&
         beaches.map((beach) => (
-          <div>
+          <div className='beaches-boxes'>
             <Link key={beach.id} to={`/review/${beach.id}`}>
               <h2>{beach.name}</h2>
-              <img src={beach.image}></img>
+              <img className='beaches-img' src={beach.image}></img>
               <h3>{beach.address}</h3>
               <h3>{beach.location}</h3>
             </Link>
-            <p>{beach.description}</p>
           </div>
         ))}
+        </div>
     </div>
   )
 }
