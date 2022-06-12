@@ -274,7 +274,6 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
     res.status(400).json({ response: error, success: false })
   }
 })
-//   END of assist
 
 // //--- add stars??? ---//
 
