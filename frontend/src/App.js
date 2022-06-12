@@ -18,9 +18,7 @@ export const App = () => {
 
   return (
     <>
-      <div>
-        <Header />
-      </div>
+      <div>{/* <Header /> */}</div>
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { setCookie } from 'utils/cookieHelper'
 
+import BlackGreen from 'assets/BlackGreen.svg'
+
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
@@ -44,30 +46,34 @@ export const LoginForm = () => {
 
   return (
     <main className='login-container'>
-      <form onSubmit={onFormSubmit} className='form-container'>
-        <h3>Login</h3>
-        <label htmlFor='username'>Username:</label>
+      <img className='logo-img' src={BlackGreen} alt='Logo' />
+      <form onSubmit={onFormSubmit}>
+        <h3>Vänligen logga in</h3>
+        <label htmlFor='username'>Användarnamn:</label>
         <input
           type='text'
           id='username'
-          placeholder='enter username'
+          placeholder='Användarnamn'
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label htmlFor='password'>Password:</label>
+        <label htmlFor='password'>Lösenord:</label>
         <input
+          className='password'
           type='password'
           id='password'
-          placeholder='enter password'
+          placeholder='Lösenord'
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
         <div className='error'>{error}</div>
         <button className='submit-button' type='submit' id='login'>
-          Log in
+          Logga in
         </button>
-        <Link to='/registration'>Dont have an account? Register</Link>
+        <Link className='register-link' to='/registration'>
+          Inget konto? Registrera dig här!
+        </Link>
       </form>
     </main>
   )

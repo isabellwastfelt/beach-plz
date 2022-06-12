@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { API_URL } from 'utils/urls'
 
+import { Filter } from '../components/Filter'
+
+import BlackGreen from 'assets/BlackGreen.svg'
+
 // const url =
 //   'https://apigw.stockholm.se/NoAuth/VirtualhittaserviceDMZ/Rest/serviceunits?&filter[servicetype.id]=104&page[limit]=1500&page[offset]=0&sort=name'
 
@@ -22,21 +26,23 @@ export const Beaches = () => {
   }, [])
 
   return (
-    <div className='main-container'>
+    <div className='head-contatiner'>
+      <img className='logo-img' src={BlackGreen} alt='Logo' />
       <h1>Badplatser i Stockholm</h1>
+      <Filter />
       <div className='beaches-container'>
-      {beaches &&
-        beaches.map((beach) => (
-          <div className='beaches-boxes'>
-            <Link key={beach.id} to={`/review/${beach.id}`}>
-              <h2>{beach.name}</h2>
-              <img className='beaches-img' src={beach.image}></img>
-              <h3>{beach.address}</h3>
-              <h3>{beach.location}</h3>
-            </Link>
-          </div>
-        ))}
-        </div>
+        {beaches &&
+          beaches.map((beach) => (
+            <div className='beaches-boxes'>
+              <Link key={beach.id} to={`/review/${beach.id}`}>
+                <h2>{beach.name}</h2>
+                <img className='beaches-img' src={beach.image}></img>
+                <h3>{beach.address}</h3>
+                <h3>{beach.location}</h3>
+              </Link>
+            </div>
+          ))}
+      </div>
     </div>
   )
 }
