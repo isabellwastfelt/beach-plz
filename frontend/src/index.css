@@ -57,7 +57,7 @@ h3 {
   margin-top: 20px;
 }
 
-form {
+.login-form {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -139,11 +139,16 @@ input,
   font-weight: normal;
 } */
 
+.head-contatiner h1 {
+  margin-top: 50px;
+}
+
 /* FILTER COMPONENT */
 
 .filter {
   display: flex;
   justify-content: center;
+  font-size: 15px;
 }
 
 /* BEACHES COMPONENT */
@@ -194,15 +199,98 @@ input,
 
 /* SINGLEBEACH COMPONENT */
 
+.single-beach,
+.img-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-beach h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
 .beach-img {
-  width: 600px;
+  width: 350px;
+  height: 200px;
+  padding: 10px;
+}
+
+.single-beach h2 {
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0px 3px 10px 2px;
+  text-align: center;
+}
+
+.single-beach p {
+  font-size: 16px;
+  text-align: center;
+  margin: 20px 40px 60px 40px;
 }
 
 /* REVIEW PAGE */
-.single-beach {
-  background-color: lightgray;
+
+form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: 000;
+  margin-top: 20px;
+  padding: 20px;
+  width: 300px;
+  height: 400px;
+  text-align: center;
 }
 
 .review-form {
-  background-color: lightgray;
+  background-color: #f3f0d7;
 }
+
+/* BURGER */
+
+/* .bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+.bm-burger-bars {
+  background: #000;
+} */
+
+/* .bm-menu-wrap {
+    visibility: hidden;
+  }
+  
+  .bm-menu-wrap.open {
+    visibility: visible;
+  } */
+
+/* .bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-item-list {
+  padding: 0.8em;
+}
+
+.bm-item {
+  display: block;
+  color: #bdc3c7;
+} */

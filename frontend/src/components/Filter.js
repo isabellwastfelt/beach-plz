@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+// import beaches from '../data/beaches.json'
 
 import { BEACH_ID } from 'utils/urls'
 
 export const Filter = () => {
+  // const beachList = beaches.name
   const [area, setArea] = useState({})
 
   useEffect(() => {

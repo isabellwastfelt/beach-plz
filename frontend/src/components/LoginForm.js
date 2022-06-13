@@ -47,7 +47,7 @@ export const LoginForm = () => {
   return (
     <main className='login-container'>
       <img className='logo-img' src={BlackGreen} alt='Logo' />
-      <form onSubmit={onFormSubmit}>
+      <form className='login-form' onSubmit={onFormSubmit}>
         <h3>Vänligen logga in</h3>
         <label htmlFor='username'>Användarnamn:</label>
         <input

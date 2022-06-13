@@ -181,7 +181,7 @@ app.post('/login', async (req, res) => {
 })
 
 //-------------------------GET ALL BEACHES-------------------------//
-// app.get('/restaurants', authenticateUser)
+// app.get(', authenticateUser)
 app.get('/beaches', (req, res) => {
   try {
     res.status(200).json({
@@ -297,64 +297,7 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 //   }
 // })
 
-// //--- FAVOURITES ENDPOINT ---//
-// //--- add(post) favourite ---//
-// // Taken from Happy thoughts, needs tweaking
-
-app.post('/favorites/:_id/addFavorite', authenticateUser, async (req, res) => {
-  const { _id } = req.params
-  const faveId = req.body
-
-  try {
-    const favoriteToAdd = await FavoriteBeach.findById(faveId)
-
-    if (req.user.favorites.includes(faveId) && !favoriteToAdd) {
-      res.status(404).json({
-        success: false,
-        message:
-          'Någonting gick fel, kanske har du redan denna fågeln i din samling?',
-      })
-    } else {
-      await User.findByIdAndUpdate(_id, {
-        $push: {
-          favorites: favoriteToAdd,
-        },
-      })
-      res.status(200).json({ success: true, message: 'Tillagd!', User })
-    }
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message:
-        'Någonting gick fel, kanske har du redan denna fågeln i din samling?',
-      error,
-    })
-  }
-})
-//       res.status(200).json(favoriteUpdate)
-//     } catch (error) {
-//       res.status(400).json({ response: error, success: false })
-//     }
-//   }
-// )
-
-//--- remove from favourites ---//
-
 //--- START THE SERVER ---//
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
 })
-
-//-------------- från joannas projekt som de fick från daniel för filtrering
-// app.get('/thoughts', authenticateUser)
-// app.get('/thoughts', async (req, res) => {
-//   const listOfproperties = Object.keys(req.params)
-//   const searchCriteria = {}
-
-//   listOfproperties.map((singleCriteria) => {
-//     searchCriteria[singleCriteria] = req.params[singleCriteria]
-//   })
-
-//   const thoughts = await Thought.find(searchCriteria)
-//   res.status(200).json({ response: thoughts, success: true })
-// })

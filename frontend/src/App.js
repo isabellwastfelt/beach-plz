@@ -4,7 +4,6 @@ import { getCookie } from 'utils/cookieHelper'
 
 //COMPONENTS
 import { Footer } from './components/Footer'
-import { Header } from './components/Header'
 
 //PAGES
 import { Main } from './pages/Main'
@@ -16,9 +15,15 @@ import { Profile } from './pages/Profile'
 export const App = () => {
   const isLoggedIn = () => getCookie('accessToken') || false
 
+  // React.useEffect(() => {
+  //   const menuWrap = document.querySelector('.bm-menu-wrap')
+  //   if (menuWrap) {
+  //     menuWrap.setAttribute('aria-hidden', true)
+  //   }
+  // }, [])
+
   return (
     <>
-      <div>{/* <Header /> */}</div>
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (

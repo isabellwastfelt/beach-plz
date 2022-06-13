@@ -26,7 +26,7 @@ export const Beaches = () => {
   }, [])
 
   return (
-    <div>
+    <main>
       <img className='logo-img' src={BlackGreen} alt='Logo' />
       <div className='head-contatiner'>
         <h1>Badplatser i Stockholm</h1>
@@ -45,6 +45,6 @@ export const Beaches = () => {
             ))}
         </div>
       </div>
-    </div>
+    </main>
   )
 }
