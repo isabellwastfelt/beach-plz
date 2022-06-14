@@ -1,56 +1,27 @@
-import { useState, useEffect } from 'react'
-import { getCookie } from 'utils/cookieHelper'
+import { useState, useEffect } from "react";
+import { getCookie } from "utils/cookieHelper";
 
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+const API = process.env.API_URL || "https://beach-plz.herokuapp.com/";
 
-const ReviewFeed = () => {
-  const [reviews, setReviews] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const data = await fetch(`${API}review`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      const res = await data.json()
-      console.log(res)
-      setReviews(res)
-    } catch (err) {
-      console.error(err)
-    }
-
-    setIsLoading(false)
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
+const ReviewFeed = ({ reviews }) => {
   const onDelete = (reviewId) => {
-    const accessToken = getCookie('accessToken')
+    const accessToken = getCookie("accessToken");
 
     fetch(`${API}review/${reviewId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: accessToken,
       },
     })
       .then((res) => res.json())
       .then(() => {
-        getCookie(accessToken), fetchData(''), setReviews('')
-      })
-  }
-
-  if (isLoading) {
-    return <div>Laddar..</div>
-  }
+        // getCookie(accessToken), fetchData(''), setReviews('')
+      });
+  };
 
   return (
-    <div className='review-form'>
+    <div className="review-form">
       <p>Review Feed</p>
       {reviews.length > -1 && (
         <ul>
@@ -58,9 +29,9 @@ const ReviewFeed = () => {
             <li key={review._id}>
               {review.message} {review.rate}
               <button
-                type='button'
+                type="button"
                 onClick={() => {
-                  onDelete(review._id)
+                  onDelete(review._id);
                 }}
               >
                 Ta bort
@@ -70,7 +41,7 @@ const ReviewFeed = () => {
         </ul>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ReviewFeed
+export default ReviewFeed;
