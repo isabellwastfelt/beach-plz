@@ -10,10 +10,10 @@ const ReviewForm = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    fetchReview()
+    fetchReviews()
   }, [])
 
-  const fetchReview = () => {
+  const fetchReviews = () => {
     fetch(`${API}review`)
       .then((res) => res.json())
       .then((data) => setReview([data, review]))
@@ -34,7 +34,8 @@ const ReviewForm = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        getCookie(accessToken), fetchReview(), setNewReview('')
+        fetchReviews()
+        setNewReview('')
       })
   }
 
@@ -47,10 +48,10 @@ const ReviewForm = () => {
       <form
         className='form card'
         onSubmit={handleFormSubmit}
-        newReview={newReview}
-        setNewReview={setNewReview}
+        // newReview={newReview}
+        // setNewReview={setNewReview}
       >
-        <label htmlFor='newReview'>Wanna review this beach?</label>
+        <label htmlFor='newReview'>Vad tycker du om stranden?</label>
         <textarea
           className={newReview.length > 140 ? 'red-text' : ''}
           id='newReview'
@@ -59,7 +60,7 @@ const ReviewForm = () => {
           columns='150'
           value={newReview}
           onChange={(e) => setNewReview(e.target.value)}
-          placeholder='Write your review here...'
+          placeholder='Skriv din recension här...'
         />
         <button type='submit'>Lägg till din recension</button>
       </form>

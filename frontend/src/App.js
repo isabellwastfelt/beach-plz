@@ -15,13 +15,6 @@ import { Profile } from './pages/Profile'
 export const App = () => {
   const isLoggedIn = () => getCookie('accessToken') || false
 
-  // React.useEffect(() => {
-  //   const menuWrap = document.querySelector('.bm-menu-wrap')
-  //   if (menuWrap) {
-  //     menuWrap.setAttribute('aria-hidden', true)
-  //   }
-  // }, [])
-
   return (
     <>
       <BrowserRouter>
