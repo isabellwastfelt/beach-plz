@@ -1,24 +1,23 @@
-import { useState, useEffect } from "react";
-import { getCookie } from "utils/cookieHelper";
+import { getCookie } from 'utils/cookieHelper'
 
-const API = process.env.API_URL || "https://beach-plz.herokuapp.com/";
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
 const ReviewFeed = ({ reviews }) => {
   const onDelete = (reviewId) => {
-    const accessToken = getCookie("accessToken");
+    const accessToken = getCookie('accessToken')
 
     fetch(`${API}review/${reviewId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: accessToken,
       },
     })
       .then((res) => res.json())
       .then(() => {
         // getCookie(accessToken), fetchData(''), setReviews('')
-      });
-  };
+      })
+  }
 
   return (
     <div className="review-form">
@@ -31,7 +30,7 @@ const ReviewFeed = ({ reviews }) => {
               <button
                 type="button"
                 onClick={() => {
-                  onDelete(review._id);
+                  onDelete(review._id)
                 }}
               >
                 Ta bort
@@ -41,7 +40,7 @@ const ReviewFeed = ({ reviews }) => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReviewFeed;
+export default ReviewFeed

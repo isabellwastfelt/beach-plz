@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import { API_URL } from "utils/urls";
+import { API_URL } from 'utils/urls'
 
-import { Filter } from "../components/Filter";
+import { Filter } from '../components/Filter'
 
-import BlackGreen from "assets/BlackGreen.svg";
+import BlackGreen from 'assets/BlackGreen.svg'
 
 // const url =
 //   'https://apigw.stockholm.se/NoAuth/VirtualhittaserviceDMZ/Rest/serviceunits?&filter[servicetype.id]=104&page[limit]=1500&page[offset]=0&sort=name'
@@ -13,15 +13,15 @@ import BlackGreen from "assets/BlackGreen.svg";
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
 export const Beaches = () => {
-  const [beaches, setBeaches] = useState([]);
+  const [beaches, setBeaches] = useState([])
 
   useEffect(() => {
-    fetch(API_URL("beaches"))
+    fetch(API_URL('beaches'))
       .then((res) => res.json())
       .then((json) => {
-        setBeaches(json.response);
-      });
-  }, []);
+        setBeaches(json.response)
+      })
+  }, [])
 
   return (
     <main>
@@ -44,5 +44,5 @@ export const Beaches = () => {
         </div>
       </div>
     </main>
-  );
-};
+  )
+}
