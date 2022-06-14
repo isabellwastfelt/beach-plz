@@ -33,6 +33,10 @@ export const Beach = () => {
     fetchReviews()
   }, [])
 
+  if (isLoading) {
+    return <div>Laddar..</div>
+  }
+
   return (
     <div>
       <Header />

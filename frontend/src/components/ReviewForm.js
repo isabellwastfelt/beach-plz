@@ -34,12 +34,7 @@ const ReviewForm = ({ updateReviews }) => {
 
   return (
     <main>
-      <form
-        className='form card'
-        onSubmit={handleFormSubmit}
-        // newReview={newReview}
-        // setNewReview={setNewReview}
-      >
+      <form className='form card' onSubmit={handleFormSubmit}>
         <label htmlFor='newReview'>Wanna review this beach?</label>
         <textarea
           className={newReview.length > 140 ? 'red-text' : ''}
