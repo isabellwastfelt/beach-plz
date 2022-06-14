@@ -35,7 +35,7 @@ const ReviewForm = ({ updateReviews }) => {
   return (
     <main>
       <form className="form card" onSubmit={handleFormSubmit}>
-        <label htmlFor="newReview">Vad tycker du om stranden?</label>
+        <label htmlFor="newReview">Wanna review this beach?</label>
         <textarea
           className={newReview.length > 140 ? 'red-text' : ''}
           id="newReview"
@@ -44,7 +44,7 @@ const ReviewForm = ({ updateReviews }) => {
           columns="150"
           value={newReview}
           onChange={(e) => setNewReview(e.target.value)}
-          placeholder="Skriv din recension här..."
+          placeholder="Write your review here..."
         />
         <button type="submit">Lägg till din recension</button>
       </form>

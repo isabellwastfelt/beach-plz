@@ -20,7 +20,7 @@ const ReviewFeed = ({ reviews }) => {
   }
 
   return (
-    <div className="review-form">
+    <div className='review-form'>
       <p>Review Feed</p>
       {reviews.length > -1 && (
         <ul>
@@ -28,7 +28,7 @@ const ReviewFeed = ({ reviews }) => {
             <li key={review._id}>
               {review.message} {review.rate}
               <button
-                type="button"
+                type='button'
                 onClick={() => {
                   onDelete(review._id)
                 }}
