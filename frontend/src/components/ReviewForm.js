@@ -3,21 +3,10 @@ import { getCookie } from 'utils/cookieHelper'
 
 const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
-const ReviewForm = () => {
-  const [review, setReview] = useState([])
+const ReviewForm = ({ updateReviews }) => {
   const [newReview, setNewReview] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    fetchReviews()
-  }, [])
-
-  const fetchReviews = () => {
-    fetch(`${API}review`)
-      .then((res) => res.json())
-      .then((data) => setReview([data, review]))
-  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -34,7 +23,7 @@ const ReviewForm = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        fetchReviews()
+        updateReviews()
         setNewReview('')
       })
   }
@@ -51,7 +40,7 @@ const ReviewForm = () => {
         // newReview={newReview}
         // setNewReview={setNewReview}
       >
-        <label htmlFor='newReview'>Vad tycker du om stranden?</label>
+        <label htmlFor='newReview'>Wanna review this beach?</label>
         <textarea
           className={newReview.length > 140 ? 'red-text' : ''}
           id='newReview'
@@ -60,7 +49,7 @@ const ReviewForm = () => {
           columns='150'
           value={newReview}
           onChange={(e) => setNewReview(e.target.value)}
-          placeholder='Skriv din recension här...'
+          placeholder='Write your review here...'
         />
         <button type='submit'>Lägg till din recension</button>
       </form>

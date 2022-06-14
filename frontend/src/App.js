@@ -9,7 +9,7 @@ import { Footer } from './components/Footer'
 import { Main } from './pages/Main'
 import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
-import { Review } from './pages/Review'
+import { Beach } from './pages/Beach'
 import { Profile } from './pages/Profile'
 
 export const App = () => {
@@ -21,14 +21,14 @@ export const App = () => {
         <Routes>
           {isLoggedIn && (
             <>
-              <Route path='/main' element={<Main />} />
-              <Route path='/review/:id' element={<Review />} />
-              <Route path='/profile' element={<Profile />} />
+              <Route path="/main" element={<Main />} />
+              <Route path="/beach/:id" element={<Beach />} />
+              <Route path="/profile" element={<Profile />} />
             </>
           )}
           <>
-            <Route path='/' element={<Login />} />
-            <Route path='/registration' element={<Registration />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
           </>
         </Routes>
       </BrowserRouter>
