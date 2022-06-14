@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import { getCookie } from 'utils/cookieHelper'
 
@@ -31,14 +30,19 @@ const ReviewFeed = () => {
   }, [])
 
   const onDelete = (reviewId) => {
+    const accessToken = getCookie('accessToken')
+
     fetch(`${API}review/${reviewId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: accessToken,
       },
     })
-      .then((response) => response.json())
-      .then((data) => fetchData())
+      .then((res) => res.json())
+      .then(() => {
+        getCookie(accessToken), fetchData(''), setReviews('')
+      })
   }
 
   if (isLoading) {
@@ -59,7 +63,7 @@ const ReviewFeed = () => {
                   onDelete(review._id)
                 }}
               >
-                KLICKA HÄR
+                Ta bort
               </button>
             </li>
           ))}

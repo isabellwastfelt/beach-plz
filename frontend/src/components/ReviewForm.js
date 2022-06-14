@@ -1,53 +1,70 @@
-import React, { useState, useEffect} from 'react'
-import { BASE_URL } from 'utils/urls'
+import React, { useState, useEffect } from 'react'
+import { getCookie } from 'utils/cookieHelper'
 
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
+const ReviewForm = () => {
+  const [review, setReview] = useState([])
+  const [newReview, setNewReview] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
- const ReviewForm = () => {
-    const [review, setReview] = useState([])
-    const [newReview, setNewReview] = useState("")
+  useEffect(() => {
+    fetchReview()
+  }, [])
 
-    const onFormSubmit = (event) => {
-      event.preventDefault()
+  const fetchReview = () => {
+    fetch(`${API}review`)
+      .then((res) => res.json())
+      .then((data) => setReview([data, review]))
+  }
 
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({message: newReview})
-      }
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
 
-      useEffect(() => {
-        fetch(BASE_URL('/review', options))
-          .then((res) => res.json())
-          .then((data) => setReview([data, review])) 
-           
-          })
+    const accessToken = getCookie('accessToken')
 
-    }
+    fetch(`${API}review`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken,
+      },
+      body: JSON.stringify({ message: newReview }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getCookie(accessToken), fetchReview(), setNewReview('')
+      })
+  }
 
+  if (isLoading) {
+    return <div>Laddar..</div>
+  }
 
   return (
-    <>
-      <form onSubmit={onFormSubmit}>
-        <label>What do you think of this beach?</label>
-        <textarea 
-        rows="5"
-        value={newReview}
-        maxLength="300"
-        onChange={event => setNewReview(event.target.value)}
+    <main>
+      <form
+        className='form card'
+        onSubmit={handleFormSubmit}
+        newReview={newReview}
+        setNewReview={setNewReview}
+      >
+        <label htmlFor='newReview'>Wanna review this beach?</label>
+        <textarea
+          className={newReview.length > 140 ? 'red-text' : ''}
+          id='newReview'
+          type='text'
+          rows='5'
+          columns='150'
+          value={newReview}
+          onChange={(e) => setNewReview(e.target.value)}
+          placeholder='Write your review here...'
         />
-        <button type="submit">Submit your review</button>
-        </form>
-
-
-    
-    
-    </>
-    
+        <button type='submit'>Lägg till din recension</button>
+      </form>
+    </main>
   )
 }
-
 
 export default ReviewForm
