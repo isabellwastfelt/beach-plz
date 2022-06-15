@@ -266,7 +266,7 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 
   try {
     Review.deleteOne({ _id: reviewId }, function (err) {
-      if (err) return handleError(err)
+      if (err) return console.error(err)
     })
     res.status(200).json({ response: 'Din recension är nu borttagen.' })
   } catch (error) {

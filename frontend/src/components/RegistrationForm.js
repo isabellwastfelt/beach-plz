@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
+import BlackGreen from 'assets/BlackGreen.svg'
+
 // .env  API_URL="https://beach-plz.herokuapp.com/"
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+
+const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const RegistrationForm = () => {
   const [username, setUsername] = useState()
@@ -45,32 +49,43 @@ export const RegistrationForm = () => {
   }
 
   return (
-    <main className='login-container'>
-      <form onSubmit={onRegister} className='form-container'>
-        <h3>Register </h3>
-        <label htmlFor='username'>Username:</label>
+    <main className='main-container'>
+      <img className='logo-img' src={BlackGreen} alt='Logo' />
+      <form className='login-form' onSubmit={onRegister}>
+        <h3>Registrera dig här</h3>
+        <label htmlFor='username'>Användarnamn:</label>
         <input
           type='text'
           id='username'
-          placeholder='enter username'
+          placeholder='Användarnamn'
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label htmlFor='password'>Password:</label>
+        <label htmlFor='password'>Lösenord:</label>
         <input
           type='password'
           id='password'
-          placeholder='enter password'
+          placeholder='Lösenord'
           onChange={(event) => setPassword(event.target.value)}
         />
-        {/* ADD REPEAT PASSWORD */}
+
+        {/* LÄGG TILL KRAV FÖR ATT LÖSEN SKA STÄMMA ÖVERENS*/}
+        {/* <label htmlFor='password'>Upprepa lösenord:</label>
+        <input
+          type='password'
+          id='password'
+          placeholder='Uppreda lösenord'
+          onChange={(event) => setPassword(event.target.value)}
+        /> */}
 
         <div className='error'>{error}</div>
 
         <button className='submit-button' type='submit' id='registration'>
-          <p>Sign up</p>
+          Registrera
         </button>
-        <Link to='/'>Already have an account? Login</Link>
+        <Link className='register-link' to='/'>
+          Har du redan ett konot? <b>Logga in här!</b>
+        </Link>
       </form>
     </main>
   )

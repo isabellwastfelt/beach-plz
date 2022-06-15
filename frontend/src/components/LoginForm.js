@@ -5,7 +5,8 @@ import { setCookie } from 'utils/cookieHelper'
 import BlackGreen from 'assets/BlackGreen.svg'
 
 // .env  API_URL="https://beach-plz.herokuapp.com/"
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const LoginForm = () => {
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ export const LoginForm = () => {
   }
 
   return (
-    <main className='login-container'>
+    <main className='main-container'>
       <img className='logo-img' src={BlackGreen} alt='Logo' />
       <form className='login-form' onSubmit={onFormSubmit}>
         <h3>Vänligen logga in</h3>
@@ -68,11 +69,12 @@ export const LoginForm = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <div className='error'>{error}</div>
+
         <button className='submit-button' type='submit' id='login'>
           Logga in
         </button>
         <Link className='register-link' to='/registration'>
-          Inget konto? Registrera dig här!
+          Inget konto? <b>Registrera dig här!</b>
         </Link>
       </form>
     </main>

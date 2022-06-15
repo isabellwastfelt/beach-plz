@@ -66,7 +66,7 @@ h3 {
   margin-top: 20px;
   padding: 20px;
   width: 300px;
-  height: 400px;
+  height: 100%;
   text-align: center;
   background-color: #f3f0d7;
 }
@@ -139,10 +139,6 @@ input,
   font-weight: normal;
 } */
 
-.head-contatiner h1 {
-  margin-top: 50px;
-}
-
 /* FILTER COMPONENT */
 
 .filter {
@@ -166,6 +162,7 @@ input,
 }
 
 .beaches-boxes {
+  margin-top: 50px;
   margin: 20px;
   padding: 20px;
   background-color: #f3f0d7;
@@ -233,7 +230,40 @@ input,
 
 /* REVIEW PAGE */
 
-form {
+.review-feed {
+  background-color: #f3f0d7;
+  height: 100%;
+  width: 300px;
+}
+
+.review-feed h3 {
+  font-size: 20px;
+  text-align: center;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 250px;
+}
+
+.review-box {
+  /* margin: 20px;
+  padding: 20px; */
+  box-sizing: border-box;
+  background-color: #fff;
+  margin: 20px;
+  padding: 15px;
+  overflow-wrap: break-word;
+}
+
+.review-box,
+p {
+  font-size: 15px;
+}
+
+.review-form {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -244,53 +274,3 @@ form {
   height: 400px;
   text-align: center;
 }
-
-.review-form {
-  background-color: #f3f0d7;
-}
-
-/* BURGER */
-
-/* .bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 36px;
-}
-
-.bm-burger-bars {
-  background: #000;
-} */
-
-/* .bm-menu-wrap {
-    visibility: hidden;
-  }
-  
-  .bm-menu-wrap.open {
-    visibility: visible;
-  } */
-
-/* .bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-.bm-cross {
-  background: #bdc3c7;
-}
-
-.bm-menu {
-  background: #373a47;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-}
-
-.bm-item-list {
-  padding: 0.8em;
-}
-
-.bm-item {
-  display: block;
-  color: #bdc3c7;
-} */

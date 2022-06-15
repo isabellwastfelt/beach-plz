@@ -4,11 +4,16 @@ import { SingleBeach } from '../components/SingleBeach'
 import ReviewFeed from '../components/ReviewFeed'
 import { Header } from '../components/Header'
 
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+import { getCookie } from 'utils/cookieHelper'
+
+// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+
+const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const Beach = () => {
   //fetch reviews
   const [reviews, setReviews] = useState([])
+
   const [isLoading, setIsLoading] = useState(false)
 
   const fetchReviews = async () => {
@@ -29,6 +34,24 @@ export const Beach = () => {
     setIsLoading(false)
   }
 
+  const onDelete = (reviewId) => {
+    setIsLoading(true)
+    const accessToken = getCookie('accessToken')
+
+    fetch(`${API}review/${reviewId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken,
+      },
+    })
+      .then((res) => res.json())
+      .then(() => {
+        fetchReviews()
+      })
+    setIsLoading(false)
+  }
+
   useEffect(() => {
     fetchReviews()
   }, [])
@@ -41,7 +64,7 @@ export const Beach = () => {
     <div>
       <Header />
       <SingleBeach />
-      <ReviewFeed reviews={reviews} />
+      <ReviewFeed reviews={reviews} onDelete={onDelete} />
       <ReviewForm updateReviews={fetchReviews} />
     </div>
   )
