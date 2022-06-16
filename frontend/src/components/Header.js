@@ -22,7 +22,7 @@ export const Header = () => {
             <a href='/profile'>Din Profil</a>
           </li>
           <li>
-            <a href='/'>Logga ut</a>
+            <a href='/Logout'>Logga ut</a>
           </li>
         </ul>
         {/* <h1 className="logo">Navbar</h1> */}

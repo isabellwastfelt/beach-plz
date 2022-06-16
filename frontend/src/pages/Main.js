@@ -21,12 +21,12 @@ export const Main = () => {
 
         //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
         //skapa en array med alla areas
-        const are = json.response
-          .map((beach) => beach.area)
-          .filter((a, index) => are.indexOf(a) === index)
+        const beachAreas = json.response.map((beach) => beach.area)
+        const filteredAreas = beachAreas
+          .filter((a, index) => beachAreas.indexOf(a) === index)
           .sort()
-        //indexerar och sen filterar på unika områden
-        setAreas(are)
+
+        setAreas(filteredAreas)
       })
   }, [])
 
