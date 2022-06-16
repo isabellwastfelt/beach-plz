@@ -7,9 +7,6 @@ import { ProfileFeed } from '../components/ProfileFeed'
 export const Profile = () => {
   return (
     <div>
-      <div>
-        <Header />
-      </div>
       <>
         <h1>Din profil</h1>
         <div>

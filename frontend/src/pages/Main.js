@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Beaches } from '../components/Beaches'
 import { Header } from '../components/Header'
-// import { Filter } from '..components/Filter'
+//import { Filter } from '..components/Filter'
 
 import { API_URL } from 'utils/urls'
 import { BEACH_ID } from 'utils/urls'
@@ -19,14 +19,13 @@ export const Main = () => {
       .then((json) => {
         setAllBeaches(json.response)
 
-
-        //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ 
-//skapa en array med alla areas
+        //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
+        //skapa en array med alla areas
         const are = json.response
-          .map(beach => beach.area)
+          .map((beach) => beach.area)
           .filter((a, index) => are.indexOf(a) === index)
           .sort()
-        //indexerar och sen filterar på unika områden 
+        //indexerar och sen filterar på unika områden
         setAreas(are)
       })
   }, [])
@@ -34,7 +33,9 @@ export const Main = () => {
   // Filter beaches by area
   const filterBeachesByArea = () => {
     if (areaFilter) {
-      const beachesByArea = allBeaches.filter((entry) => entry.area === areaFilter)
+      const beachesByArea = allBeaches.filter(
+        (entry) => entry.area === areaFilter
+      )
       setBeachesByArea(beachesByArea)
     } else {
       setBeachesByArea(allBeaches)
@@ -46,28 +47,26 @@ export const Main = () => {
     filterBeachesByArea()
   }, [areaFilter])
 
-
-
   return (
     <div>
       <div className='head-contatiner'>
-      <h1>Badplatser i Stockholm</h1>
-      <div>
-        <div className='filter'>
-          <form className='area-form'>
-            <label>Områden: </label>
-            <select
-              onChange={(event) => setAreaFilter(event.target.value)}
-            >
-              <option value=''>Välj område</option>
-              {areas.map((area, index) => (
-                <option value={area} key={index} >{area}</option>
-              ))  }
-            </select>
-          </form>
+        <h1>Badplatser i Stockholm</h1>
+        <div>
+          <div className='filter'>
+            <form className='area-form'>
+              <label>Områden: </label>
+              <select onChange={(event) => setAreaFilter(event.target.value)}>
+                <option value=''>Välj område</option>
+                {areas.map((area, index) => (
+                  <option value={area} key={index}>
+                    {area}
+                  </option>
+                ))}
+              </select>
+            </form>
+          </div>
         </div>
-      </div>
-      <Beaches beaches={ !areaFilter ? allBeaches : beachesByArea } />
+        <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
       </div>
     </div>
   )
