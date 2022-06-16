@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Beaches } from '../components/Beaches'
-import { Header } from '../components/Header'
+// import { Header } from '../components/Header'
 // import { Filter } from '..components/Filter'
+
+//CSS
+import '../main.css'
 
 import { API_URL } from 'utils/urls'
 import { BEACH_ID } from 'utils/urls'
@@ -22,12 +25,12 @@ export const Main = () => {
 
         //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ 
 //skapa en array med alla areas
-        const are = json.response
+        const beachAreas = json.response
           .map(beach => beach.area)
-          .filter((a, index) => are.indexOf(a) === index)
+          const filteredAreas = beachAreas.filter((a, index) => beachAreas.indexOf(a) === index)
           .sort()
-        //indexerar och sen filterar på unika områden 
-        setAreas(are)
+
+        setAreas(filteredAreas)
       })
   }, [])
 

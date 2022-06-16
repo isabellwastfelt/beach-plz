@@ -21,9 +21,13 @@ export const App = () => {
 
   return (
     <>
+
+{/* det här funkar tyvärr inte */}
+    {isLoggedIn && (
       <div className='header-container'>
         <Header />
       </div>
+      )}
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (

@@ -21,23 +21,7 @@ code {
   font-size: 12px;
 }
 
-/* HEADER */
-.header {
-  background-color: lightyellow;
-}
 
-.header ul,
-li a {
-  display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-  text-decoration: none;
-  align-items: center;
-}
-
-.header a {
-  margin: 20px;
-}
 
 /* LOGIN PAGE */
 
@@ -71,7 +55,7 @@ label {
   font-weight: normal;
 }
 
-input,
+
 #username,
 #password {
   font-size: 15px;
@@ -163,10 +147,7 @@ input,
   background-color: #f3f0d7;
 }
 
-.head-contatiner h1 {
-  font-size: 30px;
-  text-align: center;
-}
+
 
 .beaches-boxes h2 {
   font-size: 20px;
