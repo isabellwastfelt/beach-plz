@@ -64,8 +64,8 @@ export const Beach = () => {
     <div>
       <Header />
       <SingleBeach />
-      <ReviewFeed reviews={reviews} onDelete={onDelete} />
       <ReviewForm updateReviews={fetchReviews} />
+      <ReviewFeed reviews={reviews} onDelete={onDelete} />
     </div>
   )
 }

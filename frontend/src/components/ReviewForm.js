@@ -47,7 +47,9 @@ const ReviewForm = ({ updateReviews }) => {
           onChange={(e) => setNewReview(e.target.value)}
           placeholder='Skriv din recension här...'
         />
-        <button type='submit'>Lägg till din recension</button>
+        <button className='review-button' type='submit'>
+          Lägg till din recension
+        </button>
       </form>
     </main>
   )
