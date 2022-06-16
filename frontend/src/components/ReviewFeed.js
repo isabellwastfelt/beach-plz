@@ -1,5 +1,5 @@
 import { getCookie } from 'utils/cookieHelper'
-import { formatDistance } from 'date-fns'
+// import { formatDistance } from 'date-fns'
 
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 const API = process.env.API_URL || 'http://localhost:9090/'
