@@ -9,6 +9,8 @@ import { BEACH_ID } from 'utils/urls'
 export const Main = () => {
   const [allBeaches, setAllBeaches] = useState([])
   const [beachesByArea, setBeachesByArea] = useState({})
+  const [areaFilter, setAreaFilter] = useState('')
+  const [areas, setAreas] = useState([])
 
   // Find all beaches
   useEffect(() => {
@@ -16,57 +18,57 @@ export const Main = () => {
       .then((res) => res.json())
       .then((json) => {
         setAllBeaches(json.response)
-        console.log(allBeaches)
+
+
+        //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ 
+//skapa en array med alla areas
+        const are = json.response
+          .map(beach => beach.area)
+          .filter((a, index) => are.indexOf(a) === index)
+          .sort()
+        //indexerar och sen filterar på unika områden 
+        setAreas(are)
       })
   }, [])
 
   // Filter beaches by area
-  const fetchBeachesByArea = () => {
-    fetch(BEACH_ID(''))
-      .then((res) => res.json())
-      .then((json) => {
-        const beaches = json.response
-        console.log(json.response)
-        const beachesByArea = beaches.filter((entry) => entry.area === value)
-        setBeachesByArea(beachesByArea)
-      })
+  const filterBeachesByArea = () => {
+    if (areaFilter) {
+      const beachesByArea = allBeaches.filter((entry) => entry.area === areaFilter)
+      setBeachesByArea(beachesByArea)
+    } else {
+      setBeachesByArea(allBeaches)
+    }
   }
-  const onAreaChange = (beachesByArea) => {
-    setBeachesByArea(beachesByArea)
-  }
-  useEffect(() => {
-    fetchBeachesByArea()
-    onAreaChange()
-  }, [])
   console.log(beachesByArea)
+
+  useEffect(() => {
+    filterBeachesByArea()
+  }, [areaFilter])
+
+
 
   return (
     <div>
-      <Header />
-      {/* <Filter /> */}
+      <div className='head-contatiner'>
+      <h1>Badplatser i Stockholm</h1>
       <div>
         <div className='filter'>
           <form className='area-form'>
-            <label>Områden:</label>
+            <label>Områden: </label>
             <select
-              onChange={(event) => onAreaChange(event.target.value)}
-              value={beachesByArea}
+              onChange={(event) => setAreaFilter(event.target.value)}
             >
-              <option>Välj område</option>
-              <option value='Farsta'>Farsta</option>
-              <option value='Skarpnäck'>Skarpnäck</option>
-              <option value='Stockholm'>Stockholm</option>
-              <option value='Östermalm'>Östermalm</option>
-              <option value='Kungsholmen'>Kungsholmen</option>
-              <option value='Hässelby-Vällingby'>Hässelby-Vällingby</option>
-              <option value='Bromma'>Bromma</option>
-              <option value='Skärholmen'>Skärholmen</option>
-              <option value='Södermalm'>Södermalm</option>
+              <option value=''>Välj område</option>
+              {areas.map((area, index) => (
+                <option value={area} key={index} >{area}</option>
+              ))  }
             </select>
           </form>
         </div>
       </div>
-      <Beaches beaches={allBeaches} filterBeaches={beachesByArea} />
+      <Beaches beaches={ !areaFilter ? allBeaches : beachesByArea } />
+      </div>
     </div>
   )
 }
