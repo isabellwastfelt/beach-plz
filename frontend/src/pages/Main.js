@@ -66,7 +66,7 @@ export const Main = () => {
           </form>
         </div>
       </div>
-      <Beaches beaches={allBeaches} updateBeaches={filterBeaches} />
+      <Beaches beaches={allBeaches} filterBeaches={beachesByArea} />
     </div>
   )
 }

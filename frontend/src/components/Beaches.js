@@ -8,7 +8,7 @@ import BlackGreen from 'assets/BlackGreen.svg'
 
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 
-export const Beaches = ({ beaches, updateBeaches }) => {
+export const Beaches = ({ beaches, filterBeaches }) => {
   // const [beaches, setBeaches] = useState([])
 
   // useEffect(() => {
