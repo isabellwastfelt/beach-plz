@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Beaches } from '../components/Beaches'
-// import { Header } from '../components/Header'
+import { Header } from '../components/Header'
 // import { Filter } from '..components/Filter'
 
 //CSS
@@ -51,6 +51,8 @@ export const Main = () => {
   }, [areaFilter])
 
   return (
+    <>
+    <Header />
     <div>
       <div className="head-contatiner">
         <h1>Badplatser i Stockholm</h1>
@@ -70,8 +72,8 @@ export const Main = () => {
           </div>
           <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
         </div>
-        <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
       </div>
     </div>
+    </>
   )
 }

@@ -1,8 +1,15 @@
 import React from 'react'
 import BlackGreen from 'assets/BlackGreen.svg'
+import { getCookie } from 'utils/cookieHelper'
 
 export const Header = () => {
+  const isLoggedIn = () => getCookie('accessToken')
+
+  if (!isLoggedIn) {
+    return null
+  }
   return (
+    <div className="header-container">
     <nav className="navbar">
       <div className="navbar-container container">
         <input type="checkbox" name="" id="" />
@@ -28,5 +35,6 @@ export const Header = () => {
         {/* <h1 className="logo">Navbar</h1> */}
       </div>
     </nav>
+    </div>
   )
 }

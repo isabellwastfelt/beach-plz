@@ -35,9 +35,11 @@ export const SingleBeach = () => {
           <h1>{beach.name}</h1>
           <div className="beaches-container">
             <img className="beach-img" src={beach.image} />
-            <h2>{beach.address}</h2>
-            <h2>{beach.location}</h2>
-            <p>{beach.description}</p>
+            <div className="beach-info">
+              <h2>{beach.address}</h2>
+              <h2>{beach.location}</h2>
+              <p>{beach.description}</p>
+            </div>
           </div>
         </div>
       )}
