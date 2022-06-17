@@ -15,12 +15,14 @@ import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
 import { Beach } from './pages/Beach'
 import { Profile } from './pages/Profile'
+import Logout from './pages/Logout'
 
 export const App = () => {
   const isLoggedIn = () => getCookie('accessToken') || false
 
   return (
     <>
+<<<<<<< HEAD
 
 {/* det här funkar tyvärr inte */}
     {isLoggedIn && (
@@ -28,6 +30,11 @@ export const App = () => {
         <Header />
       </div>
       )}
+=======
+      <div className='header-container'>
+        <Header />
+      </div>
+>>>>>>> main
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (
@@ -35,6 +42,7 @@ export const App = () => {
               <Route path="/main" element={<Main />} />
               <Route path="/beach/:id" element={<Beach />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/Logout" element={<Logout />} />
             </>
           )}
           <>

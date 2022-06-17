@@ -188,7 +188,8 @@ label {
 .beach-img {
   width: 350px;
   height: 200px;
-  padding: 10px;
+  margin: 20px;
+  border: 2px solid #fff;
 }
 
 .single-beach h2 {
@@ -206,10 +207,43 @@ label {
 
 /* REVIEW PAGE */
 
-.review-feed {
-  background-color: #f3f0d7;
-  height: 100%;
+.review-form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: 000;
+  padding-bottom: 40px;
   width: 300px;
+  text-align: center;
+}
+
+textarea {
+  margin: 15px 0 10px;
+  height: 100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.review-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 20px;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  background-color: #fed2aa;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.review-feed {
+  background-color: #acc0ad;
+  height: 100%;
+  width: 400px;
 }
 
 .review-feed h3 {
@@ -218,51 +252,43 @@ label {
   padding: 20px;
 }
 
-.review-card {
+.card {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 15px;
 }
 
 .review-box {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
+  background-color: #ffffff;
+  border: 1px solid black;
+  margin: 10px;
+}
 
-  /* margin: 20px;
-  padding: 20px; */
-
-  background-color: #fff;
-  height: 120px;
-  margin: 20px;
-  padding: 15px;
-  overflow-wrap: break-word;
+.message-text {
+  padding: 10px 10px;
+  min-height: 100px;
+  font-size: 15px;
+  font-weight: normal;
 }
 
 .review-box,
-p {
-  font-size: 15px;
+.message-text {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .date {
-  display: flex;
+  /* display: flex; */
   font-size: 12px;
   color: rgba(0, 0, 0, 0.3);
 }
 
-.delete-button,
-.date,
-.review-box {
-  justify-content: space-between;
-  /* padding: 0;
-  border: none;
-  outline: none;
-  font: inherit;
-  color: inherit;
-  background: none; */
-}
-
 .delete-button {
+<<<<<<< HEAD
   cursor: pointer;
 }
 
@@ -276,6 +302,18 @@ p {
   width: 300px;
   height: 400px;
   text-align: center;
+=======
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.date-delete {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+>>>>>>> main
 }
 
 

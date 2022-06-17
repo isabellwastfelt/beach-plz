@@ -22,12 +22,20 @@ export const Main = () => {
       .then((json) => {
         setAllBeaches(json.response)
 
+<<<<<<< HEAD
 
         //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/ 
 //skapa en array med alla areas
         const beachAreas = json.response
           .map(beach => beach.area)
           const filteredAreas = beachAreas.filter((a, index) => beachAreas.indexOf(a) === index)
+=======
+        //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
+        //skapa en array med alla areas
+        const beachAreas = json.response.map((beach) => beach.area)
+        const filteredAreas = beachAreas
+          .filter((a, index) => beachAreas.indexOf(a) === index)
+>>>>>>> main
           .sort()
 
         setAreas(filteredAreas)
@@ -37,7 +45,13 @@ export const Main = () => {
   // Filter beaches by area
   const filterBeachesByArea = () => {
     if (areaFilter) {
+<<<<<<< HEAD
       const beachesByArea = allBeaches.filter((entry) => entry.area === areaFilter)
+=======
+      const beachesByArea = allBeaches.filter(
+        (entry) => entry.area === areaFilter
+      )
+>>>>>>> main
       setBeachesByArea(beachesByArea)
     } else {
       setBeachesByArea(allBeaches)
@@ -49,6 +63,7 @@ export const Main = () => {
     filterBeachesByArea()
   }, [areaFilter])
 
+<<<<<<< HEAD
 
 
   return (
@@ -68,10 +83,34 @@ export const Main = () => {
               ))  }
             </select>
           </form>
+=======
+  return (
+    <div>
+      <div className="head-contatiner">
+        <h1>Badplatser i Stockholm</h1>
+        <div>
+          <div className="filter">
+            <form className="area-form">
+              <label>Områden: </label>
+              <select onChange={(event) => setAreaFilter(event.target.value)}>
+                <option value="">Välj område</option>
+                {areas.map((area, index) => (
+                  <option value={area} key={index}>
+                    {area}
+                  </option>
+                ))}
+              </select>
+            </form>
+          </div>
+>>>>>>> main
         </div>
+        <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
       </div>
+<<<<<<< HEAD
       <Beaches beaches={ !areaFilter ? allBeaches : beachesByArea } />
       </div>
+=======
+>>>>>>> main
     </div>
   )
 }
