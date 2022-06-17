@@ -70,7 +70,6 @@ export const Main = () => {
           </div>
           <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
         </div>
-        <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
       </div>
     </div>
   )

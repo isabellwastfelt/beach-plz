@@ -63,10 +63,9 @@ const ReviewSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  beachId:
-  {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Beach',
+  beachId: {
+    type: String,
+    required: true,
   },
   message: {
     type: String,
@@ -208,11 +207,13 @@ app.get('/beaches/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-    const beach = await Beach.findOne({ id: id })
-    const reviews = await Review.findMany({ beachId: id })
+    const beach = await beaches.find((beach) => beach.id === id)
+    const reviews = await Review.find().where('beachId').in(id)
+
     if (beach) {
       res.status(200).json({
-        response: {...beach, reviews: reviews},
+        response: { beach, reviews },
+
         success: true,
       })
       console.log(beach)
@@ -271,15 +272,12 @@ app.post('/review/:beachId', authenticateUser, async (req, res) => {
 app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
   const { reviewId } = req.params
 
-  try {
-    Review.deleteOne({ _id: reviewId }, function (err) {
-      if (err) return console.error(err)
-    })
-    res.status(200).json({ response: 'Din recension är nu borttagen.' })
-  } catch (error) {
-    console.log(error)
-    res.status(400).json({ response: error, success: false })
-  }
+  const reviews = await Review.deleteOne({
+    userId: req.user,
+    _id: reviewId,
+  })
+
+  res.sendStatus(200)
 })
 
 // //--- add stars??? ---//

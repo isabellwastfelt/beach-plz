@@ -14,7 +14,7 @@ const ReviewForm = ({ updateReviews }) => {
 
     const accessToken = getCookie('accessToken')
 
-    fetch(`${API}review`, {
+    fetch(`${API}review/beachId`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,19 +35,19 @@ const ReviewForm = ({ updateReviews }) => {
 
   return (
     <main>
-      <form className='review-form' onSubmit={handleFormSubmit}>
-        <label htmlFor='newReview'>Vad tycker du om badplatsen?</label>
+      <form className="review-form" onSubmit={handleFormSubmit}>
+        <label htmlFor="newReview">Vad tycker du om badplatsen?</label>
         <textarea
           className={newReview.length > 140 ? 'red-text' : ''}
-          id='newReview'
-          type='text'
-          rows='5'
-          columns='150'
+          id="newReview"
+          type="text"
+          rows="5"
+          columns="150"
           value={newReview}
           onChange={(e) => setNewReview(e.target.value)}
-          placeholder='Skriv din recension här...'
+          placeholder="Skriv din recension här..."
         />
-        <button className='review-button' type='submit'>
+        <button className="review-button" type="submit">
           Lägg till din recension
         </button>
       </form>
