@@ -63,6 +63,11 @@ const ReviewSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  beachId:
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Beach',
+  },
   message: {
     type: String,
     required: true,
@@ -204,9 +209,10 @@ app.get('/beaches/:id', async (req, res) => {
 
   try {
     const beach = await Beach.findOne({ id: id })
+    const reviews = await Review.findMany({ beachId: id })
     if (beach) {
       res.status(200).json({
-        response: beach,
+        response: {...beach, reviews: reviews},
         success: true,
       })
       console.log(beach)
@@ -240,16 +246,17 @@ app.get('/review', async (req, res) => {
 })
 
 //--- POST REVIEW ---//
-app.post('/review', authenticateUser, async (req, res) => {
+app.post('/review/:beachId', authenticateUser, async (req, res) => {
+  const { beachId } = req.params
+
   try {
     const { message, rate } = req.body
     const userId = req.user._id
 
-    console.log(`This is the req.user._id ${req.user._id}`)
-
     const newReview = await new Review({
       message: message,
       userId,
+      beachId,
       rate,
     }).save()
     console.log(newReview)
