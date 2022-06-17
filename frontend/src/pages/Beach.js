@@ -64,7 +64,7 @@ export const Beach = () => {
     <>
     <Header />
     <div className="beach-page-container">
-      <div>
+      <div className="beach-and-form">
         <SingleBeach />
         <ReviewForm updateReviews={fetchReviews} />
       </div>

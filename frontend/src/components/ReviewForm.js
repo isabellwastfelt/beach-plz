@@ -34,7 +34,8 @@ const ReviewForm = ({ updateReviews }) => {
   }
 
   return (
-    <main>
+    <div className="main-form">
+      <div className="form-container">
       <form className="review-form" onSubmit={handleFormSubmit}>
         <label htmlFor="newReview">Vad tycker du om badplatsen?</label>
         <textarea
@@ -51,7 +52,8 @@ const ReviewForm = ({ updateReviews }) => {
           Lägg till din recension
         </button>
       </form>
-    </main>
+      </div>
+    </div>
   )
 }
 

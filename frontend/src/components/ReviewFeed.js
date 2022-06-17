@@ -16,20 +16,24 @@ const ReviewFeed = ({ reviews, onDelete }) => {
                     {review.message} {review.rate}
                   </p>
                   <div className='date-delete'>
-                    <p className='date'>
-                      {formatDistance(new Date(review.createdAt), Date.now(), {
-                        addSuffix: true,
-                      })}
-                    </p>
-                    <button
-                      className='delete-button'
-                      type='button'
-                      onClick={() => {
-                        onDelete(review._id)
-                      }}
-                    >
-                      ✖️
-                    </button>
+                    <div>
+                      <p className='date'>
+                        {formatDistance(new Date(review.createdAt), Date.now(), {
+                          addSuffix: true,
+                        })}
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        className='delete-button'
+                        type='button'
+                        onClick={() => {
+                          onDelete(review._id)
+                        }}
+                      >
+                        ✖️
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

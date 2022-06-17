@@ -26,10 +26,10 @@ export const SingleBeach = () => {
 
   return (
     <div className="single-beach">
-      <Link to="/" className="back-button" onClick={onBackButtonClick}>
+      {/* <Link to="/" className="back-button" onClick={onBackButtonClick}>
         <span className="back-icon">&lt;</span>
         <span className="back-text"> Tillbaka till alla bad</span>
-      </Link>
+      </Link> */}
       {beach && (
         <div key={beach.name}>
           <h1>{beach.name}</h1>
