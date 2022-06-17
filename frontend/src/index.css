@@ -235,6 +235,16 @@ input,
   width: 300px;
   text-align: center;
 }
+::placeholder{
+  font-family:'Source Sans Pro', sans-serif;
+  font-size: 16px;
+
+}
+.input {
+  font-family:'Source Sans Pro', sans-serif;
+  font-size: 35px;
+}
+
 
 textarea {
   margin: 15px 0 10px;
