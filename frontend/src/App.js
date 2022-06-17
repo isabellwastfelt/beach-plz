@@ -22,7 +22,6 @@ export const App = () => {
 
   return (
     <>
-<<<<<<< HEAD
 
 {/* det här funkar tyvärr inte */}
     {isLoggedIn && (
@@ -30,11 +29,6 @@ export const App = () => {
         <Header />
       </div>
       )}
-=======
-      <div className='header-container'>
-        <Header />
-      </div>
->>>>>>> main
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (

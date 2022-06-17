@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import { BEACH_ID } from 'utils/urls'
 
-import BlackGreen from 'assets/BlackGreen.svg'
+// import BlackGreen from 'assets/BlackGreen.svg'
 
 export const SingleBeach = () => {
   const { id } = useParams()
@@ -28,7 +28,7 @@ export const SingleBeach = () => {
 
   return (
     <div className='single-beach'>
-      <img className='logo-img' src={BlackGreen} alt='Logo' />
+      {/* <img className='logo-img' src={BlackGreen} alt='Logo' /> */}
       <Link to='/' className='back-button' onClick={onBackButtonClick}>
         <span className='back-icon'>&lt;</span>
         <span className='back-text'> Tillbaka till alla bad</span>
