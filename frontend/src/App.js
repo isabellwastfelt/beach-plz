@@ -22,19 +22,12 @@ export const App = () => {
 
   return (
     <>
-<<<<<<< HEAD
-
-{/* det här funkar tyvärr inte */}
-    {isLoggedIn && (
-      <div className='header-container'>
-        <Header />
-      </div>
+      {/* det här funkar tyvärr inte */}
+      {isLoggedIn && (
+        <div className="header-container">
+          <Header />
+        </div>
       )}
-=======
-      <div className='header-container'>
-        <Header />
-      </div>
->>>>>>> main
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (
