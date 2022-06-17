@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+/* HEADER */
+.header {
+  background-color: lightyellow;
+}
+
+.header ul,
+li a {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  text-decoration: none;
+  align-items: center;
+}
+
+.header a {
+  margin: 20px;
+}
+
+=======
+>>>>>>> main
 .header-container {
     padding-bottom: 100px;
     background-color: #cee5d0;
@@ -41,6 +62,11 @@
   color: rgb(0, 0, 0);
 }
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> main
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -103,7 +129,11 @@
   color: #0088a9;
 }
 
+<<<<<<< HEAD
+@media (max-width: 500px) {
+=======
 @media (max-width: 768px) {
+>>>>>>> main
   .navbar-container input[type='checkbox'],
   .navbar-container .hamburger-lines {
     display: block;
@@ -118,10 +148,17 @@
   .navbar-container input[type='checkbox'] {
     position: absolute;
     display: block;
+<<<<<<< HEAD
+    height: 52px;
+    width: 80px;
+    top: 5px;
+    left: 250px;
+=======
     height: 32px;
     width: 40px;
     top: 5px;
     left: 270px;
+>>>>>>> main
     z-index: 5;
     opacity: 0;
     cursor: pointer;
@@ -165,9 +202,14 @@
 
   .navbar .menu-items {
     padding-top: 100px;
+<<<<<<< HEAD
+    background: #ffffff;
+    height: 50vh;
+=======
     background: #995151;
     height: 100vh;
     max-width: 300px;
+>>>>>>> main
     transform: translate(-150%);
     display: flex;
     flex-direction: column;
@@ -181,7 +223,11 @@
 
   .navbar .menu-items li {
     margin-bottom: 1.8rem;
+<<<<<<< HEAD
+    font-size: 20px;
+=======
     font-size: 1rem;
+>>>>>>> main
     font-weight: 500;
   }
 
@@ -198,7 +244,11 @@
   }
 
   .navbar-container input[type='checkbox']:checked ~ .menu-items {
+<<<<<<< HEAD
+    transform: translateX(200px);
+=======
     transform: translateX(0);
+>>>>>>> main
   }
 
   .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line1 {

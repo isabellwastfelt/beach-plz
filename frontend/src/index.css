@@ -21,23 +21,7 @@ code {
   font-size: 12px;
 }
 
-/* HEADER */
-.header {
-  background-color: lightyellow;
-}
 
-.header ul,
-li a {
-  display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-  text-decoration: none;
-  align-items: center;
-}
-
-.header a {
-  margin: 20px;
-}
 
 /* LOGIN PAGE */
 
@@ -71,7 +55,7 @@ label {
   font-weight: normal;
 }
 
-input,
+
 #username,
 #password {
   font-size: 15px;
@@ -163,10 +147,7 @@ input,
   background-color: #f3f0d7;
 }
 
-.head-contatiner h1 {
-  font-size: 30px;
-  text-align: center;
-}
+
 
 .beaches-boxes h2 {
   font-size: 20px;
@@ -317,6 +298,21 @@ textarea {
 }
 
 .delete-button {
+<<<<<<< HEAD
+  cursor: pointer;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: 000;
+  margin-top: 20px;
+  padding: 20px;
+  width: 300px;
+  height: 400px;
+  text-align: center;
+=======
   border: none;
   background: none;
   cursor: pointer;
@@ -327,6 +323,7 @@ textarea {
   flex-direction: row;
   align-items: baseline;
   justify-content: center;
+>>>>>>> main
 }
 
 
