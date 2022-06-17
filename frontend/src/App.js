@@ -7,7 +7,6 @@ import './navbar.css'
 
 //COMPONENTS
 import { Footer } from './components/Footer'
-import { Header } from './components/Header'
 
 //PAGES
 import { Main } from './pages/Main'
@@ -22,12 +21,6 @@ export const App = () => {
 
   return (
     <>
-      {/* det här funkar tyvärr inte */}
-      {isLoggedIn && (
-        <div className="header-container">
-          <Header />
-        </div>
-      )}
       <BrowserRouter>
         <Routes>
           {isLoggedIn && (

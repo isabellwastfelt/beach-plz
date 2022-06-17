@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReviewForm from '../components/ReviewForm'
 import { SingleBeach } from '../components/SingleBeach'
 import ReviewFeed from '../components/ReviewFeed'
+import { Header } from '../components/Header'
 
 import { getCookie } from 'utils/cookieHelper'
 
@@ -60,10 +61,17 @@ export const Beach = () => {
   }
 
   return (
-    <div>
-      <SingleBeach />
-      <ReviewForm updateReviews={fetchReviews} />
-      <ReviewFeed reviews={reviews} onDelete={onDelete} />
+    <>
+    <Header />
+    <div className="beach-page-container">
+      <div>
+        <SingleBeach />
+        <ReviewForm updateReviews={fetchReviews} />
+      </div>
+      <div className="review-feed-container">
+        <ReviewFeed reviews={reviews} onDelete={onDelete} />
+      </div>
     </div>
+  </>
   )
 }
