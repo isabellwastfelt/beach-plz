@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react";
-import ReviewForm from "../components/ReviewForm";
-import { SingleBeach } from "../components/SingleBeach";
-import ReviewFeed from "../components/ReviewFeed";
-import { Header } from "../components/Header";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import ReviewForm from '../components/ReviewForm'
+import { SingleBeach } from '../components/SingleBeach'
+import ReviewFeed from '../components/ReviewFeed'
+import { Header } from '../components/Header'
+import { useParams } from 'react-router-dom'
 
-const API = process.env.API_URL || "http://localhost:9090/";
+const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const Beach = () => {
-  const { id } = useParams();
+  const { id } = useParams()
   //fetch reviews
-  const [beach, setBeach] = useState({});
-  const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [beach, setBeach] = useState({})
+  const [reviews, setReviews] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const fetchBeach = async () => {
     try {
       const data = await fetch(`${API}beach/${id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-      });
-      const res = await data.json();
-      setBeach(res.beach);
-      setReviews(res.reviews);
+      })
+      const res = await data.json()
+      setBeach(res.beach)
+      setReviews(res.reviews)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchBeach();
-  }, []);
+    fetchBeach()
+  }, [])
 
   if (isLoading) {
-    return <div>Laddar..</div>;
+    return <div>Laddar..</div>
   }
 
   return (
@@ -50,5 +50,5 @@ export const Beach = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

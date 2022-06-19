@@ -1,49 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { ProfileBeaches } from "../components/ProfileBeaches";
-import { ProfileFeed } from "../components/ProfileFeed";
-import ReviewFeed from "../components/ReviewFeed";
-import { Header } from "components/Header";
-import { API_URL } from "../utils/urls";
+import React, { useState, useEffect } from 'react'
+import { ProfileBeaches } from '../components/ProfileBeaches'
+import { ProfileFeed } from '../components/ProfileFeed'
+import ReviewFeed from '../components/ReviewFeed'
+import { Header } from 'components/Header'
+import { API_URL } from '../utils/urls'
 
-import { getCookie } from "../utils/cookieHelper";
+import { getCookie } from '../utils/cookieHelper'
 
 export const Profile = () => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([])
 
   const fetchReviews = async () => {
-    const accessToken = getCookie("accessToken");
+    const accessToken = getCookie('accessToken')
 
     try {
-      const data = await fetch(`${API_URL("review")}`, {
+      const data = await fetch(`${API_URL('review')}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: accessToken,
         },
-      });
-      const res = await data.json();
-      setReviews(res);
+      })
+      const res = await data.json()
+      setReviews(res)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   const onDelete = async (reviewId) => {
-    const accessToken = getCookie("accessToken");
+    const accessToken = getCookie('accessToken')
 
-    const reviewsPost = await fetch(`${API_URL("review")}/${reviewId}`, {
-      method: "DELETE",
+    const reviewsPost = await fetch(`${API_URL('review')}/${reviewId}`, {
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: accessToken,
       },
-    });
-    const reviewRes = await reviewsPost.json();
-    setReviews(reviewRes.reviews);
-  };
+    })
+    const reviewRes = await reviewsPost.json()
+    setReviews(reviewRes.reviews)
+  }
 
   useEffect(() => {
-    fetchReviews();
-  }, []);
+    fetchReviews()
+  }, [])
 
   return (
     <div>
@@ -61,5 +61,5 @@ export const Profile = () => {
         </div>
       </>
     </div>
-  );
-};
+  )
+}
