@@ -6,11 +6,11 @@ import { BEACH_ID } from 'utils/urls'
 export const SingleBeach = () => {
   const { id } = useParams()
   const [beach, setBeach] = useState({})
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const onBackButtonClick = () => {
-    navigate(-1)
-  }
+  // const onBackButtonClick = () => {
+  //   navigate(-1)
+  // }
 
   // fetches the info from that beach the user clicked on
   useEffect(() => {
@@ -32,13 +32,16 @@ export const SingleBeach = () => {
       </Link> */}
       {beach && (
         <div key={beach.name}>
-          <h1>{beach.name}</h1>
+          
           <div className="beaches-container">
-            <img className="beach-img" src={beach.image} />
-            <div className="beach-info">
-              <h2>{beach.address}</h2>
-              <h2>{beach.location}</h2>
-              <p>{beach.description}</p>
+          <h1>{beach.name}</h1>
+            <div className='beach-info-box'>
+                <img className="beach-img" alt={beach.name} src={beach.image} />
+              <div className="beach-info">
+                <p>{beach.description}</p>
+                <h2>{beach.address}</h2>
+                <h2>{beach.location}</h2>
+              </div>
             </div>
           </div>
         </div>

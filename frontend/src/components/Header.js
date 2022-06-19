@@ -19,7 +19,9 @@ export const Header = () => {
           <span className="line line3"></span>
         </div>
         <div className="navbar-logo">
-          <img className="logo-img" src={BlackGreen} alt="Logo" />
+          <a href="/main">
+            <img className="logo-img" src={BlackGreen} alt="Logo" />
+          </a>
         </div>
         <ul className="menu-items">
           <li>

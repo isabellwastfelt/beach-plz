@@ -111,22 +111,17 @@ label {
 
 /* MAIN PAGE */
 
-/* .main-container h1 {
-  font-size: 30px;
+.main-beaches-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.main-container h2 {
-  font-size: 25px;
+.main-beaches-img {
+  width: 250px;
+  height: auto;
+  padding: 10px;
 }
-
-.main-container h3 {
-  font-size: 20px;
-}
-
-.main-container p {
-  font-size: 15px;
-  font-weight: normal;
-} */
 
 /* FILTER COMPONENT */
 
@@ -153,7 +148,7 @@ label {
 
 .review-feed-container {
   display: flex;
-  margin: 20px 10px;
+  margin: 20px 40px;
 }
 
 .beaches-img {
@@ -163,10 +158,18 @@ label {
 }
 
 .beaches-container {
+  /* display: flex;
+  justify-content: center;
+  flex-wrap: wrap; */
+  margin: 20px 40px;
+  background-color: #fff;
+}
+
+.beach-info-box {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 40px;
+  
 }
 
 .beaches-boxes {
@@ -208,15 +211,19 @@ label {
 .single-beach h1 {
   font-size: 20px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 0px;
+  padding: 20px;
+}
+
+.single-beach p {
+  font-size: 20px;
+  text-align: center;
+  padding: 0 0 20px 0;
 }
 
 .beach-img {
   width: 300px;
   height: auto;
-  /* margin: 20px; */
-  border: 2px solid #fff;
+  padding: 10px;
 }
 
 .single-beach h2 {
@@ -233,8 +240,9 @@ label {
 }
 
 .beach-info {
+  background-color: #fff;
   max-width: 300px;
-  margin: 10px;
+  padding: 10px;
 }
 
 /* REVIEW PAGE */
@@ -245,6 +253,7 @@ label {
   border-radius: 5px;
   background-color: 000;
   /* width: 300px; */
+  margin: 20px;
   text-align: center;
 }
 
@@ -257,7 +266,7 @@ label {
   display: flex;
   justify-content: center;
   margin: 20px 40px;
-  max-width: 600px;
+  /* max-width: 600px; */
   background-color: #acc0ad;
 }
 
@@ -285,10 +294,10 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
+  margin: 5px 0 0 0;
   padding: 20px;
   height: 40px;
-  width: 200px;
+  /* width: 200px; */
   text-align: center;
   background-color: #fed2aa;
   border-radius: 5px;
@@ -354,5 +363,4 @@ textarea {
   padding: 10px 10px;
   align-items: center;
 }
-
 
