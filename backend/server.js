@@ -1,22 +1,22 @@
-import express from 'express'
-import cors from 'cors'
-import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
-import crypto from 'crypto'
-import getEndpoints from 'express-list-endpoints'
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import crypto from "crypto";
+import getEndpoints from "express-list-endpoints";
 
-import beaches from './data/beaches.json'
+import beaches from "./data/beaches.json";
 
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/beach-plz'
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-mongoose.Promise = Promise
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/beach-plz";
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.Promise = Promise;
 
-const port = process.env.PORT || 9090
-const app = express()
+const port = process.env.PORT || 9090;
+const app = express();
 
 // Add middlewares to enable cors and json body parsing
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -32,18 +32,18 @@ const UserSchema = new mongoose.Schema({
   },
   accessToken: {
     type: String,
-    default: () => crypto.randomBytes(128).toString('hex'),
+    default: () => crypto.randomBytes(128).toString("hex"),
   },
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
       default: [],
-      ref: 'Favorites',
+      ref: "Favorites",
     },
   ],
-})
+});
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model("User", UserSchema);
 
 //--- Beach Schema ---//
 const BeachSchema = new mongoose.Schema({
@@ -53,15 +53,15 @@ const BeachSchema = new mongoose.Schema({
   description: String,
   location: String,
   image: String,
-})
+});
 
-const Beach = mongoose.model('Beach', BeachSchema)
+const Beach = mongoose.model("Beach", BeachSchema);
 
 //--- Review schema ---//
 const ReviewSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
   },
   beachId: {
     type: String,
@@ -81,62 +81,62 @@ const ReviewSchema = new mongoose.Schema({
     type: Date,
     default: () => new Date(),
   },
-})
+});
 
-const Review = mongoose.model('Review', ReviewSchema)
+const Review = mongoose.model("Review", ReviewSchema);
 
-const FavoriteBeach = mongoose.model('FavoriteBeach', {
+const FavoriteBeach = mongoose.model("FavoriteBeach", {
   name: String,
   image: String,
   description: String,
-})
+});
 
 const authenticateUser = async (req, res, next) => {
-  const accessToken = req.header('Authorization')
+  const accessToken = req.header("Authorization");
 
   try {
-    const user = await User.findOne({ accessToken: accessToken })
+    const user = await User.findOne({ accessToken: accessToken });
 
     if (user) {
-      req.user = user._id
-      next()
+      req.user = user._id;
+      next();
     } else {
       res.status(401).json({
-        response: 'Please log in.',
+        response: "Please log in.",
         success: false,
-      })
+      });
     }
   } catch (error) {
     res.status(400).json({
       response: error,
       success: false,
-    })
+    });
   }
-}
+};
 
 //--- LIST OF ENDPOINTS ---//
 
-app.get('/', (req, res) => {
-  res.send(getEndpoints(app))
-})
+app.get("/", (req, res) => {
+  res.send(getEndpoints(app));
+});
 
 //--- REGISTRATION ENDPOINT ---//
 
-app.post('/registration', async (req, res) => {
-  const { username, password } = req.body
+app.post("/registration", async (req, res) => {
+  const { username, password } = req.body;
   try {
-    const salt = bcrypt.genSaltSync()
+    const salt = bcrypt.genSaltSync();
 
     if (password.length < 8) {
       res.status(400).json({
-        response: 'Password must be at least 8 characters long',
+        response: "Password must be at least 8 characters long",
         success: false,
-      })
+      });
     } else {
       const newUser = await new User({
         username: username,
         password: bcrypt.hashSync(password, salt),
-      }).save()
+      }).save();
       res.status(201).json({
         response: {
           username: newUser.username,
@@ -144,24 +144,24 @@ app.post('/registration', async (req, res) => {
           accessToken: newUser.accessToken,
         },
         success: true,
-      })
+      });
     }
   } catch (error) {
     res.status(400).json({
       response: error,
       success: false,
-      message: 'Could not create user.',
-    })
+      message: "Could not create user.",
+    });
   }
-})
+});
 
 //--- LOGIN ENDPOINT ---//
 
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
 
   try {
-    const user = await User.findOne({ username })
+    const user = await User.findOne({ username });
 
     if (user && bcrypt.compareSync(password, user.password)) {
       res.status(200).json({
@@ -169,116 +169,128 @@ app.post('/login', async (req, res) => {
         username: user.username,
         accessToken: user.accessToken,
         userId: user._id,
-      })
+      });
     } else {
       res.status(400).json({
         response: "Username and password don't match",
         success: false,
-      })
+      });
     }
   } catch (error) {
     res.status(400).json({
       response: error,
       success: false,
-    })
+    });
   }
-})
+});
 
 //-------------------------GET ALL BEACHES-------------------------//
 // app.get(', authenticateUser)
-app.get('/beaches', (req, res) => {
+app.get("/beaches", (req, res) => {
   try {
     res.status(200).json({
       response: beaches,
       success: true,
-    })
+    });
   } catch (error) {
     res.status(400).json({
       response: error,
       success: false,
-    })
+    });
   }
-})
+});
 
 //----------------------GET A SPECIFIC BEACH--------------------//
 
 // endpoint for name
-app.get('/beaches/:id', async (req, res) => {
-  const { id } = req.params
+app.get("/beach/:id", async (req, res) => {
+  const { id } = req.params;
 
   try {
-    const beach = await beaches.find((beach) => beach.id === id)
-    const reviews = await Review.find().where('beachId').in(id)
+    const beach = await beaches.find((beach) => beach.id === id);
+    const reviews = await Review.find().where("beachId").in(id);
 
     if (beach) {
       res.status(200).json({
-        response: { beach, reviews },
-
+        beach,
+        reviews,
         success: true,
-      })
-      console.log(beach)
+      });
+      console.log(beach);
     } else {
       res.status(404).json({
-        response: 'No data found',
+        response: "No data found",
         success: false,
-      })
+      });
     }
   } catch (error) {
     res.status(400).json({
       response: error,
       success: false,
-    })
+    });
   }
-})
+});
 
 //--- REVIEW ENDPOINT ---//
 //--- show review feed ---//
 
-app.get('/review', async (req, res) => {
+app.get("/review", async (req, res) => {
   try {
-    const reviews = await Review.find()
-    res.status(200).json(reviews)
+    const reviews = await Review.find();
+    res.status(200).json(reviews);
   } catch (error) {
     res.status(401).json({
       errors: error,
-      response: 'Please log in or sign up.',
-    })
+      response: "Please log in or sign up.",
+    });
   }
-})
+});
+
+// get only my reviews
+app.get("/review/mine", authenticateUser, async (req, res) => {
+  try {
+    const reviews = await Review.find({ userId: req.user });
+    res.send({ success: true, reviews }).status(200);
+  } catch (err) {
+    console.log(err);
+    res.send({ sucess: false, message: err });
+  }
+});
 
 //--- POST REVIEW ---//
-app.post('/review/:beachId', authenticateUser, async (req, res) => {
-  const { beachId } = req.params
+app.post("/review/:beachId", authenticateUser, async (req, res) => {
+  const { beachId } = req.params;
 
   try {
-    const { message, rate } = req.body
-    const userId = req.user._id
+    const { message, rate } = req.body;
+    const userId = req.user._id;
 
     const newReview = await new Review({
       message: message,
       userId,
       beachId,
       rate,
-    }).save()
-    console.log(newReview)
-    res.status(201).json({ response: newReview, sucess: true })
+    }).save();
+    console.log(newReview);
+    res.status(201).json({ response: newReview, sucess: true });
   } catch (error) {
-    res.status(400).json({ response: error, success: false })
+    res.status(400).json({ response: error, success: false });
   }
-})
+});
 
 //--- DELETE REVIEW ---//
 
-app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
-  const { reviewId } = req.params
+app.delete("/review/:reviewId", authenticateUser, async (req, res) => {
+  const { reviewId } = req.params;
 
-  const reviews = await Review.deleteOne({
+  await Review.deleteOne({
     userId: req.user,
     _id: reviewId,
-  })
+  });
 
-  res.sendStatus(200)
-})
+  const reviews = await Review.find({});
+  res.send({ reviews }).status(200);
+});
 
 // //--- add stars??? ---//
 
@@ -304,5 +316,5 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 
 //--- START THE SERVER ---//
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
-})
+  console.log(`Server running on http://localhost:${port}`);
+});
