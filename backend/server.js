@@ -203,7 +203,7 @@ app.get('/beaches', (req, res) => {
 //----------------------GET A SPECIFIC BEACH--------------------//
 
 // endpoint for name
-app.get('/beaches/:id', async (req, res) => {
+app.get('/beach/:id', async (req, res) => {
   const { id } = req.params
 
   try {
@@ -212,8 +212,8 @@ app.get('/beaches/:id', async (req, res) => {
 
     if (beach) {
       res.status(200).json({
-        response: { beach, reviews },
-
+        beach,
+        reviews,
         success: true,
       })
       console.log(beach)
@@ -246,6 +246,17 @@ app.get('/review', async (req, res) => {
   }
 })
 
+// get only my reviews
+app.get('/review/mine', authenticateUser, async (req, res) => {
+  try {
+    const reviews = await Review.find({ userId: req.user })
+    res.send({ success: true, reviews }).status(200)
+  } catch (err) {
+    console.log(err)
+    res.send({ sucess: false, message: err })
+  }
+})
+
 //--- POST REVIEW ---//
 app.post('/review/:beachId', authenticateUser, async (req, res) => {
   const { beachId } = req.params
@@ -272,12 +283,13 @@ app.post('/review/:beachId', authenticateUser, async (req, res) => {
 app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
   const { reviewId } = req.params
 
-  const reviews = await Review.deleteOne({
+  await Review.deleteOne({
     userId: req.user,
     _id: reviewId,
   })
 
-  res.sendStatus(200)
+  const reviews = await Review.find({})
+  res.send({ reviews }).status(200)
 })
 
 // //--- add stars??? ---//
