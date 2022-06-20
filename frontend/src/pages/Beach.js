@@ -2,15 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ReviewForm from '../components/ReviewForm'
 import { SingleBeach } from '../components/SingleBeach'
 import ReviewFeed from '../components/ReviewFeed'
-<<<<<<< HEAD
-
-import { getCookie } from 'utils/cookieHelper'
-
-// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-=======
 import { Header } from '../components/Header'
 import { useParams } from 'react-router-dom'
->>>>>>> 5aea4614433dc085c12fb837d4cc5d2e5d08c1b3
 
 const API = process.env.API_URL || 'http://localhost:9090/'
 
