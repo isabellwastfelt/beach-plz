@@ -40,32 +40,30 @@ export const RegistrationForm = () => {
 
   if (result) {
     return (
-      <div>
-        <h2>
-          Now continue to <Link to='/'>Login</Link>!
-        </h2>
-      </div>
+      <h2>
+        Now continue to <Link to="/">Login</Link>!
+      </h2>
     )
   }
 
   return (
-    <main className='main-container'>
-      <img className='logo-img' src={BlackGreen} alt='Logo' />
-      <form className='login-form' onSubmit={onRegister}>
+    <main className="main-container">
+      <img className="logo-img" src={BlackGreen} alt="Logo" />
+      <form className="login-form" onSubmit={onRegister}>
         <h3>Registrera dig här</h3>
-        <label htmlFor='username'>Användarnamn:</label>
+        <label htmlFor="username">Användarnamn:</label>
         <input
-          type='text'
-          id='username'
-          placeholder='Användarnamn'
+          type="text"
+          id="username"
+          placeholder="Användarnamn"
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label htmlFor='password'>Lösenord:</label>
+        <label htmlFor="password">Lösenord:</label>
         <input
-          type='password'
-          id='password'
-          placeholder='Lösenord'
+          type="password"
+          id="password"
+          placeholder="Lösenord"
           onChange={(event) => setPassword(event.target.value)}
         />
 
@@ -78,12 +76,12 @@ export const RegistrationForm = () => {
           onChange={(event) => setPassword(event.target.value)}
         /> */}
 
-        <div className='error'>{error}</div>
+        <div className="error">{error}</div>
 
-        <button className='submit-button' type='submit' id='registration'>
+        <button className="submit-button" type="submit" id="registration">
           Registrera
         </button>
-        <Link className='register-link' to='/'>
+        <Link className="register-link" to="/">
           Har du redan ett konot? <b>Logga in här!</b>
         </Link>
       </form>

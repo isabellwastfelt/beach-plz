@@ -71,7 +71,7 @@ const ReviewSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 3,
-    maxlength: 150,
+    maxlength: 200,
     trim: true,
   },
   rate: {

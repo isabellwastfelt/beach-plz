@@ -20,7 +20,7 @@ export const Header = () => {
           </div>
           <div className="navbar-logo">
             <a href="/main">
-              <img className="logo-img" src={BlackGreen} alt="Logo" />
+              <img className="nav-logo-img" src={BlackGreen} alt="Logo" />
             </a>
           </div>
           <ul className="menu-items">

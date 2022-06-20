@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { setCookie } from 'utils/cookieHelper'
 
-// import BlackGreen from 'assets/BlackGreen.svg'
+import BlackGreen from 'assets/BlackGreen.svg'
 
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
@@ -42,38 +42,38 @@ export const LoginForm = () => {
   }
 
   if (isLoggedIn) {
-    return <Navigate to='/main' />
+    return <Navigate to="/main" />
   }
 
   return (
-    <main className='main-container'>
-      {/* <img className='logo-img' src={BlackGreen} alt='Logo' /> */}
-      <form className='login-form' onSubmit={onFormSubmit}>
+    <main className="main-container">
+      <img className="logo-img" src={BlackGreen} alt="Logo" />
+      <form className="login-form" onSubmit={onFormSubmit}>
         <h3>Vänligen logga in</h3>
-        <label htmlFor='username'>Användarnamn:</label>
+        <label htmlFor="username">Användarnamn:</label>
         <input
-          type='text'
-          id='username'
-          placeholder='Användarnamn'
+          type="text"
+          id="username"
+          placeholder="Användarnamn"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label htmlFor='password'>Lösenord:</label>
+        <label htmlFor="password">Lösenord:</label>
         <input
-          className='password'
-          type='password'
-          id='password'
-          placeholder='Lösenord'
+          className="password"
+          type="password"
+          id="password"
+          placeholder="Lösenord"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <div className='error'>{error}</div>
+        <div className="error">{error}</div>
 
-        <button className='submit-button' type='submit' id='login'>
+        <button className="submit-button" type="submit" id="login">
           Logga in
         </button>
-        <Link className='register-link' to='/registration'>
+        <Link className="register-link" to="/registration">
           Inget konto? <b>Registrera dig här!</b>
         </Link>
       </form>
