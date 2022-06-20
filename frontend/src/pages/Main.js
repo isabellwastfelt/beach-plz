@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Beaches } from '../components/Beaches'
 import { Header } from '../components/Header'
-// import { Filter } from '..components/Filter'
+//import { Filter } from '..components/Filter'
 
 //CSS
 import '../main.css'
@@ -54,14 +54,14 @@ export const Main = () => {
     <>
     <Header />
     <div>
-      <div className="head-contatiner">
+      <div className='head-contatiner'>
         <h1>Badplatser i Stockholm</h1>
         <div>
-          <div className="filter">
-            <form className="area-form">
+          <div className='filter'>
+            <form className='area-form'>
               <label>Områden: </label>
               <select onChange={(event) => setAreaFilter(event.target.value)}>
-                <option value="">Välj område</option>
+                <option value=''>Välj område</option>
                 {areas.map((area, index) => (
                   <option value={area} key={index}>
                     {area}

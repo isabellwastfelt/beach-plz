@@ -20,14 +20,12 @@ code {
   align-items: center;
   flex-direction: column;
   font-size: 12px;
-  margin-top: 2%
+  margin-top: 2%;
 }
 
 .footer a {
   color: black;
 }
-
-
 
 /* LOGIN PAGE */
 
@@ -44,7 +42,12 @@ h3 {
   font-size: 30px;
 }
 
-
+.logo-img {
+  display: flex;
+  flex-direction: row;
+  height: 120px;
+  margin-top: 20px;
+}
 
 .login-form {
   display: flex;
@@ -64,7 +67,6 @@ label {
   font-size: 18px;
   font-weight: normal;
 }
-
 
 #username,
 #password {
@@ -169,7 +171,6 @@ label {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  
 }
 
 .beaches-boxes {
@@ -270,16 +271,14 @@ label {
   background-color: #acc0ad;
 }
 
-::placeholder{
-  font-family:'Source Sans Pro', sans-serif;
+::placeholder {
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
-
 }
 .input {
-  font-family:'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 35px;
 }
-
 
 textarea {
   margin: 15px 0 10px;
@@ -363,4 +362,3 @@ textarea {
   padding: 10px 10px;
   align-items: center;
 }
-
