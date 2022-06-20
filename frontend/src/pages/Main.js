@@ -3,6 +3,9 @@ import { Beaches } from '../components/Beaches'
 import { Header } from '../components/Header'
 //import { Filter } from '..components/Filter'
 
+//CSS
+import '../main.css'
+
 import { API_URL } from 'utils/urls'
 import { BEACH_ID } from 'utils/urls'
 
@@ -48,6 +51,8 @@ export const Main = () => {
   }, [areaFilter])
 
   return (
+    <>
+    <Header />
     <div>
       <div className='head-contatiner'>
         <h1>Badplatser i Stockholm</h1>
@@ -65,9 +70,10 @@ export const Main = () => {
               </select>
             </form>
           </div>
+          <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
         </div>
-        <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
       </div>
     </div>
+    </>
   )
 }

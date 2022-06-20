@@ -1,37 +1,48 @@
-import { getCookie } from 'utils/cookieHelper'
-import { formatDistance } from 'date-fns'
-
-// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-const API = process.env.API_URL || 'http://localhost:9090/'
+import { formatDistance } from "date-fns";
 
 const ReviewFeed = ({ reviews, onDelete }) => {
+  if (!reviews) {
+    return <div>Inga reviews.</div>;
+  }
+
   return (
     <main>
-      <div className='review-feed'>
+      <div className="review-feed">
         <h3>Recensioner</h3>
-        <div className='card'>
-          <div className='review-card'>
-            {reviews.length > -1 &&
+        <div className="card">
+          <div className="review-card">
+            {reviews &&
+              reviews.length > -1 &&
               reviews.map((review) => (
-                <div key={review._id} className='review-box'>
-                  <p className='message-text'>
+                <div key={review._id} className="review-box">
+                  <p className="message-text">
                     {review.message} {review.rate}
                   </p>
-                  <div className='date-delete'>
-                    <p className='date'>
-                      {formatDistance(new Date(review.createdAt), Date.now(), {
-                        addSuffix: true,
-                      })}
-                    </p>
-                    <button
-                      className='delete-button'
-                      type='button'
-                      onClick={() => {
-                        onDelete(review._id)
-                      }}
-                    >
-                      ✖️
-                    </button>
+                  <div className="date-delete">
+                    <div>
+                      <p className="date">
+                        {formatDistance(
+                          new Date(review.createdAt),
+                          Date.now(),
+                          {
+                            addSuffix: true,
+                          }
+                        )}
+                      </p>
+                    </div>
+                    <div>
+                      {onDelete && (
+                        <button
+                          className="delete-button"
+                          type="button"
+                          onClick={() => {
+                            onDelete(review._id);
+                          }}
+                        >
+                          ✖️
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -39,6 +50,6 @@ const ReviewFeed = ({ reviews, onDelete }) => {
         </div>
       </div>
     </main>
-  )
-}
-export default ReviewFeed
+  );
+};
+export default ReviewFeed;

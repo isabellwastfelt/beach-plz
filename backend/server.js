@@ -63,6 +63,10 @@ const ReviewSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  beachId: {
+    type: String,
+    required: true,
+  },
   message: {
     type: String,
     required: true,
@@ -199,14 +203,17 @@ app.get('/beaches', (req, res) => {
 //----------------------GET A SPECIFIC BEACH--------------------//
 
 // endpoint for name
-app.get('/beaches/:id', async (req, res) => {
+app.get('/beach/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-    const beach = await Beach.findOne({ id: id })
+    const beach = await beaches.find((beach) => beach.id === id)
+    const reviews = await Review.find().where('beachId').in(id)
+
     if (beach) {
       res.status(200).json({
-        response: beach,
+        beach,
+        reviews,
         success: true,
       })
       console.log(beach)
@@ -239,17 +246,29 @@ app.get('/review', async (req, res) => {
   }
 })
 
+// get only my reviews
+app.get('/review/mine', authenticateUser, async (req, res) => {
+  try {
+    const reviews = await Review.find({ userId: req.user })
+    res.send({ success: true, reviews }).status(200)
+  } catch (err) {
+    console.log(err)
+    res.send({ sucess: false, message: err })
+  }
+})
+
 //--- POST REVIEW ---//
-app.post('/review', authenticateUser, async (req, res) => {
+app.post('/review/:beachId', authenticateUser, async (req, res) => {
+  const { beachId } = req.params
+
   try {
     const { message, rate } = req.body
     const userId = req.user._id
 
-    console.log(`This is the req.user._id ${req.user._id}`)
-
     const newReview = await new Review({
       message: message,
       userId,
+      beachId,
       rate,
     }).save()
     console.log(newReview)
@@ -264,15 +283,13 @@ app.post('/review', authenticateUser, async (req, res) => {
 app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
   const { reviewId } = req.params
 
-  try {
-    Review.deleteOne({ _id: reviewId }, function (err) {
-      if (err) return console.error(err)
-    })
-    res.status(200).json({ response: 'Din recension är nu borttagen.' })
-  } catch (error) {
-    console.log(error)
-    res.status(400).json({ response: error, success: false })
-  }
+  await Review.deleteOne({
+    userId: req.user,
+    _id: reviewId,
+  })
+
+  const reviews = await Review.find({})
+  res.send({ reviews }).status(200)
 })
 
 // //--- add stars??? ---//

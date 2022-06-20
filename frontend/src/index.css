@@ -17,29 +17,21 @@ code {
 
 .footer {
   display: flex;
-  justify-content: center;
-  font-size: 12px;
-}
-
-/* HEADER */
-.header {
-  background-color: lightyellow;
-}
-
-.header ul,
-li a {
-  display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-  text-decoration: none;
   align-items: center;
+  flex-direction: column;
+  font-size: 12px;
+  margin-top: 2%;
 }
 
-.header a {
-  margin: 20px;
+.footer a {
+  color: black;
 }
 
 /* LOGIN PAGE */
+
+.main-container {
+  padding-top: 5%;
+}
 
 main,
 h3 {
@@ -76,7 +68,6 @@ label {
   font-weight: normal;
 }
 
-input,
 #username,
 #password {
   font-size: 15px;
@@ -122,22 +113,17 @@ input,
 
 /* MAIN PAGE */
 
-/* .main-container h1 {
-  font-size: 30px;
+.main-beaches-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.main-container h2 {
-  font-size: 25px;
+.main-beaches-img {
+  width: 250px;
+  height: auto;
+  padding: 10px;
 }
-
-.main-container h3 {
-  font-size: 20px;
-}
-
-.main-container p {
-  font-size: 15px;
-  font-weight: normal;
-} */
 
 /* FILTER COMPONENT */
 
@@ -149,13 +135,39 @@ input,
 
 /* BEACHES COMPONENT */
 
+.beach-page-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media (min-width: 664px) {
+  .beach-page-container {
+    flex-wrap: nowrap;
+  }
+}
+
+.review-feed-container {
+  display: flex;
+  margin: 20px 40px;
+}
+
 .beaches-img {
   width: 250px;
   height: 200px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .beaches-container {
+  /* display: flex;
+  justify-content: center;
+  flex-wrap: wrap; */
+  margin: 20px 40px;
+  background-color: #fff;
+}
+
+.beach-info-box {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -166,11 +178,6 @@ input,
   margin: 20px;
   padding: 20px;
   background-color: #f3f0d7;
-}
-
-.head-contatiner h1 {
-  font-size: 30px;
-  text-align: center;
 }
 
 .beaches-boxes h2 {
@@ -205,28 +212,38 @@ input,
 .single-beach h1 {
   font-size: 20px;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 0px;
+  padding: 20px;
+}
+
+.single-beach p {
+  font-size: 20px;
+  text-align: center;
+  padding: 0 0 20px 0;
 }
 
 .beach-img {
-  width: 350px;
-  height: 200px;
-  margin: 20px;
-  border: 2px solid #fff;
+  width: 300px;
+  height: auto;
+  padding: 10px;
 }
 
 .single-beach h2 {
   font-size: 13px;
   font-weight: normal;
-  margin: 0px 3px 10px 2px;
+  margin: 0px 5px;
   text-align: center;
 }
 
 .single-beach p {
   font-size: 16px;
   text-align: center;
-  margin: 20px 40px 60px 40px;
+  /* margin: 20px 40px 60px 40px; */
+}
+
+.beach-info {
+  background-color: #fff;
+  max-width: 300px;
+  padding: 10px;
 }
 
 /* REVIEW PAGE */
@@ -236,26 +253,50 @@ input,
   flex-direction: column;
   border-radius: 5px;
   background-color: 000;
-  padding-bottom: 40px;
-  width: 300px;
+  /* width: 300px; */
+  margin: 20px;
   text-align: center;
+}
+
+.main-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 40px;
+  /* max-width: 600px; */
+  background-color: #acc0ad;
+}
+
+::placeholder {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+}
+.input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 35px;
 }
 
 textarea {
   margin: 15px 0 10px;
+  padding: 10px;
   height: 100px;
   width: 100%;
   box-sizing: border-box;
+  /* text-align: center; */
 }
 
 .review-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
+  margin: 5px 0 0 0;
   padding: 20px;
   height: 40px;
-  width: 200px;
+  /* width: 200px; */
   text-align: center;
   background-color: #fed2aa;
   border-radius: 5px;
@@ -267,7 +308,7 @@ textarea {
 .review-feed {
   background-color: #acc0ad;
   height: 100%;
-  width: 400px;
+  width: 300px;
 }
 
 .review-feed h3 {
@@ -292,7 +333,7 @@ textarea {
 
 .message-text {
   padding: 10px 10px;
-  min-height: 100px;
+  /* min-height: 100px; */
   font-size: 15px;
   font-weight: normal;
 }
@@ -301,12 +342,10 @@ textarea {
 .message-text {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
   justify-content: space-between;
 }
 
 .date {
-  /* display: flex; */
   font-size: 12px;
   color: rgba(0, 0, 0, 0.3);
 }
@@ -319,213 +358,7 @@ textarea {
 
 .date-delete {
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-}
-
-/* -----NAVBAR------ */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-.navbar input[type='checkbox'],
-.navbar .hamburger-lines {
-  display: none;
-}
-
-.container {
-  max-width: 1200px;
-  width: 90%;
-  margin: auto;
-}
-
-.navbar {
-  position: fixed;
-  width: 100%;
-  background: #cee5d0;
-  color: rgb(0, 0, 0);
-}
-
-.navbar-container {
-  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
   align-items: center;
-  height: 64px;
-}
-
-.menu-items {
-  order: 2;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.navbar-logo {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.logo {
-  order: 1;
-  font-size: 1.8rem;
-}
-
-.menu-items li,
-.nav-button {
-  list-style: none;
-  margin-left: 1.5rem;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-
-.navbar a {
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease-in-out;
-}
-
-.nav-button {
-  padding: 8px 19px;
-  margin-right: 20px;
-  background-color: rgba(0, 136, 169, 1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all ease-in-out 0s;
-}
-
-.nav-button:hover a {
-  color: #0088a9;
-}
-
-.nav-button:hover {
-  background: #fff;
-  color: #0088a9;
-}
-
-.navbar a:hover {
-  color: #0088a9;
-}
-
-@media (max-width: 768px) {
-  .navbar-container input[type='checkbox'],
-  .navbar-container .hamburger-lines {
-    display: block;
-  }
-
-  .navbar-container {
-    display: block;
-    position: relative;
-    height: 64px;
-  }
-
-  .navbar-container input[type='checkbox'] {
-    position: absolute;
-    display: block;
-    height: 32px;
-    width: 40px;
-    top: 5px;
-    left: -32px;
-    z-index: 5;
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  .navbar-container .hamburger-lines {
-    display: block;
-    height: 28px;
-    width: 35px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .navbar-container .hamburger-lines .line {
-    display: block;
-    height: 4px;
-    width: 100%;
-    border-radius: 10px;
-    background: #fff;
-  }
-
-  .navbar-container .hamburger-lines .line1 {
-    transform-origin: 0% 0%;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navbar-container .hamburger-lines .line2 {
-    transition: transform 0.1s ease-in-out;
-  }
-
-  .navbar-container .hamburger-lines .line3 {
-    transform-origin: 0% 100%;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navbar .menu-items {
-    padding-top: 100px;
-    background: #24252a;
-    height: 100vh;
-    max-width: 300px;
-    transform: translate(-150%);
-    display: flex;
-    flex-direction: column;
-    margin-left: -40px;
-    padding-left: 40px;
-    transition: transform 0.5s ease-in-out;
-    overflow: scroll;
-  }
-
-  .navbar .menu-items li {
-    margin-bottom: 1.8rem;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-
-  .nav-button {
-    width: fit-content;
-    margin-left: 1rem;
-  }
-
-  .logo {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    font-size: 1.7rem;
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .menu-items {
-    transform: translateX(0);
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line1 {
-    transform: rotate(45deg);
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line2 {
-    transform: scaleY(0);
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line3 {
-    transform: rotate(-45deg);
-  }
-}
-
-@media (max-width: 500px) {
-  .navbar-container input[type='checkbox']:checked ~ .logo {
-    display: none;
-  }
 }
