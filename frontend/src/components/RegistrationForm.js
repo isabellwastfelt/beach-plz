@@ -41,10 +41,10 @@ export const RegistrationForm = () => {
   if (result) {
     return (
       <main className="main-container">
-        <img className="logo-img" src={BlackGreen} alt="Logo" />
-        <div className='continue-container'>
+        <img className="logo-img" src={BlackWhite} alt="Logo" />
+        <div className="continue-container">
           <p>
-          <Link to="/">Fortsätt till login</Link>
+            <Link to="/">Fortsätt till login</Link>
           </p>
         </div>
       </main>
@@ -55,8 +55,10 @@ export const RegistrationForm = () => {
     <main className="main-container">
       <img className="logo-img" src={BlackWhite} alt="Logo" />
       <form className="login-form" onSubmit={onRegister}>
-        <h3 className='login-headline'>Registrera dig här</h3>
-        <label className='form-label' htmlFor="username">Användarnamn:</label>
+        <h3 className="login-headline">Registrera dig här</h3>
+        <label className="form-label" htmlFor="username">
+          Användarnamn:
+        </label>
         <input
           type="text"
           id="username"
@@ -64,7 +66,9 @@ export const RegistrationForm = () => {
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label className='form-label' htmlFor="password">Lösenord:</label>
+        <label className="form-label" htmlFor="password">
+          Lösenord:
+        </label>
         <input
           type="password"
           id="password"
