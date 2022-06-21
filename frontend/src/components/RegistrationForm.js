@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
-import BlackGreen from 'assets/BlackGreen.svg'
+import BlackWhite from 'assets/BlackWhite.svg'
 
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
@@ -33,25 +33,32 @@ export const RegistrationForm = () => {
         if (data.success) {
           setResult(true)
         } else {
-          setError('Sorry, registration didnt go through')
+          setError('Tyvärr, det gick inte att registera denna användare.')
         }
       })
   }
 
   if (result) {
     return (
-      <h2>
-        Now continue to <Link to="/">Login</Link>!
-      </h2>
+      <main className="main-container">
+        <img className="logo-img" src={BlackWhite} alt="Logo" />
+        <div className="continue-container">
+          <p>
+            <Link to="/">Fortsätt till login</Link>
+          </p>
+        </div>
+      </main>
     )
   }
 
   return (
     <main className="main-container">
-      <img className="logo-img" src={BlackGreen} alt="Logo" />
+      <img className="logo-img" src={BlackWhite} alt="Logo" />
       <form className="login-form" onSubmit={onRegister}>
-        <h3>Registrera dig här</h3>
-        <label htmlFor="username">Användarnamn:</label>
+        <h3 className="login-headline">Registrera dig här</h3>
+        <label className="form-label" htmlFor="username">
+          Användarnamn:
+        </label>
         <input
           type="text"
           id="username"
@@ -59,30 +66,22 @@ export const RegistrationForm = () => {
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label htmlFor="password">Lösenord:</label>
+        <label className="form-label" htmlFor="password">
+          Lösenord:
+        </label>
         <input
           type="password"
           id="password"
           placeholder="Lösenord"
           onChange={(event) => setPassword(event.target.value)}
         />
-
-        {/* LÄGG TILL KRAV FÖR ATT LÖSEN SKA STÄMMA ÖVERENS*/}
-        {/* <label htmlFor='password'>Upprepa lösenord:</label>
-        <input
-          type='password'
-          id='password'
-          placeholder='Uppreda lösenord'
-          onChange={(event) => setPassword(event.target.value)}
-        /> */}
-
         <div className="error">{error}</div>
 
         <button className="submit-button" type="submit" id="registration">
           Registrera
         </button>
         <Link className="register-link" to="/">
-          Har du redan ett konot? <b>Logga in här!</b>
+          Har du redan ett konto? <b>Logga in här!</b>
         </Link>
       </form>
     </main>

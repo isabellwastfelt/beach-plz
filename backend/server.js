@@ -120,7 +120,7 @@ app.get('/', (req, res) => {
   res.send(getEndpoints(app))
 })
 
-//--- REGISTRATION ENDPOINT ---//
+//-------------------------REGISTRATION ENDPOINT-------------------------//
 
 app.post('/registration', async (req, res) => {
   const { username, password } = req.body
@@ -155,7 +155,7 @@ app.post('/registration', async (req, res) => {
   }
 })
 
-//--- LOGIN ENDPOINT ---//
+//-------------------------LOGIN ENDPOINT-------------------------//
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body

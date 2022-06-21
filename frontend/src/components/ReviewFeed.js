@@ -1,8 +1,8 @@
-import { formatDistance } from "date-fns";
+import { formatDistance } from 'date-fns'
 
 const ReviewFeed = ({ reviews, onDelete }) => {
   if (!reviews) {
-    return <div>Inga reviews.</div>;
+    return <div>Inga reviews.</div>
   }
 
   return (
@@ -30,19 +30,6 @@ const ReviewFeed = ({ reviews, onDelete }) => {
                         )}
                       </p>
                     </div>
-                    <div>
-                      {onDelete && (
-                        <button
-                          className="delete-button"
-                          type="button"
-                          onClick={() => {
-                            onDelete(review._id);
-                          }}
-                        >
-                          ✖️
-                        </button>
-                      )}
-                    </div>
                   </div>
                 </div>
               ))}
@@ -50,6 +37,6 @@ const ReviewFeed = ({ reviews, onDelete }) => {
         </div>
       </div>
     </main>
-  );
-};
-export default ReviewFeed;
+  )
+}
+export default ReviewFeed

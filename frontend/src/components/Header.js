@@ -1,6 +1,7 @@
 import React from 'react'
-import BlackGreen from 'assets/BlackGreen.svg'
 import { getCookie } from 'utils/cookieHelper'
+
+import BlackWhite from 'assets/BlackWhite.svg'
 
 export const Header = () => {
   const isLoggedIn = () => getCookie('accessToken')
@@ -20,7 +21,7 @@ export const Header = () => {
           </div>
           <div className="navbar-logo">
             <a href="/main">
-              <img className="nav-logo-img" src={BlackGreen} alt="Logo" />
+              <img className="nav-logo-img" src={BlackWhite} alt="Logo" />
             </a>
           </div>
           <ul className="menu-items">
@@ -34,7 +35,6 @@ export const Header = () => {
               <a href="/Logout">Logga ut</a>
             </li>
           </ul>
-          {/* <h1 className="logo">Navbar</h1> */}
         </div>
       </nav>
     </div>
