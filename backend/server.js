@@ -41,18 +41,6 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema)
 
-//--- Beach Schema ---//
-const BeachSchema = new mongoose.Schema({
-  id: String,
-  name: String,
-  address: String,
-  description: String,
-  location: String,
-  image: String,
-})
-
-const Beach = mongoose.model('Beach', BeachSchema)
-
 //--- Review schema ---//
 const ReviewSchema = new mongoose.Schema({
   userId: {
@@ -80,12 +68,6 @@ const ReviewSchema = new mongoose.Schema({
 })
 
 const Review = mongoose.model('Review', ReviewSchema)
-
-const FavoriteBeach = mongoose.model('FavoriteBeach', {
-  name: String,
-  image: String,
-  description: String,
-})
 
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header('Authorization')
@@ -227,6 +209,66 @@ app.get('/beach/:id', async (req, res) => {
   }
 })
 
+app.post('/beach/:id/favorite', authenticateUser, async (req, res) => {
+  const { id } = req.params
+  const user = await User.findOne({ _id: req.user })
+
+  try {
+    // om den inte finns
+    if (user.favorites.indexOf(id) === -1) {
+      // so ere din favvis
+      user.favorites.push(id)
+      user.save()
+
+      res.send({ favorites: user.favorites, success: true }).status(200)
+    } else {
+      res.send({ message: 'already in favorites' }).status(201)
+    }
+  } catch (err) {
+    res.send(err).status(400)
+  }
+})
+
+app.delete('/beach/:id/favorite', authenticateUser, async (req, res) => {
+  const { id } = req.params
+  const user = await User.findOne({ _id: req.user })
+
+  try {
+    // om den finns
+
+    // har du bara alla andra 'n den i din favs
+    const favs = user.favorites.filter((beach) => beach !== id)
+    user.favorites = favs
+    user.save()
+
+    res.send({ favorites: user.favorites, success: true }).status(200)
+  } catch (err) {
+    res.send(err).status(400)
+  }
+})
+
+app.delete('/me', authenticateUser, async (req, res) => {
+  try {
+    const user = await User.findOneAndDelete({ _id: req.user })
+    res.send({ message: 'hello and goodby' }).status(200)
+  } catch (err) {
+    res.send(err).status(400)
+  }
+})
+
+app.get('/profile', authenticateUser, async (req, res) => {
+  const user = await User.findOne({ _id: req.user })
+  const reviews = await Review.find({ userId: req.user })
+
+  const userSend = {
+    username: user.username,
+    favorites: user.favorites,
+    reviews: reviews,
+  }
+
+  res.send({ ...userSend, success: true }).status(200)
+})
+
 //-------------------------REVIEW ENDPOINT-------------------------//
 //--- show review feed ---//
 
@@ -286,54 +328,6 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 
   const reviews = await Review.find({})
   res.send({ reviews }).status(200)
-})
-
-//-------------------------PROFILE ENDPOINT-------------------------//
-//--- show profile info ---//
-
-app.get('/favorite', authenticateUser, async (req, res) => {
-  try {
-    const fave = await User.find({ userId: req.user, favorites })
-    res.send({ success: true, fave }).status(200)
-  } catch (err) {
-    console.log(err)
-    res.send({ sucess: false, message: err })
-  }
-})
-
-//-------------------------POST FAVORITE-------------------------//
-
-app.post('/favorite/:beachId', async (req, res) => {
-  const { favorites } = req.params
-
-  try {
-    const { message, favorites } = req.body
-    const favoriteId = req.user._id
-
-    const newFavorite = await new User({
-      message: message,
-      favoriteId,
-      favorites,
-    }).save()
-    console.log(newFavorite)
-    res.status(201).json({ response: newFavorite, sucess: true })
-  } catch (error) {
-    res.status(400).json({ response: error, success: false })
-  }
-})
-
-//-------------------------DELETE FAVORITE-------------------------//
-
-app.delete('/favorite/:beachId', authenticateUser, async (req, res) => {
-  const { favorite } = req.params
-
-  await User.deleteOne({
-    userId: req.user,
-    _id: favorite,
-  })
-
-  const favorites = await User.find({})
-  res.send({ favorites }).status(200)
 })
 
 //-------------------------START THE SERVER-------------------------//
