@@ -5,7 +5,7 @@ body {
   /* font-family: 'Helvetica'; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #cee5d0;
+  background-color: #ffde7d;
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
 }
@@ -60,12 +60,14 @@ h3 {
   width: 300px;
   height: 100%;
   text-align: center;
-  background-color: #f3f0d7;
+  background-color: #ffc07d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 label {
   font-size: 18px;
   font-weight: normal;
+  margin: 5px;
 }
 
 #username,
@@ -142,7 +144,7 @@ label {
   justify-content: center;
 }
 
-@media (min-width: 664px) {
+@media (min-width: 1023px) {
   .beach-page-container {
     flex-wrap: nowrap;
   }
@@ -164,8 +166,9 @@ label {
   justify-content: center;
   flex-wrap: wrap; */
   margin: 20px 40px;
-  background-color: #fff;
+  background-color: #ffc07d;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .beach-info-box {
@@ -178,8 +181,9 @@ label {
   margin-top: 50px;
   margin: 20px;
   padding: 20px;
-  background-color: #acc0ad;
+  background-color: #ffc07d;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .beaches-boxes h2 {
@@ -192,11 +196,13 @@ label {
   font-size: 14px;
   text-align: center;
   margin-top: 0px;
+  font-weight: normal;
 }
 
 .beaches-boxes a {
   color: #000;
   text-decoration: none;
+  /* text-shadow: rgb(255, 255, 255) 1px 1px; */
 }
 
 .beaches-boxes a:hover {
@@ -224,14 +230,15 @@ label {
 }
 
 .beach-img {
-  width: 300px;
+  width: 400px;
   height: auto;
-  padding: 10px;
+  border-radius: 5px;
+  margin: 15px;
 }
 
 .single-beach h2 {
-  font-size: 13px;
-  font-weight: normal;
+  font-size: 15px;
+  /* font-weight: normal; */
   margin: 0px 5px;
   text-align: center;
 }
@@ -243,10 +250,11 @@ label {
 }
 
 .beach-info {
-  background-color: #fff;
+  background-color: #ffc07d;
   max-width: 300px;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 25px;
 }
 
 /* REVIEW PAGE */
@@ -271,8 +279,9 @@ label {
   justify-content: center;
   margin: 20px 40px;
   /* max-width: 600px; */
-  background-color: #acc0ad;
+  background-color: #ffc07d;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 ::placeholder {
@@ -291,6 +300,7 @@ textarea {
   width: 300px;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   /* text-align: center; */
 }
@@ -308,7 +318,7 @@ textarea.red-text {
   height: 40px;
   /* width: 200px; */
   text-align: center;
-  background-color: #fed2aa;
+  background-color: #a2d1f9;
   border-radius: 5px;
   border: none;
   font-weight: bold;
@@ -316,10 +326,11 @@ textarea.red-text {
 }
 
 .review-feed {
-  background-color: #acc0ad;
+  background-color: #ffc07d;
   height: 100%;
   width: 300px;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .review-feed h3 {
@@ -337,7 +348,7 @@ textarea.red-text {
 } */
 
 .review-box {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 5px;
   margin: 10px;
 }
@@ -371,5 +382,58 @@ textarea.red-text {
   display: flex;
   justify-content: space-between;
   padding: 10px 10px;
-  align-items: center;
+  align-items: baseline;
 }
+
+/* --- PROFILE PAGE --- */
+
+.profile-feed-container {
+  display: flex;
+  margin: 20px 40px;
+  background-color: #ffc07d;
+  border-radius: 5px;
+}
+/* 
+.profile-review-feed {
+  background-color: #acc0ad;
+  height: 100%;
+  width: 300px;
+
+} */
+
+.profile-review-feed h3 {
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-review-box {
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+@media (min-width: 664px) {
+  .profile-review-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .profile-review-feed {
+    background-color: #ffc07d;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .profile-review-box {
+    height: 100%;
+    width: 300px;
+  }
+}
+
+/* @media (min-width: 1024px) {
+  .profile-review-card {
+    justify-content: center;
+  }
+} */

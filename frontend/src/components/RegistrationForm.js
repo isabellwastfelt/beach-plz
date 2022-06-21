@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
-import BlackGreen from 'assets/BlackGreen.svg'
+import BlackWhite from 'assets/BlackWhite.svg'
 
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
@@ -33,7 +33,7 @@ export const RegistrationForm = () => {
         if (data.success) {
           setResult(true)
         } else {
-          setError('Sorry, registration didnt go through')
+          setError('Tyvärr, det gick inte att registera denna användare.')
         }
       })
   }
@@ -48,7 +48,7 @@ export const RegistrationForm = () => {
 
   return (
     <main className="main-container">
-      <img className="logo-img" src={BlackGreen} alt="Logo" />
+      <img className="logo-img" src={BlackWhite} alt="Logo" />
       <form className="login-form" onSubmit={onRegister}>
         <h3>Registrera dig här</h3>
         <label htmlFor="username">Användarnamn:</label>

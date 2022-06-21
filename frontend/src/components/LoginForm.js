@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { setCookie } from 'utils/cookieHelper'
 
-import BlackGreen from 'assets/BlackGreen.svg'
+import BlackWhite from 'assets/BlackWhite.svg'
 
 // .env  API_URL="https://beach-plz.herokuapp.com/"
 // const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
@@ -36,7 +36,9 @@ export const LoginForm = () => {
           setCookie('accessToken', data.accessToken)
           setIsLoggedIn(true)
         } else {
-          setError('Sorry, this is an invalid username or password')
+          setError(
+            'Något gick fel, användarnamn och/eller lösenord stämmer ej. Försök igen!'
+          )
         }
       })
   }
@@ -47,7 +49,7 @@ export const LoginForm = () => {
 
   return (
     <main className="main-container">
-      <img className="logo-img" src={BlackGreen} alt="Logo" />
+      <img className="logo-img" src={BlackWhite} alt="Logo" />
       <form className="login-form" onSubmit={onFormSubmit}>
         <h3>Vänligen logga in</h3>
         <label htmlFor="username">Användarnamn:</label>

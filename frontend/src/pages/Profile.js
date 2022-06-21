@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ProfileBeaches } from '../components/ProfileBeaches'
 import { ProfileFeed } from '../components/ProfileFeed'
-import ReviewFeed from '../components/ReviewFeed'
 import { Header } from 'components/Header'
 import { API_URL } from '../utils/urls'
 
@@ -53,11 +52,11 @@ export const Profile = () => {
         <div>
           <ProfileBeaches />
         </div>
+
         <div>
-          <ReviewFeed reviews={reviews} onDelete={onDelete} />
-        </div>
-        <div>
-          <ProfileFeed />
+          <div className="profile-feed-container">
+            <ProfileFeed reviews={reviews} onDelete={onDelete} />
+          </div>
         </div>
       </>
     </div>
