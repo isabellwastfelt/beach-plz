@@ -36,8 +36,8 @@ const UserSchema = new mongoose.Schema({
   },
   favorites: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      default: [],
+      type: mongoose.Schema.Types.Mixed,
+      default: [''],
       ref: 'Favorites',
     },
   ],
@@ -294,25 +294,61 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
 
 // //--- add stars??? ---//
 
-// //--- PROFILE ENDPOINT ---//
-// //--- show profile info ---//
+//--- PROFILE ENDPOINT ---//
+//--- show profile info ---//
 
-// app.get('/profile', authenticateUser, async (req, res) => {
-//   try {
-//     res.status(200).json({
-//       response: {
-//         id: req.user._id,
-//         username: req.user.username,
-//       },
-//       success: true,
-//     })
-//   } catch (error) {
-//     res.status(401).json({
-//       errors: error,
-//       response: 'Failed to log in.',
-//     })
-//   }
-// })
+app.get('/profile', authenticateUser, async (req, res) => {
+  try {
+    res.status(200).json({
+      response: {
+        id: req.user._id,
+        username: req.user.username,
+        favorites: [''],
+      },
+      success: true,
+    })
+  } catch (error) {
+    res.status(401).json({
+      errors: error,
+      response: 'Failed to log in.',
+    })
+  }
+})
+
+//--- POST FAVORITE ---//
+
+app.post('/profile/favorite/:beachId', async (req, res) => {
+  const { favorites } = req.params
+
+  try {
+    const { message, favorites } = req.body
+    const userId = req.user._id
+
+    const newFavorite = await new User({
+      message: message,
+      userId,
+      favorites,
+    }).save()
+    console.log(newFavorite)
+    res.status(201).json({ response: newFavorite, sucess: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
+
+//--- DELETE FAVORITE ---//
+
+app.delete('/profile/favorite/:beachId', authenticateUser, async (req, res) => {
+  const { favorite } = req.params
+
+  await User.deleteOne({
+    userId: req.user,
+    _id: favorite,
+  })
+
+  const favorites = await User.find({})
+  res.send({ favorites }).status(200)
+})
 
 //--- START THE SERVER ---//
 app.listen(port, () => {
