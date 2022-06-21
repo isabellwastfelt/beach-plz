@@ -301,7 +301,7 @@ app.get('/favorite', authenticateUser, async (req, res) => {
   }
 })
 
-//-------------------------POST FAVORITE-------------------------//
+//--------------------------POST FAVORITE-------------------------//
 
 app.post('/favorite/:beachId', async (req, res) => {
   const { favorites } = req.params
