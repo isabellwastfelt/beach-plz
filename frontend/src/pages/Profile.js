@@ -6,6 +6,9 @@ import { API_URL } from '../utils/urls'
 
 import { getCookie } from '../utils/cookieHelper'
 
+// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+// const API = process.env.API_URL || 'http://localhost:9090/'
+
 export const Profile = () => {
   const [reviews, setReviews] = useState([])
 

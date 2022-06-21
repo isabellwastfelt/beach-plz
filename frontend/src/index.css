@@ -90,7 +90,7 @@ label {
   height: 40px;
   width: 100px;
   text-align: center;
-  background-color: #fed2aa;
+  background-color: #ffde7d;
   border-radius: 5px;
   border: none;
   font-weight: bold;
@@ -266,6 +266,8 @@ label {
   height: auto;
   border-radius: 5px;
   margin: 15px;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .single-beach h2 {
@@ -350,7 +352,7 @@ textarea.red-text {
   height: 40px;
   /* width: 200px; */
   text-align: center;
-  background-color: #a2d1f9;
+  background-color: #ffa74a;
   border-radius: 5px;
   border: none;
   font-weight: bold;
@@ -383,6 +385,7 @@ textarea.red-text {
   background-color: #fff;
   border-radius: 5px;
   margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .message-text {
@@ -443,6 +446,7 @@ textarea.red-text {
   background-color: #ffffff;
   border-radius: 5px;
   margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media (min-width: 664px) {
@@ -456,6 +460,7 @@ textarea.red-text {
     height: 100%;
     width: 100%;
     border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .profile-review-box {

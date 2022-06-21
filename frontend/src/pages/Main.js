@@ -6,8 +6,10 @@ import { Header } from '../components/Header'
 //CSS
 import '../main.css'
 
+// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+// const API = process.env.API_URL || 'http://localhost:9090/'
+
 import { API_URL } from 'utils/urls'
-import { BEACH_ID } from 'utils/urls'
 
 export const Main = () => {
   const [allBeaches, setAllBeaches] = useState([])
@@ -52,28 +54,28 @@ export const Main = () => {
 
   return (
     <>
-    <Header />
-    <div>
-      <div className='head-contatiner'>
-        <h1>Badplatser i Stockholm</h1>
-        <div>
-          <div className='filter'>
-            <form className='area-form'>
-              <label>Områden: </label>
-              <select onChange={(event) => setAreaFilter(event.target.value)}>
-                <option value=''>Välj område</option>
-                {areas.map((area, index) => (
-                  <option value={area} key={index}>
-                    {area}
-                  </option>
-                ))}
-              </select>
-            </form>
+      <Header />
+      <div>
+        <div className="head-contatiner">
+          <h1>Badplatser i Stockholm</h1>
+          <div>
+            <div className="filter">
+              <form className="area-form">
+                <label>Områden: </label>
+                <select onChange={(event) => setAreaFilter(event.target.value)}>
+                  <option value="">Välj område</option>
+                  {areas.map((area, index) => (
+                    <option value={area} key={index}>
+                      {area}
+                    </option>
+                  ))}
+                </select>
+              </form>
+            </div>
+            <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
           </div>
-          <Beaches beaches={!areaFilter ? allBeaches : beachesByArea} />
         </div>
       </div>
-    </div>
     </>
   )
 }

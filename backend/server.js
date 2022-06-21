@@ -34,13 +34,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
   },
-  favorites: [
-    {
-      type: mongoose.Schema.Types.Mixed,
-      default: [''],
-      ref: 'Favorites',
-    },
-  ],
+  favorites: {
+    type: Array,
+  },
 })
 
 const User = mongoose.model('User', UserSchema)
@@ -231,7 +227,7 @@ app.get('/beach/:id', async (req, res) => {
   }
 })
 
-//--- REVIEW ENDPOINT ---//
+//-------------------------REVIEW ENDPOINT-------------------------//
 //--- show review feed ---//
 
 app.get('/review', async (req, res) => {
@@ -257,7 +253,7 @@ app.get('/review/mine', authenticateUser, async (req, res) => {
   }
 })
 
-//--- POST REVIEW ---//
+//-------------------------POST REVIEW-------------------------//
 app.post('/review/:beachId', authenticateUser, async (req, res) => {
   const { beachId } = req.params
 
@@ -278,7 +274,7 @@ app.post('/review/:beachId', authenticateUser, async (req, res) => {
   }
 })
 
-//--- DELETE REVIEW ---//
+//-------------------------DELETE REVIEW-------------------------//
 
 app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
   const { reviewId } = req.params
@@ -292,41 +288,31 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
   res.send({ reviews }).status(200)
 })
 
-// //--- add stars??? ---//
-
-//--- PROFILE ENDPOINT ---//
+//-------------------------PROFILE ENDPOINT-------------------------//
 //--- show profile info ---//
 
-app.get('/profile', authenticateUser, async (req, res) => {
+app.get('/favorite', authenticateUser, async (req, res) => {
   try {
-    res.status(200).json({
-      response: {
-        id: req.user._id,
-        username: req.user.username,
-        favorites: [''],
-      },
-      success: true,
-    })
-  } catch (error) {
-    res.status(401).json({
-      errors: error,
-      response: 'Failed to log in.',
-    })
+    const fave = await User.find({ userId: req.user, favorites })
+    res.send({ success: true, fave }).status(200)
+  } catch (err) {
+    console.log(err)
+    res.send({ sucess: false, message: err })
   }
 })
 
-//--- POST FAVORITE ---//
+//-------------------------POST FAVORITE-------------------------//
 
-app.post('/profile/favorite/:beachId', async (req, res) => {
+app.post('/favorite/:beachId', async (req, res) => {
   const { favorites } = req.params
 
   try {
     const { message, favorites } = req.body
-    const userId = req.user._id
+    const favoriteId = req.user._id
 
     const newFavorite = await new User({
       message: message,
-      userId,
+      favoriteId,
       favorites,
     }).save()
     console.log(newFavorite)
@@ -336,9 +322,9 @@ app.post('/profile/favorite/:beachId', async (req, res) => {
   }
 })
 
-//--- DELETE FAVORITE ---//
+//-------------------------DELETE FAVORITE-------------------------//
 
-app.delete('/profile/favorite/:beachId', authenticateUser, async (req, res) => {
+app.delete('/favorite/:beachId', authenticateUser, async (req, res) => {
   const { favorite } = req.params
 
   await User.deleteOne({
@@ -350,7 +336,7 @@ app.delete('/profile/favorite/:beachId', authenticateUser, async (req, res) => {
   res.send({ favorites }).status(200)
 })
 
-//--- START THE SERVER ---//
+//-------------------------START THE SERVER-------------------------//
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
 })

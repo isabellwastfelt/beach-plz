@@ -51,8 +51,10 @@ export const LoginForm = () => {
     <main className="main-container">
       <img className="logo-img" src={BlackWhite} alt="Logo" />
       <form className="login-form" onSubmit={onFormSubmit}>
-        <h3 className='login-headline'>Vänligen logga in</h3>
-        <label className='form-label' htmlFor="username">Användarnamn:</label>
+        <h3 className="login-headline">Vänligen logga in</h3>
+        <label className="form-label" htmlFor="username">
+          Användarnamn:
+        </label>
         <input
           type="text"
           id="username"
@@ -61,7 +63,9 @@ export const LoginForm = () => {
           onChange={(event) => setUsername(event.target.value)}
         />
 
-        <label className='form-label' htmlFor="password">Lösenord:</label>
+        <label className="form-label" htmlFor="password">
+          Lösenord:
+        </label>
         <input
           className="password"
           type="password"
@@ -72,7 +76,12 @@ export const LoginForm = () => {
         />
         <div className="error">{error}</div>
 
-        <button className="submit-button" type="submit" id="login">
+        <button
+          className="submit-button"
+          type="submit"
+          id="login"
+          disabled={username.length < 8 || username.length > 12}
+        >
           Logga in
         </button>
         <Link className="register-link" to="/registration">

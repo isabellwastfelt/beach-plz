@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import ReviewForm from '../components/ReviewForm'
 import { SingleBeach } from '../components/SingleBeach'
+import { Favorite } from 'components/Favorite'
 import ReviewFeed from '../components/ReviewFeed'
 import { Header } from '../components/Header'
 import { useParams } from 'react-router-dom'
 
+// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
 const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const Beach = () => {
@@ -12,6 +14,7 @@ export const Beach = () => {
   //fetch reviews
   const [beach, setBeach] = useState({})
   const [reviews, setReviews] = useState([])
+  // const [favorites, setFavorites] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   const fetchBeach = async () => {
@@ -24,6 +27,7 @@ export const Beach = () => {
       const res = await data.json()
       setBeach(res.beach)
       setReviews(res.reviews)
+      // setFavorites(res.favorites)
     } catch (err) {
       console.error(err)
     }
@@ -31,6 +35,7 @@ export const Beach = () => {
 
   useEffect(() => {
     fetchBeach()
+    // updateFavorite()
   }, [])
 
   if (isLoading) {
@@ -43,6 +48,7 @@ export const Beach = () => {
       <div className="beach-page-container">
         <div className="beach-and-form">
           <SingleBeach beach={beach} />
+          {/* <Favorite favorites={updateFavorite} /> */}
           <ReviewForm updateReviews={fetchBeach} />
         </div>
         <div className="review-feed-container">
