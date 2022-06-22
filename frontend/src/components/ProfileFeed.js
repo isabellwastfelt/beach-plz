@@ -4,7 +4,7 @@ import { formatDistance } from 'date-fns'
 /// HÄR SKA ENDAST DINA REVIEW SYNAS
 /// HÄR SKA REVIEW DELETE LIGGA
 
-export const ProfileFeed = ({ username, reviews, onDelete }) => {
+export const ProfileFeed = ({ reviews, onDelete }) => {
   if (!reviews) {
     return <div>Inga reviews.</div>
   }

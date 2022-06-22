@@ -330,57 +330,6 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
   res.send({ reviews }).status(200)
 })
 
-<<<<<<< HEAD
-//-------------------------PROFILE ENDPOINT-------------------------//
-//--- show profile info ---//
-
-app.get('/favorite', authenticateUser, async (req, res) => {
-  try {
-    const fave = await User.find({ userId: req.user, favorites })
-    res.send({ success: true, fave }).status(200)
-  } catch (err) {
-    console.log(err)
-    res.send({ sucess: false, message: err })
-  }
-})
-
-//--------------------------POST FAVORITE-------------------------//
-
-app.post('/favorite/:beachId', async (req, res) => {
-  const { favorites } = req.params
-
-  try {
-    const { message, favorites } = req.body
-    const favoriteId = req.user._id
-
-    const newFavorite = await new User({
-      message: message,
-      favoriteId,
-      favorites,
-    }).save()
-    console.log(newFavorite)
-    res.status(201).json({ response: newFavorite, sucess: true })
-  } catch (error) {
-    res.status(400).json({ response: error, success: false })
-  }
-})
-
-//-------------------------DELETE FAVORITE-------------------------//
-
-app.delete('/favorite/:beachId', authenticateUser, async (req, res) => {
-  const { favorite } = req.params
-
-  await User.deleteOne({
-    userId: req.user,
-    _id: favorite,
-  })
-
-  const favorites = await User.find({})
-  res.send({ favorites }).status(200)
-})
-
-=======
->>>>>>> 80be453ba0a851ddf100ef8a047bbcc47d288611
 //-------------------------START THE SERVER-------------------------//
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)

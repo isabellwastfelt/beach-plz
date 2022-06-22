@@ -11,19 +11,22 @@ import { getCookie } from '../utils/cookieHelper'
 
 export const Profile = () => {
   const [reviews, setReviews] = useState([])
+  const [favorites, setFavorites] = useState([])
 
   const fetchReviews = async () => {
     const accessToken = getCookie('accessToken')
 
     try {
-      const data = await fetch(`${API_URL('review')}`, {
+      const data = await fetch(`${API_URL('profile')}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: accessToken,
         },
       })
       const res = await data.json()
-      setReviews(res)
+      console.log(res)
+      setReviews(res.reviews)
+      setFavorites(res.favorites)
     } catch (err) {
       console.error(err)
     }
