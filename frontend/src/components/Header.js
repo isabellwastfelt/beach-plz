@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { getCookie } from 'utils/cookieHelper'
 
 import BlackWhite from 'assets/BlackWhite.svg'
@@ -20,19 +21,19 @@ export const Header = () => {
             <span className="line line3"></span>
           </div>
           <div className="navbar-logo">
-            <a href="/main">
+            <Link to="/main">
               <img className="nav-logo-img" src={BlackWhite} alt="Logo" />
-            </a>
+            </Link>
           </div>
           <ul className="menu-items">
             <li>
-              <a href="/main">Alla bad</a>
+              <Link to="/main">Alla bad</Link>
             </li>
             <li>
-              <a href="/profile">Din Profil</a>
+              <Link to="/profile">Din Profil</Link>
             </li>
             <li>
-              <a href="/Logout">Logga ut</a>
+              <Link to="/Logout">Logga ut</Link>
             </li>
           </ul>
         </div>

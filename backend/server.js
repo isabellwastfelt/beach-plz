@@ -206,7 +206,7 @@ app.get('/beach/:id', async (req, res) => {
   }
 })
 
-//------------------------------PROFILE ENDPOINT----------------------------------//
+//-----------------------------PROFILE ENDPOINT-------------------------------//
 
 app.get('/profile', authenticateUser, async (req, res) => {
   const user = await User.findOne({ _id: req.user })
