@@ -61,6 +61,10 @@ const ReviewSchema = new mongoose.Schema({
   rate: {
     type: Number,
   },
+  author: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: () => new Date(),
@@ -185,7 +189,7 @@ app.get('/beach/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-    const beach = await beaches.find((beach) => beach.id === id)
+    const beach = beaches.find((beach) => beach.id === id)
     const reviews = await Review.find().where('beachId').in(id)
 
     if (beach) {
@@ -298,6 +302,7 @@ app.get('/review/mine', authenticateUser, async (req, res) => {
 //-------------------------POST REVIEW-------------------------//
 app.post('/review/:beachId', authenticateUser, async (req, res) => {
   const { beachId } = req.params
+  const { author } = req.params
 
   try {
     const { message, rate } = req.body
@@ -308,6 +313,7 @@ app.post('/review/:beachId', authenticateUser, async (req, res) => {
       userId,
       beachId,
       rate,
+      author: author,
     }).save()
     console.log(newReview)
     res.status(201).json({ response: newReview, sucess: true })
@@ -326,8 +332,8 @@ app.delete('/review/:reviewId', authenticateUser, async (req, res) => {
     _id: reviewId,
   })
 
-  const reviews = await Review.find({})
-  res.send({ reviews }).status(200)
+  const reviews = await Review.find({ userId: req.user })
+  res.send({ success: true, reviews }).status(200)
 })
 
 //-------------------------START THE SERVER-------------------------//

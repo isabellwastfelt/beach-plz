@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 const API = process.env.API_URL || 'http://localhost:9090/'
 
-export const Favorite = ({ updateFavorite }) => {
+export const Favorite = ({ favorites }) => {
   const [newFavorite, setNewFavorite] = useState('')
 
   const { id } = useParams()
@@ -14,7 +14,7 @@ export const Favorite = ({ updateFavorite }) => {
 
     const accessToken = getCookie('accessToken')
 
-    fetch(`${API}profile/favorite/${id}`, {
+    fetch(`${API}beach/${id}/favorite`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,8 +24,8 @@ export const Favorite = ({ updateFavorite }) => {
     })
       .then((res) => res.json())
       .then(() => {
-        updateFavorite()
         setNewFavorite('')
+        favorites()
       })
   }
 

@@ -54,7 +54,9 @@ export const Profile = () => {
     <div>
       <Header />
       <>
-        <h1>Din profil</h1>
+        <div className="profile-headline">
+          <h1>Din profil</h1>
+        </div>
         <div>
           <ProfileBeaches />
         </div>

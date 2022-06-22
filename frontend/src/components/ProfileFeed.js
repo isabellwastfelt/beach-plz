@@ -20,7 +20,7 @@ export const ProfileFeed = ({ reviews, onDelete }) => {
               reviews.map((review) => (
                 <div key={review._id} className="profile-review-box">
                   <p className="message-text">
-                    {review.message} {review.rate}
+                    {review.message} {review.rate} {review.beachId}
                   </p>
                   <div className="date-delete">
                     <div>

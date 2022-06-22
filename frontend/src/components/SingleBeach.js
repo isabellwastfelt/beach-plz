@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-
-import { BEACH_ID } from "utils/urls";
+import React from 'react'
 
 export const SingleBeach = ({ beach }) => {
   if (!beach) {
-    return <div>No beach</div>;
+    return <div>No beach</div>
   }
   return (
     <div className="single-beach">
-      {/* <Link to="/" className="back-button" onClick={onBackButtonClick}>
-        <span className="back-icon">&lt;</span>
-        <span className="back-text"> Tillbaka till alla bad</span>
-      </Link> */}
       {beach && (
         <div key={beach.name}>
           <div className="beaches-container">
@@ -29,5 +22,5 @@ export const SingleBeach = ({ beach }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}

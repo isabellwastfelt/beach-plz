@@ -63,7 +63,6 @@ h3 {
 label {
   font-size: 18px;
   font-weight: normal;
-  margin: 5px;
 }
 
 #username,
@@ -72,9 +71,12 @@ label {
   padding: 5px;
   text-align: center;
   align-items: center;
-  margin: 15px 50px;
+  margin: 15px 40px;
 }
 
+#password {
+  margin-bottom: 30px;
+}
 .error {
   font-size: 15px;
   font-weight: normal;
@@ -88,9 +90,9 @@ label {
   margin: 0 auto;
   padding: 20px;
   height: 40px;
-  width: 100px;
+  width: 120px;
   text-align: center;
-  background-color: #ffde7d;
+  background-color: #ffa74a;
   border-radius: 5px;
   border: none;
   font-weight: bold;
@@ -124,7 +126,7 @@ label {
   height: 40px;
   width: 350px;
   text-align: center;
-  background-color: #fed2aa;
+  background-color: #ffa74a;
   border-radius: 5px;
   border: 1px;
 
@@ -422,10 +424,16 @@ textarea.red-text {
 
 /* --- PROFILE PAGE --- */
 
+.profile-headline {
+  display: flex;
+  justify-content: center;
+}
+
 .profile-feed-container {
   display: flex;
+  justify-content: space-evenly;
   margin: 20px 40px;
-  background-color: #ffc07d;
+  /* background-color: #ffc07d; */
   border-radius: 5px;
 }
 /* 
@@ -449,25 +457,25 @@ textarea.red-text {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@media (min-width: 664px) {
-  .profile-review-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .profile-review-feed {
-    background-color: #ffc07d;
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .profile-review-box {
-    height: 100%;
-    width: 300px;
-  }
+/* @media (min-width: 664px) { */
+.profile-review-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+.profile-review-feed {
+  background-color: #ffc07d;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-review-box {
+  height: 100%;
+  width: 300px;
+}
+/* } */
 
 /* @media (min-width: 1024px) {
   .profile-review-card {

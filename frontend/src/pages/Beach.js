@@ -14,7 +14,7 @@ export const Beach = () => {
   //fetch reviews
   const [beach, setBeach] = useState({})
   const [reviews, setReviews] = useState([])
-  // const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   const fetchBeach = async () => {
@@ -27,7 +27,18 @@ export const Beach = () => {
       const res = await data.json()
       setBeach(res.beach)
       setReviews(res.reviews)
-      // setFavorites(res.favorites)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const fetchFavorite = async () => {
+    try {
+      const fave = await fetch(`${API}beach/${id}`, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const res = await fave.json()
+      setFavorites(res.favorites)
     } catch (err) {
       console.error(err)
     }
@@ -35,7 +46,7 @@ export const Beach = () => {
 
   useEffect(() => {
     fetchBeach()
-    // updateFavorite()
+    setFavorites()
   }, [])
 
   if (isLoading) {
@@ -48,7 +59,7 @@ export const Beach = () => {
       <div className="beach-page-container">
         <div className="beach-and-form">
           <SingleBeach beach={beach} />
-          {/* <Favorite favorites={updateFavorite} /> */}
+          <Favorite favorites={fetchFavorite} />
           <ReviewForm updateReviews={fetchBeach} />
         </div>
         <div className="review-feed-container">

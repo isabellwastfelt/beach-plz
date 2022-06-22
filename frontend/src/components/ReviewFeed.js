@@ -1,6 +1,6 @@
 import { formatDistance } from 'date-fns'
 
-const ReviewFeed = ({ reviews, onDelete }) => {
+const ReviewFeed = ({ reviews }) => {
   if (!reviews) {
     return <div>Inga reviews.</div>
   }
