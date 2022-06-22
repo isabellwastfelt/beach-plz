@@ -15,9 +15,7 @@ const ReviewFeed = ({ reviews }) => {
               reviews.length > -1 &&
               reviews.map((review) => (
                 <div key={review._id} className="review-box">
-                  <p className="message-text">
-                    {review.message} {review.rate}
-                  </p>
+                  <p className="message-text">{review.message}</p>
                   <div className="date-delete">
                     <div>
                       <p className="date">

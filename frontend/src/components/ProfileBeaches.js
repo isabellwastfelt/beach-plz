@@ -1,9 +1,8 @@
 import React from 'react'
-import { Favorite } from 'components/Favorite'
 
-export const ProfileBeaches = ({ favorites }) => {
+export const ProfileBeaches = ({ favorites, unSave }) => {
   if (!favorites) {
-    return <div>Inga favoriter.</div>
+    return <h2>Du har ännu inte sparat någon favorit</h2>
   }
   return (
     <div>
@@ -11,10 +10,22 @@ export const ProfileBeaches = ({ favorites }) => {
         <h3>Favoriter</h3>
         <div className="favorite-card">
           {favorites &&
-            favorites.length > -1 &&
-            favorites.map((favorites) => (
-              <div key={favorites._id} className="favorite-box">
-                <p className="favorite-text">{favorites.favorites}</p>
+            favorites.map((favorite) => (
+              <div key={favorite} className="favorite-box">
+                <p className="favorite-text">{favorite}</p>
+                <div>
+                  {unSave && (
+                    <button
+                      className="delete-button"
+                      type="button"
+                      onClick={() => {
+                        unSave(favorites)
+                      }}
+                    >
+                      OGILLA
+                    </button>
+                  )}
+                </div>
               </div>
             ))}
         </div>

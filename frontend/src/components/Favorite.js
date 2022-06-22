@@ -25,7 +25,7 @@ export const Favorite = ({ favorites }) => {
       .then((res) => res.json())
       .then(() => {
         setNewFavorite('')
-        favorites()
+        favorites('')
       })
   }
 

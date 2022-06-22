@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Link, Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { setCookie } from 'utils/cookieHelper'
 
 import BlackWhite from 'assets/BlackWhite.svg'
@@ -9,8 +9,6 @@ import BlackWhite from 'assets/BlackWhite.svg'
 const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const LoginForm = () => {
-  const navigate = useNavigate()
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [result, setResult] = useState(false)

@@ -81,6 +81,7 @@ label {
   font-size: 15px;
   font-weight: normal;
   color: red;
+  padding-bottom: 15px;
 }
 
 .submit-button {

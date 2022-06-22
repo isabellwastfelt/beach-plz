@@ -1,12 +1,9 @@
 import React from 'react'
 import { formatDistance } from 'date-fns'
 
-/// HÄR SKA ENDAST DINA REVIEW SYNAS
-/// HÄR SKA REVIEW DELETE LIGGA
-
 export const ProfileFeed = ({ reviews, onDelete }) => {
   if (!reviews) {
-    return <div>Inga reviews.</div>
+    return <div>Du har ännu inte gjort någon recension.</div>
   }
 
   return (
@@ -20,7 +17,8 @@ export const ProfileFeed = ({ reviews, onDelete }) => {
               reviews.map((review) => (
                 <div key={review._id} className="profile-review-box">
                   <p className="message-text">
-                    {review.message} {review.rate} {review.beachId}
+                    {review.message} {review.beachId}
+                    {review.username}
                   </p>
                   <div className="date-delete">
                     <div>
@@ -34,6 +32,7 @@ export const ProfileFeed = ({ reviews, onDelete }) => {
                         )}
                       </p>
                     </div>
+
                     <div>
                       {onDelete && (
                         <button

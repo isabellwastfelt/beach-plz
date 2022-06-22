@@ -58,13 +58,6 @@ const ReviewSchema = new mongoose.Schema({
     maxlength: 200,
     trim: true,
   },
-  rate: {
-    type: Number,
-  },
-  author: {
-    type: String,
-    required: true,
-  },
   createdAt: {
     type: Date,
     default: () => new Date(),
@@ -187,16 +180,19 @@ app.get('/beaches', (req, res) => {
 // endpoint for name
 app.get('/beach/:id', async (req, res) => {
   const { id } = req.params
+  // const { name } = req.params
 
   try {
     const beach = beaches.find((beach) => beach.id === id)
     const reviews = await Review.find().where('beachId').in(id)
+    // const beachName = beaches.find((beach) => beach.name === name)
 
     if (beach) {
       res.status(200).json({
         beach,
         reviews,
         success: true,
+        // beachName,
       })
       console.log(beach)
     } else {
@@ -212,6 +208,10 @@ app.get('/beach/:id', async (req, res) => {
     })
   }
 })
+
+//-------------------------FAVORITE------------------------//
+
+// ADD FAVORITES
 
 app.post('/beach/:id/favorite', authenticateUser, async (req, res) => {
   const { id } = req.params
@@ -233,6 +233,8 @@ app.post('/beach/:id/favorite', authenticateUser, async (req, res) => {
   }
 })
 
+// REMOVE FAVORITES
+
 app.delete('/beach/:id/favorite', authenticateUser, async (req, res) => {
   const { id } = req.params
   const user = await User.findOne({ _id: req.user })
@@ -251,14 +253,7 @@ app.delete('/beach/:id/favorite', authenticateUser, async (req, res) => {
   }
 })
 
-app.delete('/me', authenticateUser, async (req, res) => {
-  try {
-    const user = await User.findOneAndDelete({ _id: req.user })
-    res.send({ message: 'hello and goodby' }).status(200)
-  } catch (err) {
-    res.send(err).status(400)
-  }
-})
+// SHOW FAVORITES
 
 app.get('/profile', authenticateUser, async (req, res) => {
   const user = await User.findOne({ _id: req.user })
@@ -302,18 +297,15 @@ app.get('/review/mine', authenticateUser, async (req, res) => {
 //-------------------------POST REVIEW-------------------------//
 app.post('/review/:beachId', authenticateUser, async (req, res) => {
   const { beachId } = req.params
-  const { author } = req.params
 
   try {
-    const { message, rate } = req.body
+    const { message } = req.body
     const userId = req.user._id
 
     const newReview = await new Review({
       message: message,
       userId,
       beachId,
-      rate,
-      author: author,
     }).save()
     console.log(newReview)
     res.status(201).json({ response: newReview, sucess: true })

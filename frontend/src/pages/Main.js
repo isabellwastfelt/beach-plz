@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Beaches } from '../components/Beaches'
 import { Header } from '../components/Header'
-//import { Filter } from '..components/Filter'
 
 //CSS
 import '../main.css'
