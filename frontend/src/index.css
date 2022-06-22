@@ -1,8 +1,9 @@
+/* GLOBAL */
+
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 body {
   margin: 0;
-  /* font-family: 'Helvetica'; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffde7d;
@@ -48,7 +49,6 @@ h3 {
 .login-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   border-radius: 5px;
   background-color: 000;
   margin-top: 20px;
@@ -150,6 +150,16 @@ label {
 
 /* MAIN PAGE */
 
+.head-contatiner h1 {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.filter {
+  padding: 20px;
+}
+
 .main-beaches-container {
   display: flex;
   justify-content: center;
@@ -197,9 +207,6 @@ label {
 }
 
 .beaches-container {
-  /* display: flex;
-  justify-content: center;
-  flex-wrap: wrap; */
   margin: 20px 40px;
   background-color: #ffc07d;
   border-radius: 5px;
@@ -237,7 +244,6 @@ label {
 .beaches-boxes a {
   color: #000;
   text-decoration: none;
-  /* text-shadow: rgb(255, 255, 255) 1px 1px; */
 }
 
 .beaches-boxes a:hover {
@@ -275,7 +281,6 @@ label {
 
 .single-beach h2 {
   font-size: 15px;
-  /* font-weight: normal; */
   margin: 0px 5px;
   text-align: center;
 }
@@ -283,7 +288,6 @@ label {
 .single-beach p {
   font-size: 16px;
   text-align: center;
-  /* margin: 20px 40px 60px 40px; */
 }
 
 .beach-info {
@@ -301,7 +305,6 @@ label {
   flex-direction: column;
   border-radius: 5px;
   background-color: 000;
-  /* width: 300px; */
   margin: 20px;
   text-align: center;
 }
@@ -315,7 +318,6 @@ label {
   display: flex;
   justify-content: center;
   margin: 20px 40px;
-  /* max-width: 600px; */
   background-color: #ffc07d;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -338,8 +340,6 @@ textarea {
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-  /* text-align: center; */
 }
 
 textarea.red-text {
@@ -353,7 +353,6 @@ textarea.red-text {
   margin: 5px 0 0 0;
   padding: 20px;
   height: 40px;
-  /* width: 200px; */
   text-align: center;
   background-color: #ffa74a;
   border-radius: 5px;
@@ -376,14 +375,6 @@ textarea.red-text {
   padding: 20px;
 }
 
-/* .card {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 15px;
-} */
-
 .review-box {
   background-color: #fff;
   border-radius: 5px;
@@ -393,7 +384,6 @@ textarea.red-text {
 
 .message-text {
   padding: 10px 10px;
-  /* min-height: 100px; */
   font-size: 15px;
   font-weight: normal;
 }
@@ -434,16 +424,8 @@ textarea.red-text {
   display: flex;
   justify-content: space-evenly;
   margin: 20px 40px;
-  /* background-color: #ffc07d; */
   border-radius: 5px;
 }
-/* 
-.profile-review-feed {
-  background-color: #acc0ad;
-  height: 100%;
-  width: 300px;
-
-} */
 
 .profile-review-feed h3 {
   font-size: 20px;
@@ -458,7 +440,6 @@ textarea.red-text {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* @media (min-width: 664px) { */
 .profile-review-card {
   display: flex;
   flex-wrap: wrap;
@@ -476,10 +457,3 @@ textarea.red-text {
   height: 100%;
   width: 300px;
 }
-/* } */
-
-/* @media (min-width: 1024px) {
-  .profile-review-card {
-    justify-content: center;
-  }
-} */
