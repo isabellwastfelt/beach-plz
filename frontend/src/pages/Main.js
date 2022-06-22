@@ -23,8 +23,6 @@ export const Main = () => {
       .then((json) => {
         setAllBeaches(json.response)
 
-        //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
-        //skapa en array med alla areas
         const beachAreas = json.response.map((beach) => beach.area)
         const filteredAreas = beachAreas
           .filter((a, index) => beachAreas.indexOf(a) === index)
