@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { setCookie } from 'utils/cookieHelper'
 
-import BlackWhite from 'assets/BlackWhite.svg'
+import { API_URL } from '../utils/urls'
 
-// .env  API_URL="https://beach-plz.herokuapp.com/"
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-// const API = process.env.API_URL || 'http://localhost:9090/'
+//LOGO
+import BlackWhite from 'assets/BlackWhite.svg'
 
 export const LoginForm = () => {
   const [username, setUsername] = useState('')
@@ -25,11 +24,10 @@ export const LoginForm = () => {
       body: JSON.stringify({ username: username, password: password }),
     }
 
-    fetch(`${API}login`, options)
+    fetch(`${API_URL('login')}`, options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          // make login actions
           setCookie('accessToken', data.accessToken)
           setIsLoggedIn(true)
         } else {
@@ -47,6 +45,7 @@ export const LoginForm = () => {
   return (
     <main className="main-container">
       <img className="logo-img" src={BlackWhite} alt="Logo" />
+      <p className="tagline">Var ska du bada idag?</p>
       <form className="login-form" onSubmit={onFormSubmit}>
         <h3 className="login-headline">Vänligen logga in</h3>
         <label className="form-label" htmlFor="username">

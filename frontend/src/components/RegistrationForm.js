@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
+import { API_URL } from '../utils/urls'
+
+//LOGO
 import BlackWhite from 'assets/BlackWhite.svg'
-
-// .env  API_URL="https://beach-plz.herokuapp.com/"
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-
-// const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const RegistrationForm = () => {
   const [username, setUsername] = useState()
@@ -25,7 +23,7 @@ export const RegistrationForm = () => {
       body: JSON.stringify({ username: username, password: password }),
     }
 
-    fetch(`${API}registration`, options)
+    fetch(`${API_URL('registration')}`, options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -37,21 +35,22 @@ export const RegistrationForm = () => {
   }
 
   if (result) {
-    return (
-      <main className="main-container">
-        <img className="logo-img" src={BlackWhite} alt="Logo" />
-        <div className="continue-container">
-          <p>
-            <Link to="/">Fortsätt till login</Link>
-          </p>
-        </div>
-      </main>
-    )
+    return <Navigate to="/" />
+    //  ( <main className="main-container">
+    //     <img className="logo-img" src={BlackWhite} alt="Logo" />
+    //     <div className="continue-container">
+    //       <p>
+    //         <Link to="/">Fortsätt till login</Link>
+    //       </p>
+    //     </div>
+    //   </main>
+    // )
   }
 
   return (
     <main className="main-container">
       <img className="logo-img" src={BlackWhite} alt="Logo" />
+      <p className="tagline">Var ska du bada idag?</p>
       <form className="login-form" onSubmit={onRegister}>
         <h3 className="login-headline">Registrera dig här</h3>
         <label className="form-label" htmlFor="username">

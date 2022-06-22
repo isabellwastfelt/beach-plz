@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Beaches } from '../components/Beaches'
 import { Header } from '../components/Header'
 
-// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-// const API = process.env.API_URL || 'http://localhost:9090/'
-
 import { API_URL } from 'utils/urls'
 
 export const Main = () => {

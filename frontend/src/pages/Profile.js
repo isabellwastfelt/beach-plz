@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
+
 import { ProfileFeed } from '../components/ProfileFeed'
 import { Header } from 'components/Header'
+
 import { API_URL } from '../utils/urls'
-
 import { getCookie } from '../utils/cookieHelper'
-
-// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-// const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const Profile = () => {
   const [reviews, setReviews] = useState([])
@@ -53,8 +51,9 @@ export const Profile = () => {
       <Header />
       <>
         <div className="profile-headline">
-          <h1>Din profil</h1>
+          <h1>Välkommen till din profil</h1>
         </div>
+        <div className="profile-text">Här kan du se dina recensioner</div>
         <div>
           <div className="profile-feed-container">
             <ProfileFeed reviews={reviews} onDelete={onDelete} />

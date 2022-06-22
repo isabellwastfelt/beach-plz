@@ -9,29 +9,23 @@ const ReviewFeed = ({ reviews }) => {
     <main>
       <div className="review-feed">
         <h3>Recensioner</h3>
-        <div className="card">
-          <div className="review-card">
-            {reviews &&
-              reviews.length > -1 &&
-              reviews.map((review) => (
-                <div key={review._id} className="review-box">
-                  <p className="message-text">{review.message}</p>
-                  <div className="date-delete">
-                    <div>
-                      <p className="date">
-                        {formatDistance(
-                          new Date(review.createdAt),
-                          Date.now(),
-                          {
-                            addSuffix: true,
-                          }
-                        )}
-                      </p>
-                    </div>
+        <div className="review-card">
+          {reviews &&
+            reviews.length > -1 &&
+            reviews.map((review) => (
+              <div key={review._id} className="review-box">
+                <p className="message-text">{review.message}</p>
+                <div className="date-delete">
+                  <div>
+                    <p className="date">
+                      {formatDistance(new Date(review.createdAt), Date.now(), {
+                        addSuffix: true,
+                      })}
+                    </p>
                   </div>
                 </div>
-              ))}
-          </div>
+              </div>
+            ))}
         </div>
       </div>
     </main>

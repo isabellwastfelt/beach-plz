@@ -3,7 +3,7 @@ import { formatDistance } from 'date-fns'
 
 export const ProfileFeed = ({ reviews, onDelete }) => {
   if (!reviews) {
-    return <div>Du har ännu inte gjort någon recension.</div>
+    return <div>Du har ännu inte gjort någon recension</div>
   }
 
   return (

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getCookie } from 'utils/cookieHelper'
 
-const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-// const API = process.env.API_URL || 'http://localhost:9090/'
+import { API_URL } from '../utils/urls'
+import { getCookie } from 'utils/cookieHelper'
 
 const ReviewForm = ({ updateReviews }) => {
   const [newReview, setNewReview] = useState('')
-  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const { id } = useParams()
@@ -17,7 +15,7 @@ const ReviewForm = ({ updateReviews }) => {
 
     const accessToken = getCookie('accessToken')
 
-    fetch(`${API}review/${id}`, {
+    fetch(`${API_URL('review')}/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

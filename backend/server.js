@@ -14,10 +14,10 @@ mongoose.Promise = Promise
 const port = process.env.PORT || 9090
 const app = express()
 
-// Add middlewares to enable cors and json body parsing
 app.use(cors())
 app.use(express.json())
 
+//-------------------------USER SCHEMA-------------------------//
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -41,7 +41,7 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema)
 
-//--- Review schema ---//
+//-------------------------REVIEW SCHEMA-------------------------//
 const ReviewSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -221,7 +221,6 @@ app.get('/profile', authenticateUser, async (req, res) => {
 })
 
 //-------------------------REVIEW ENDPOINT-------------------------//
-//--- show review feed ---//
 
 app.get('/review', async (req, res) => {
   try {
@@ -235,18 +234,8 @@ app.get('/review', async (req, res) => {
   }
 })
 
-// get only my reviews
-app.get('/review/mine', authenticateUser, async (req, res) => {
-  try {
-    const reviews = await Review.find({ userId: req.user })
-    res.send({ success: true, reviews }).status(200)
-  } catch (err) {
-    console.log(err)
-    res.send({ sucess: false, message: err })
-  }
-})
-
 //--------------------------POST REVIEW-------------------------//
+
 app.post('/review/:beachId', authenticateUser, async (req, res) => {
   const { beachId } = req.params
 
