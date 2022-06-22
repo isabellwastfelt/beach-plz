@@ -246,7 +246,7 @@ app.get('/review/mine', authenticateUser, async (req, res) => {
   }
 })
 
-//-------------------------POST REVIEW-------------------------//
+//--------------------------POST REVIEW-------------------------//
 app.post('/review/:beachId', authenticateUser, async (req, res) => {
   const { beachId } = req.params
 
