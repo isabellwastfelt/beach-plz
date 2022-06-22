@@ -15,7 +15,6 @@ li a {
 
 .header-container {
   padding-bottom: 170px;
-  /* background-color: #fff; */
 }
 
 .nav-logo-img {
@@ -94,25 +93,6 @@ li a {
   font-weight: 500;
   transition: color 0.3s ease-in-out;
 }
-
-/* .nav-button {
-  padding: 8px 19px;
-  margin-right: 20px;
-  background-color: rgba(0, 136, 169, 1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all ease-in-out 0s;
-} */
-
-/* .nav-button:hover a {
-  color: #fed2aa;
-} */
-
-/* .nav-button:hover {
-  background: #fff;
-  color: #0088a9;
-} */
 
 .navbar :hover {
   color: #fbae66;
@@ -204,13 +184,6 @@ li a {
     width: fit-content;
     margin-left: 1rem;
   }
-
-  /* .logo {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    font-size: 1.7rem;
-  } */
 
   .navbar-container input[type='checkbox']:checked ~ .menu-items {
     transform: translateX(200px);
