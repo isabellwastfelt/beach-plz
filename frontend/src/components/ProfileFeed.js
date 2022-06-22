@@ -16,10 +16,7 @@ export const ProfileFeed = ({ reviews, onDelete }) => {
               reviews.length > -1 &&
               reviews.map((review) => (
                 <div key={review._id} className="profile-review-box">
-                  <p className="message-text">
-                    {review.message} {review.beachId}
-                    {review.username}
-                  </p>
+                  <p className="message-text">{review.message}</p>
                   <div className="date-delete">
                     <div>
                       <p className="date">

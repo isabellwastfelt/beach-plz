@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { ProfileBeaches } from '../components/ProfileBeaches'
 import { ProfileFeed } from '../components/ProfileFeed'
 import { Header } from 'components/Header'
 import { API_URL } from '../utils/urls'
@@ -11,7 +10,6 @@ import { getCookie } from '../utils/cookieHelper'
 
 export const Profile = ({ beach }) => {
   const [reviews, setReviews] = useState([])
-  const [favorites, setFavorites] = useState([])
 
   const fetchReviews = async () => {
     const accessToken = getCookie('accessToken')
@@ -26,7 +24,6 @@ export const Profile = ({ beach }) => {
       const res = await data.json()
       console.log(res)
       setReviews(res.reviews)
-      setFavorites(res.favorites)
     } catch (err) {
       console.error(err)
     }
@@ -47,21 +44,6 @@ export const Profile = ({ beach }) => {
     setReviews(reviewRes.reviews)
   }
 
-  // Unsave favorites
-  const unSave = async () => {
-    const accessToken = getCookie('accessToken')
-
-    const favoritePost = await fetch(`${API_URL('profile')}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken,
-      },
-    })
-    const favoriteRes = await favoritePost.json()
-    setFavorites(favoriteRes.favorites)
-  }
-
   useEffect(() => {
     fetchReviews()
   }, [])
@@ -74,12 +56,8 @@ export const Profile = ({ beach }) => {
           <h1>Din profil</h1>
         </div>
         <div>
-          <ProfileBeaches unSave={unSave} />
-        </div>
-
-        <div>
           <div className="profile-feed-container">
-            <ProfileFeed reviews={reviews} onDelete={onDelete} beach={beach} />
+            <ProfileFeed reviews={reviews} onDelete={onDelete} />
           </div>
         </div>
       </>

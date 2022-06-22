@@ -5,13 +5,12 @@ import { setCookie } from 'utils/cookieHelper'
 import BlackWhite from 'assets/BlackWhite.svg'
 
 // .env  API_URL="https://beach-plz.herokuapp.com/"
-// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-const API = process.env.API_URL || 'http://localhost:9090/'
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+// const API = process.env.API_URL || 'http://localhost:9090/'
 
 export const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [result, setResult] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState('')
 

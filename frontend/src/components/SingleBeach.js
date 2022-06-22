@@ -2,7 +2,7 @@ import React from 'react'
 
 export const SingleBeach = ({ beach }) => {
   if (!beach) {
-    return <div>No beach</div>
+    return <div>Det finns ingen strand med det namnet</div>
   }
   return (
     <div className="single-beach">

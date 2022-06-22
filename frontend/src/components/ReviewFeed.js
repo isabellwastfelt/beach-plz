@@ -2,7 +2,7 @@ import { formatDistance } from 'date-fns'
 
 const ReviewFeed = ({ reviews }) => {
   if (!reviews) {
-    return <div>Inga reviews.</div>
+    return <h2>Du har ännu inte gjort några recensioner</h2>
   }
 
   return (

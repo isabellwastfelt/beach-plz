@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCookie } from 'utils/cookieHelper'
 
-// const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
-const API = process.env.API_URL || 'http://localhost:9090/'
+const API = process.env.API_URL || 'https://beach-plz.herokuapp.com/'
+// const API = process.env.API_URL || 'http://localhost:9090/'
 
 const ReviewForm = ({ updateReviews }) => {
   const [newReview, setNewReview] = useState('')
