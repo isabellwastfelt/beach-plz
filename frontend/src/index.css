@@ -104,6 +104,7 @@ label {
   border: none;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 1px 1px rgb(31, 31, 31);
 }
 
 .register-link {
@@ -365,6 +366,7 @@ textarea.red-text {
   border: none;
   font-weight: bold;
   cursor: pointer;
+  box-shadow: 1px 1px rgb(31, 31, 31);
 }
 
 .review-feed {

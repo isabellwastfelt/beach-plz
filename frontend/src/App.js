@@ -37,9 +37,9 @@ export const App = () => {
           </>
         </Routes>
       </BrowserRouter>
-      <div>
+      <>
         <Footer />
-      </div>
+      </>
     </>
   )
 }
