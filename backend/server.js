@@ -60,7 +60,7 @@ const ReviewSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: () => new Date(),
+    default: Date.now,
   },
 })
 
@@ -224,7 +224,7 @@ app.get('/profile', authenticateUser, async (req, res) => {
 
 app.get('/review', async (req, res) => {
   try {
-    const reviews = await Review.find()
+    const reviews = await Review.find().sort({ createdAt: 'desc' })
     res.status(200).json(reviews)
   } catch (error) {
     res.status(401).json({
