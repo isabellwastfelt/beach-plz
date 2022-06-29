@@ -47,6 +47,10 @@ const ReviewSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  authorName: {
+    type: String,
+    required: false,
+  },
   beachId: {
     type: String,
     required: true,
@@ -74,6 +78,7 @@ const authenticateUser = async (req, res, next) => {
 
     if (user) {
       req.user = user._id
+      req.username = user.username
       next()
     } else {
       res.status(401).json({
@@ -161,12 +166,17 @@ app.post('/login', async (req, res) => {
 
 //-------------------------GET ALL BEACHES-------------------------//
 
-app.get('/beaches', (req, res) => {
+app.get('/beaches', authenticateUser, async (req, res) => {
   try {
-    res.status(200).json({
-      response: beaches,
-      success: true,
+    const user = await User.findById({ _id: req.user })
+    const modified = beaches.map((beach) => {
+      return {
+        ...beach,
+        isFavorite: user.favorites.includes(beach.id),
+      }
     })
+
+    res.status(200).send({ response: modified, success: true })
   } catch (error) {
     res.status(400).json({
       response: error,
@@ -178,20 +188,23 @@ app.get('/beaches', (req, res) => {
 //----------------------GET A SPECIFIC BEACH--------------------//
 
 // endpoint for name
-app.get('/beach/:id', async (req, res) => {
+app.get('/beach/:id', authenticateUser, async (req, res) => {
   const { id } = req.params
 
   try {
+    const user = await User.findById({ _id: req.user })
     const beach = beaches.find((beach) => beach.id === id)
     const reviews = await Review.find().where('beachId').in(id)
 
     if (beach) {
       res.status(200).json({
-        beach,
+        beach: {
+          ...beach,
+          isFavorite: user.favorites.includes(beach.id),
+        },
         reviews,
         success: true,
       })
-      console.log(beach)
     } else {
       res.status(404).json({
         response: 'No data found',
@@ -287,10 +300,12 @@ app.post('/review/:beachId', authenticateUser, async (req, res) => {
   try {
     const { message } = req.body
     const userId = req.user._id
+    const authorName = req.username
 
     const newReview = await new Review({
       message: message,
       userId,
+      authorName: authorName,
       beachId,
     }).save()
     console.log(newReview)

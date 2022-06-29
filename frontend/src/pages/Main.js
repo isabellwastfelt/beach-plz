@@ -3,6 +3,7 @@ import { Beaches } from '../components/Beaches'
 import { Header } from '../components/Header'
 
 import { API_URL } from 'utils/urls'
+import { getCookie } from 'utils/cookieHelper'
 
 export const Main = () => {
   const [allBeaches, setAllBeaches] = useState([])
@@ -12,7 +13,11 @@ export const Main = () => {
 
   // Find all beaches
   useEffect(() => {
-    fetch(API_URL('beaches'))
+    fetch(API_URL('beaches'), {
+      headers: {
+        Authorization: getCookie('accessToken'),
+      },
+    })
       .then((res) => res.json())
       .then((json) => {
         setAllBeaches(json.response)
@@ -37,7 +42,6 @@ export const Main = () => {
       setBeachesByArea(allBeaches)
     }
   }
-  console.log(beachesByArea)
 
   useEffect(() => {
     filterBeachesByArea()

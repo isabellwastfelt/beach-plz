@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { ProfileFeed } from '../components/ProfileFeed'
 import { ProfileBeaches } from '../components/ProfileBeaches'
 import { Header } from 'components/Header'
+import { Link } from 'react-router-dom'
 
 import { API_URL } from '../utils/urls'
 import { getCookie } from '../utils/cookieHelper'
@@ -10,8 +11,9 @@ import { getCookie } from '../utils/cookieHelper'
 export const Profile = ({ beach }) => {
   const [reviews, setReviews] = useState([])
   const [favorites, setFavorites] = useState([])
+  const [beaches, setAllBeaches] = useState([])
 
-  const fetchReviews = async () => {
+  const fetcProfile = async () => {
     const accessToken = getCookie('accessToken')
 
     try {
@@ -22,7 +24,6 @@ export const Profile = ({ beach }) => {
         },
       })
       const res = await data.json()
-      console.log(res)
       setReviews(res.reviews)
       setFavorites(res.favorites)
     } catch (err) {
@@ -45,23 +46,22 @@ export const Profile = ({ beach }) => {
     setReviews(reviewRes.reviews)
   }
 
-  // Unsave favorites - VET EJ OM DEN ÄR OK
-  const unSave = async () => {
-    const accessToken = getCookie('accessToken')
+  useEffect(() => {
+    fetcProfile()
+  }, [])
 
-    const favoritePost = await fetch(`${API_URL('profile')}`, {
-      method: 'DELETE',
+  // Find all beaches
+  useEffect(() => {
+    fetch(API_URL('beaches'), {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken,
+        Authorization: getCookie('accessToken'),
       },
     })
-    const favoriteRes = await favoritePost.json()
-    setFavorites(favoriteRes.favorites)
-  }
-
-  useEffect(() => {
-    fetchReviews()
+      .then((res) => res.json())
+      .then((res) => {
+        const favoriteBeaches = res.response.filter((beach) => beach.isFavorite)
+        setAllBeaches(favoriteBeaches)
+      })
   }, [])
 
   return (
@@ -71,16 +71,36 @@ export const Profile = ({ beach }) => {
         <div className="profile-headline">
           <h1>Välkommen till din profil</h1>
         </div>
-        <div className="profile-text">Här kan du se dina recensioner</div>
+
         <div>
-          <ProfileBeaches unSave={unSave} />
+          {beaches.length > 0 ? (
+            <>
+              <h2>Favorit strander</h2>
+              <ul>
+                {beaches.map((beach) => (
+                  <FavBeachElement key={beach.id} beach={beach} />
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p>Du har inga favoriter aennu</p>
+          )}
         </div>
         <div>
+          <div className="profile-text">Här kan du se dina recensioner</div>
           <div className="profile-feed-container">
             <ProfileFeed reviews={reviews} onDelete={onDelete} beach={beach} />
           </div>
         </div>
       </>
     </div>
+  )
+}
+
+const FavBeachElement = ({ beach }) => {
+  return (
+    <li>
+      <Link to={`/beach/${beach.id}`}>{beach.name}</Link>
+    </li>
   )
 }

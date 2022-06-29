@@ -5,11 +5,12 @@ export const Beaches = ({ beaches }) => {
   return (
     <main>
       <div className="main-beaches-container">
-        {beaches &&
+        {beaches.length > 0 &&
           beaches.map((beach) => (
-            <div className="beaches-boxes">
-              <Link key={beach.id} to={`/beach/${beach.id}`}>
+            <div key={beach.id} className="beaches-boxes">
+              <Link to={`/beach/${beach.id}`}>
                 <h2>{beach.name}</h2>
+                {beach.isFavorite && <h3>(Favoo beach)</h3>}
                 <img className="main-beaches-img" src={beach.image}></img>
                 <h3>{beach.address}</h3>
                 <h3>{beach.area}</h3>
