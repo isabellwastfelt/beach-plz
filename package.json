@@ -1,0 +1,11 @@
+{
+  "name": "project-auth-parent",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "npm install --prefix backend"
+  },
+  "dependencies": {
+    "date-fns": "^2.28.0",
+    "react-burger-menu": "^3.0.8"
+  }
+}
