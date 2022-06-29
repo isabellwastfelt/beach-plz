@@ -8,20 +8,22 @@ import ReviewForm from '../components/ReviewForm'
 import ReviewFeed from '../components/ReviewFeed'
 
 import { API_URL } from '../utils/urls'
+import { getCookie } from 'utils/cookieHelper'
 
 export const Beach = () => {
   const { id } = useParams()
 
   const [beach, setBeach] = useState({})
   const [reviews, setReviews] = useState([])
-  const [favorites, setFavorites] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   const fetchBeach = async () => {
+    setIsLoading(true)
     try {
       const data = await fetch(`${API_URL('beach')}/${id}`, {
         headers: {
           'Content-Type': 'application/json',
+          Authorization: getCookie('accessToken'),
         },
       })
       const res = await data.json()
@@ -30,26 +32,29 @@ export const Beach = () => {
     } catch (err) {
       console.error(err)
     }
+
+    setIsLoading(false)
   }
 
-  const fetchFavorite = async () => {
-    try {
-      const fave = await fetch(`${API_URL('favorite')}/${id}`, {
-        headers: { 'Content-Type': 'application/json' },
+  const updateFavorite = () => {
+    fetch(`${API_URL('beach')}/${beach.id}/favorite`, {
+      method: beach.isFavorite ? 'DELETE' : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: getCookie('accessToken'),
+      },
+    })
+      .then((res) => res.json())
+      .then(() => {
+        fetchBeach()
       })
-      const res = await fave.json()
-      setFavorites(res.favorites)
-    } catch (err) {
-      console.error(err)
-    }
   }
 
   useEffect(() => {
     fetchBeach()
-    setFavorites()
   }, [])
 
-  if (isLoading) {
+  if (isLoading && !beach) {
     return <div>Laddar..</div>
   }
 
@@ -58,8 +63,18 @@ export const Beach = () => {
       <Header />
       <div className="beach-page-container">
         <div className="beach-and-form">
+          {beach.isFavorite && <h2>Aer en favvo beach</h2>}
+
           <SingleBeach beach={beach} />
-          <Favorite updateFavorites={fetchFavorite} />
+
+          {beach?.id && (
+            <Favorite
+              beachId={beach.id}
+              isFavorite={beach.isFavorite}
+              updateFavorite={updateFavorite}
+            />
+          )}
+
           <ReviewForm updateReviews={fetchBeach} />
         </div>
         <div className="review-feed-container">
