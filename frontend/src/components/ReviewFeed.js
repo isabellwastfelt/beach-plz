@@ -17,10 +17,12 @@ const ReviewFeed = ({ reviews }) => {
                 <p className="message-text">{review.message}</p>
                 <div className="date-delete">
                   <div>
+                    {review.authorName && (
+                      <span className="author-name">
+                        Skriven av: {review.authorName}
+                      </span>
+                    )}
                     <p className="date">
-                      {review.authorName && (
-                        <span>Author: {review.authorName}</span>
-                      )}
                       {formatDistance(new Date(review.createdAt), Date.now(), {
                         addSuffix: true,
                       })}

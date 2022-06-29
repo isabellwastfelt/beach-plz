@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { ProfileFeed } from '../components/ProfileFeed'
-import { ProfileBeaches } from '../components/ProfileBeaches'
+// import { ProfileBeaches } from '../components/ProfileBeaches'
 import { Header } from 'components/Header'
 import { Link } from 'react-router-dom'
 
@@ -71,23 +71,28 @@ export const Profile = ({ beach }) => {
         <div className="profile-headline">
           <h1>Välkommen till din profil</h1>
         </div>
-
-        <div>
-          {beaches.length > 0 ? (
-            <>
-              <h2>Favorit strander</h2>
-              <ul>
-                {beaches.map((beach) => (
-                  <FavBeachElement key={beach.id} beach={beach} />
-                ))}
-              </ul>
-            </>
-          ) : (
-            <p>Du har inga favoriter aennu</p>
-          )}
+        <div className="profile-text">
+          Här kan du se dina favoriter och recensioner
+        </div>
+        <div className="profile-favorite-container">
+          <div className="profile-favorite-feed">
+            <h2>Dina favorit bad</h2>
+            <div className="profile-review-card">
+              {beaches.length > 0 ? (
+                <div className="favorite-list">
+                  {beaches.map((beach) => (
+                    <div className="profile-favorite-box">
+                      <FavBeachElement key={beach.id} beach={beach} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>Du har inga favoriter ännu</p>
+              )}
+            </div>
+          </div>
         </div>
         <div>
-          <div className="profile-text">Här kan du se dina recensioner</div>
           <div className="profile-feed-container">
             <ProfileFeed reviews={reviews} onDelete={onDelete} beach={beach} />
           </div>
@@ -99,8 +104,8 @@ export const Profile = ({ beach }) => {
 
 const FavBeachElement = ({ beach }) => {
   return (
-    <li>
+    <div className="favorite-card">
       <Link to={`/beach/${beach.id}`}>{beach.name}</Link>
-    </li>
+    </div>
   )
 }
