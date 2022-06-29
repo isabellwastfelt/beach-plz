@@ -47,6 +47,10 @@ const ReviewSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  authorName: {
+    type: String,
+    required: false,
+  },
   beachId: {
     type: String,
     required: true,
@@ -74,6 +78,7 @@ const authenticateUser = async (req, res, next) => {
 
     if (user) {
       req.user = user._id
+      req.username = user.username
       next()
     } else {
       res.status(401).json({
@@ -295,10 +300,12 @@ app.post('/review/:beachId', authenticateUser, async (req, res) => {
   try {
     const { message } = req.body
     const userId = req.user._id
+    const authorName = req.username
 
     const newReview = await new Review({
       message: message,
       userId,
+      authorName: authorName,
       beachId,
     }).save()
     console.log(newReview)

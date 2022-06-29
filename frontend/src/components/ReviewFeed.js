@@ -18,6 +18,9 @@ const ReviewFeed = ({ reviews }) => {
                 <div className="date-delete">
                   <div>
                     <p className="date">
+                      {review.authorName && (
+                        <span>Author: {review.authorName}</span>
+                      )}
                       {formatDistance(new Date(review.createdAt), Date.now(), {
                         addSuffix: true,
                       })}
