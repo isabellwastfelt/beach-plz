@@ -19,7 +19,7 @@ export const ProfileBeaches = ({ favorites, unSave }) => {
                       className="delete-button"
                       type="button"
                       onClick={() => {
-                        unSave(favorites)
+                        unSave(favorite.id)
                       }}
                     >
                       OGILLA
