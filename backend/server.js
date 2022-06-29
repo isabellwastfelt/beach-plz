@@ -214,10 +214,55 @@ app.get('/profile', authenticateUser, async (req, res) => {
 
   const userSend = {
     username: user.username,
+    favorites: user.favorites,
     reviews: reviews,
   }
 
   res.send({ ...userSend, success: true }).status(200)
+})
+
+//-------------------------FAVORITE------------------------//
+
+// ADD FAVORITES
+
+app.post('/beach/:id/favorite', authenticateUser, async (req, res) => {
+  const { id } = req.params
+  const user = await User.findOne({ _id: req.user })
+
+  try {
+    // om den inte finns
+    if (user.favorites.indexOf(id) === -1) {
+      // so ere din favvis
+      user.favorites.push(id)
+      user.save()
+
+      res.send({ favorites: user.favorites, success: true }).status(200)
+    } else {
+      res.send({ message: 'already in favorites' }).status(201)
+    }
+  } catch (err) {
+    res.send(err).status(400)
+  }
+})
+
+// REMOVE FAVORITES
+
+app.delete('/beach/:id/favorite', authenticateUser, async (req, res) => {
+  const { id } = req.params
+  const user = await User.findOne({ _id: req.user })
+
+  try {
+    // om den finns
+
+    // har du bara alla andra 'n den i din favs
+    const favs = user.favorites.filter((beach) => beach !== id)
+    user.favorites = favs
+    user.save()
+
+    res.send({ favorites: user.favorites, success: true }).status(200)
+  } catch (err) {
+    res.send(err).status(400)
+  }
 })
 
 //-------------------------REVIEW ENDPOINT-------------------------//

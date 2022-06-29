@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
 import { ProfileFeed } from '../components/ProfileFeed'
+import { ProfileBeaches } from '../components/ProfileBeaches'
 import { Header } from 'components/Header'
 
 import { API_URL } from '../utils/urls'
 import { getCookie } from '../utils/cookieHelper'
 
-export const Profile = () => {
+export const Profile = ({ beach }) => {
   const [reviews, setReviews] = useState([])
+  const [favorites, setFavorites] = useState([])
 
   const fetchReviews = async () => {
     const accessToken = getCookie('accessToken')
@@ -22,6 +24,7 @@ export const Profile = () => {
       const res = await data.json()
       console.log(res)
       setReviews(res.reviews)
+      setFavorites(res.favorites)
     } catch (err) {
       console.error(err)
     }
@@ -42,6 +45,21 @@ export const Profile = () => {
     setReviews(reviewRes.reviews)
   }
 
+  // Unsave favorites - VET EJ OM DEN ÄR OK
+  const unSave = async () => {
+    const accessToken = getCookie('accessToken')
+
+    const favoritePost = await fetch(`${API_URL('profile')}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken,
+      },
+    })
+    const favoriteRes = await favoritePost.json()
+    setFavorites(favoriteRes.favorites)
+  }
+
   useEffect(() => {
     fetchReviews()
   }, [])
@@ -55,8 +73,11 @@ export const Profile = () => {
         </div>
         <div className="profile-text">Här kan du se dina recensioner</div>
         <div>
+          <ProfileBeaches unSave={unSave} />
+        </div>
+        <div>
           <div className="profile-feed-container">
-            <ProfileFeed reviews={reviews} onDelete={onDelete} />
+            <ProfileFeed reviews={reviews} onDelete={onDelete} beach={beach} />
           </div>
         </div>
       </>
