@@ -63,7 +63,7 @@ export const Beach = () => {
       <Header />
       <div className="beach-page-container">
         <div className="beach-and-form">
-          {beach.isFavorite && <h2>Är en favvo beach</h2>}
+          {/* {beach.isFavorite && <h2>Är en favvo beach</h2>} */}
 
           <SingleBeach beach={beach} />
 
