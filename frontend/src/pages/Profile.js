@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import { ProfileFeed } from '../components/ProfileFeed'
-// import { ProfileBeaches } from '../components/ProfileBeaches'
 import { Header } from 'components/Header'
 import { Link } from 'react-router-dom'
 
