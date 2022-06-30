@@ -121,34 +121,6 @@ label {
   text-decoration: underline;
 }
 
-.continue-container {
-  padding: 8% 0;
-  font-size: 22px;
-}
-
-.continue-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 0 0 0;
-  padding: 20px;
-  margin: 5%;
-  height: 40px;
-  width: 350px;
-  text-align: center;
-  background-color: #ffa74a;
-  border-radius: 5px;
-  border: 1px;
-
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.continue-container a {
-  text-decoration: none;
-  color: black;
-}
-
 .form-label {
   padding-top: 10px;
   color: #000;

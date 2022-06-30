@@ -36,15 +36,6 @@ export const RegistrationForm = () => {
 
   if (result) {
     return <Navigate to="/" />
-    //  ( <main className="main-container">
-    //     <img className="logo-img" src={BlackWhite} alt="Logo" />
-    //     <div className="continue-container">
-    //       <p>
-    //         <Link to="/">Fortsätt till login</Link>
-    //       </p>
-    //     </div>
-    //   </main>
-    // )
   }
 
   return (
