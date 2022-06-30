@@ -6,7 +6,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffde7d;
+  background-color: #7dbcff;
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
 }
@@ -23,10 +23,11 @@ code {
   font-size: 12px;
   margin-top: 5%;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 .footer a {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 /* --- LOGIN AND REGISTRATION PAGE --- */
@@ -69,6 +70,7 @@ h3 {
 label {
   font-size: 18px;
   font-weight: normal;
+  color: rgb(0, 0, 0);
 }
 
 #username,
@@ -149,6 +151,7 @@ label {
 
 .form-label {
   padding-top: 10px;
+  color: #000;
 }
 
 .login-headline {
@@ -161,10 +164,15 @@ label {
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  color: #fff;
 }
 
 .filter {
   padding: 20px;
+}
+
+.area-label {
+  color: #fff;
 }
 
 .main-beaches-container {
@@ -307,12 +315,15 @@ label {
 
 /* --- FAVORITE BUTTON --- */
 
+.parent-button {
+  display: flex;
+  justify-content: center;
+}
+
 .favorite-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin: 0 auto;
-  padding: 20px; */
   height: 40px;
   width: 160px;
   text-align: center;
@@ -449,11 +460,13 @@ textarea.red-text {
 .profile-headline {
   display: flex;
   justify-content: center;
+  color: #fff;
 }
 
 .profile-text {
   display: flex;
   justify-content: center;
+  color: #fff;
 }
 
 .profile-favorite-container {
@@ -476,10 +489,13 @@ textarea.red-text {
   padding: 20px;
 }
 
-/* .favorit-list {
+.favorite-list {
   display: flex;
   flex-direction: row;
-} */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .profile-favorite-box {
   /* width: 300px; */
   background-color: #ffffff;
@@ -492,6 +508,7 @@ textarea.red-text {
   background-color: #fff;
   margin: 10px;
   padding: 10px;
+  width: 250px;
 }
 
 .favorite-card,

@@ -56,7 +56,7 @@ export const Main = () => {
           <div>
             <div className="filter">
               <form className="area-form">
-                <label>Områden: </label>
+                <label className="area-label">Områden: </label>
                 <select onChange={(event) => setAreaFilter(event.target.value)}>
                   <option value="">Välj område</option>
                   {areas.map((area, index) => (
